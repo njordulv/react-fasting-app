@@ -1,11 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Quiz = () => {
-  const location = useLocation()
   const navigate = useNavigate()
 
   const startQuizHandling = () => {
-    console.log(location)
     return navigate("step-1")
   }
 

@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 650px;
+  padding: 0 15px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.content {
+  padding: 40px 0;
+  text-align: center;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--background);
+  padding: 3px;
+  border-radius: 5px;
+  width: 46px;
+  box-sizing: border-box;
+}
+
+.logoIcon {
+  color: #fff;
+  background: var(--primary-color);
+  background: linear-gradient(
+    180deg,
+    var(--primary-color) 10%,
+    var(--primary-light) 90%
+  );
+  font-size: 40px;
+  border-radius: 5px;
+}

@@ -1,27 +1,29 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import MainLayout from "./layouts/MainLayout"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import StepLayout from "./layouts/StepLayout"
 import Quiz from "./components/Quiz"
-import Step1 from "./components/Step1"
-import Step2 from "./components/Step2"
+import Step from "./components/Step"
+import steps from "./data/steps"
 import NotFound from "./components/NotFound"
 import "./variables.css"
-import "./App.css"
 
 function App() {
   return (
     <div className="App">
-      <div className="wrapper">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<MainLayout />}>
-              <Route path="/quiz" element={<Quiz />} />
-              <Route path="quiz/step-1" element={<Step1 />} />
-              <Route path="quiz/step-2" element={<Step2 />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<StepLayout />}>
+            <Route path="/steps" element={<Quiz />} />
+            <Route path="*" element={<NotFound />} />
+            {steps.map((_, index) => (
+              <Route
+                key={index}
+                path={`/steps/step-${index + 1}`}
+                element={<Step stepIndex={index} />}
+              />
+            ))}
+          </Route>
+        </Routes>
+      </Router>
     </div>
   )
 }

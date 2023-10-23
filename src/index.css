@@ -1,0 +1,37 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Noto Sans", sans-serif;
+  color: var(--color);
+  background-color: var(--background);
+}
+
+h1 {
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 13px 20px;
+  font-size: 18px;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+  color: var(--btn-color);
+  background-color: var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--secondary-color);
+  color: #fff;
+}

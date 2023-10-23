@@ -1,27 +1,29 @@
 import { useNavigate } from "react-router-dom"
+import Question from "./Question"
+import questions from "../data/questions"
 
-const Quiz = () => {
+const Quiz = ({ quizIndex }) => {
   const navigate = useNavigate()
+  const question = questions[quizIndex]
+  const questionsAll = questions.length
 
-  const startQuizHandling = () => {
-    return navigate("step-1")
+  const navigateHandler = () => {
+    if (quizIndex < questions.length - 1) {
+      navigate(`/quiz/quiz-${quizIndex + 2}`)
+    } else {
+      navigate("/results")
+    }
   }
 
   return (
     <>
-      <h1>Achieve Your Ideal Weight</h1>
-      <p>
-        Welcome to Achieve Your Ideal Weight App - your trusted companion on the
-        journey to a healthier lifestyle and reaching your desired weight. Our
-        questions will help create a personalized plan for you, considering your
-        goals, habits, and needs. Start your unique path to becoming the best
-        version of yourself right now!
-      </p>
-      <div>
-        <button type="button" onClick={startQuizHandling}>
-          Start Now
-        </button>
-      </div>
+      <Question
+        all={questionsAll}
+        counter={question.counter}
+        question={question.question}
+        options={question.options}
+        navigateTo={navigateHandler}
+      />
     </>
   )
 }

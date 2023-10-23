@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header>
       <div className={styles.wrapper}>
-        <Link to="/" className={styles.logo} title="Fasting App">
+        <Link to="/quiz" className={styles.logo} title="Fasting App">
           <IoFitnessOutline className={styles.logoIcon} />
         </Link>
       </div>

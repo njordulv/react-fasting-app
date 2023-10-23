@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import StepLayout from "./layouts/StepLayout"
+import QuizStart from "./components/QuizStart"
 import Quiz from "./components/Quiz"
-import Step from "./components/Step"
-import steps from "./data/steps"
+import questions from "./data/questions"
+import Results from "./components/Results"
 import NotFound from "./components/NotFound"
 import "./variables.css"
 
@@ -12,13 +13,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<StepLayout />}>
-            <Route path="/steps" element={<Quiz />} />
+            <Route path="/quiz" element={<QuizStart />} />
+            <Route path="/results" element={<Results />} />
             <Route path="*" element={<NotFound />} />
-            {steps.map((_, index) => (
+            {questions.map((_, index) => (
               <Route
                 key={index}
-                path={`/steps/step-${index + 1}`}
-                element={<Step stepIndex={index} />}
+                path={`/quiz/quiz-${index + 1}`}
+                element={<Quiz quizIndex={index} />}
               />
             ))}
           </Route>

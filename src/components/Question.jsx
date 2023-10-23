@@ -1,19 +1,27 @@
 import { useState } from "react"
 import styles from "./Quiz.module.css"
 
-const Question = ({ stepNumber, question, options, navTo }) => {
+const Question = ({ counter, question, options, navigateTo, all }) => {
   const [selectedOption, setSelectedOption] = useState("")
 
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value)
     setTimeout(() => {
-      navTo()
+      navigateTo()
     }, 400)
   }
 
   return (
     <>
-      <h1>{stepNumber}</h1>
+      <div className={styles.supHeading}>
+        <span>{`${counter} / ${all}`}</span>
+        <div
+          className={styles.progressBar}
+          style={{
+            width: `${counter}0%`,
+          }}
+        ></div>
+      </div>
       <h2>{question}</h2>
       <div className={styles.quizItems}>
         {options.map((option, index) => (

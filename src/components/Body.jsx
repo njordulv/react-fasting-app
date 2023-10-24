@@ -8,7 +8,7 @@ const Body = ({ children }) => {
     location.pathname === "/quiz" ||
     location.pathname === "/quiz/" ||
     location.pathname === "/"
-      ? styles.quizStartPage
+      ? styles.quizCutNav
       : styles.quizPage
 
   document.body.className = bodyClass

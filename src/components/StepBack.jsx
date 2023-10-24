@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { IoArrowBackSharp } from "react-icons/io5"
-import routes from "../data/routes"
+import routes from "../routes/routes"
 import styles from "../App.module.css"
 
 const StepBack = () => {

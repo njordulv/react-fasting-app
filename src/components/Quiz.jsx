@@ -8,9 +8,9 @@ const Quiz = ({ quizIndex }) => {
 
   const navigateHandler = () => {
     if (quizIndex < questions.length - 1) {
-      navigate(`/quiz/quiz-${quizIndex + 2}`)
+      navigate(`/quiz/question-${quizIndex + 2}`)
     } else {
-      navigate("/quiz/quiz-height")
+      navigate("/quiz/height")
     }
   }
 

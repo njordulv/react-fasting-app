@@ -104,13 +104,13 @@
   border: 0;
 }
 
-.quizStartPage .btnBack,
-.quizStartPage .progressBar {
+.quizCutNav .btnBack,
+.quizCutNav .progressBar {
   opacity: 0;
   pointer-events: none;
 }
 
-.quizStartPage .totalQuestions {
+.quizCutNav .totalQuestions {
   display: none;
 }
 

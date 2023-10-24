@@ -5,7 +5,7 @@ const QuizHeight = () => {
   const navigate = useNavigate()
 
   const continueHandling = () => {
-    return navigate("/quiz/quiz-weight")
+    return navigate("/quiz/weight")
   }
   return (
     <>

@@ -5,7 +5,7 @@ const QuizStart = () => {
   const navigate = useNavigate()
 
   const startQuizHandling = () => {
-    return navigate("quiz-1")
+    return navigate("question-1")
   }
 
   return (

@@ -20,14 +20,14 @@ function App() {
             <Route path="/" element={<StepLayout />}>
               <Route index element={<Home />} />
               <Route path="quiz" element={<QuizStart />} />
-              <Route path="quiz/quiz-height" element={<QuizHeight />} />
-              <Route path="quiz/quiz-weight" element={<QuizWeight />} />
-              <Route path="quiz/quiz-results" element={<Results />} />
+              <Route path="quiz/height" element={<QuizHeight />} />
+              <Route path="quiz/weight" element={<QuizWeight />} />
+              <Route path="quiz/results" element={<Results />} />
               <Route path="*" element={<NotFound />} />
               {questions.map((_, index) => (
                 <Route
                   key={index}
-                  path={`/quiz/quiz-${index + 1}`}
+                  path={`/quiz/question-${index + 1}`}
                   element={<Quiz quizIndex={index} />}
                 />
               ))}

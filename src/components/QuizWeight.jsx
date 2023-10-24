@@ -5,7 +5,7 @@ const QuizWeight = () => {
   const navigate = useNavigate()
 
   const continueHandling = () => {
-    return navigate("/quiz/quiz-results")
+    return navigate("/quiz/results")
   }
   return (
     <>

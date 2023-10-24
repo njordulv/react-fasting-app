@@ -11,14 +11,14 @@ const Quiz = ({ quizIndex }) => {
     if (quizIndex < questions.length - 1) {
       navigate(`/quiz/quiz-${quizIndex + 2}`)
     } else {
-      navigate("/results")
+      navigate("/quiz/quiz-results")
     }
   }
 
   return (
     <>
       <Question
-        all={questionsAll}
+        total={questionsAll}
         counter={question.counter}
         question={question.question}
         options={question.options}

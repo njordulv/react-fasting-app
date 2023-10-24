@@ -1,11 +1,11 @@
 import { useState } from "react"
 import styles from "./Quiz.module.css"
 
-const Question = ({ counter, question, options, navigateTo, all }) => {
+const Question = ({ counter, total, question, options, navigateTo }) => {
   const [selectedOption, setSelectedOption] = useState("")
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value)
+  const handleOptionChange = (e) => {
+    setSelectedOption(e.target.value)
     setTimeout(() => {
       navigateTo()
     }, 400)
@@ -14,13 +14,7 @@ const Question = ({ counter, question, options, navigateTo, all }) => {
   return (
     <>
       <div className={styles.supHeading}>
-        <span>{`${counter} / ${all}`}</span>
-        <div
-          className={styles.progressBar}
-          style={{
-            width: `${counter}0%`,
-          }}
-        ></div>
+        <span>{`${counter} / ${total}`}</span>
       </div>
       <h2>{question}</h2>
       <div className={styles.quizItems}>
@@ -39,7 +33,7 @@ const Question = ({ counter, question, options, navigateTo, all }) => {
                 type="radio"
                 value={option}
                 checked={selectedOption === option}
-                onChange={handleOptionChange}
+                onChange={(e) => handleOptionChange(e, index)}
               />
               {option}
             </label>

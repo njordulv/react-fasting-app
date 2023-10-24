@@ -3,9 +3,9 @@
   color: #ccc;
   font-size: 15px;
   line-height: 20px;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .supHeading span {
@@ -25,15 +25,6 @@
   height: 1px;
   opacity: 0.5;
   background-color: #ccc;
-}
-
-.progressBar {
-  position: absolute;
-  border-radius: 3px;
-  top: -40px;
-  height: 3px;
-  background: var(--primary-light);
-  transition: all 0.45s ease-out;
 }
 
 .quizItems {

@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<StepLayout />}>
             <Route path="/quiz" element={<QuizStart />} />
-            <Route path="/results" element={<Results />} />
+            <Route path="/quiz/quiz-results" element={<Results />} />
             <Route path="*" element={<NotFound />} />
             {questions.map((_, index) => (
               <Route

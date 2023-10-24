@@ -46,6 +46,7 @@
   left: 0;
   right: 0;
   height: 3px;
+  transition: all 0.4s ease;
   background-color: gainsboro;
 }
 
@@ -60,4 +61,45 @@
   transition: all 0.45s ease-out;
   box-sizing: border-box;
   background: var(--primary-light);
+}
+
+.totalQuestions {
+  position: relative;
+  color: #ccc;
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.totalQuestions:before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 9px;
+  width: 100%;
+  height: 1px;
+  opacity: 0.5;
+  background-color: #ccc;
+}
+
+.totalQuestions span {
+  position: relative;
+  background-color: var(--background);
+  padding: 0 10px;
+  z-index: 1;
+}
+
+.quizPage {
+  border: 0;
+}
+
+.quizStartPage .progressBar {
+  opacity: 0;
+}
+.quizStartPage .totalQuestions {
+  display: none;
 }

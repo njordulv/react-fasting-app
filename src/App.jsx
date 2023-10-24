@@ -1,30 +1,35 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Body from "./components/Body"
 import StepLayout from "./layouts/StepLayout"
 import QuizStart from "./components/QuizStart"
 import Quiz from "./components/Quiz"
-import questions from "./data/questions"
+import QuizHeight from "./components/QuizHeight"
 import Results from "./components/Results"
 import NotFound from "./components/NotFound"
+import questions from "./data/questions"
 import "./variables.css"
 
 function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <Route path="/" element={<StepLayout />}>
-            <Route path="/quiz" element={<QuizStart />} />
-            <Route path="/quiz/quiz-results" element={<Results />} />
-            <Route path="*" element={<NotFound />} />
-            {questions.map((_, index) => (
-              <Route
-                key={index}
-                path={`/quiz/quiz-${index + 1}`}
-                element={<Quiz quizIndex={index} />}
-              />
-            ))}
-          </Route>
-        </Routes>
+        <Body>
+          <Routes>
+            <Route path="/" element={<StepLayout />}>
+              <Route path="/quiz" element={<QuizStart />} />
+              <Route path="/quiz/quiz-height" element={<QuizHeight />} />
+              <Route path="/quiz/quiz-results" element={<Results />} />
+              <Route path="*" element={<NotFound />} />
+              {questions.map((_, index) => (
+                <Route
+                  key={index}
+                  path={`/quiz/quiz-${index + 1}`}
+                  element={<Quiz quizIndex={index} />}
+                />
+              ))}
+            </Route>
+          </Routes>
+        </Body>
       </Router>
     </div>
   )

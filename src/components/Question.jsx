@@ -1,7 +1,7 @@
 import { useState } from "react"
 import styles from "./Quiz.module.css"
 
-const Question = ({ counter, total, question, options, navigateTo }) => {
+const Question = ({ question, options, navigateTo }) => {
   const [selectedOption, setSelectedOption] = useState("")
 
   const handleOptionChange = (e) => {
@@ -13,9 +13,6 @@ const Question = ({ counter, total, question, options, navigateTo }) => {
 
   return (
     <>
-      <div className={styles.supHeading}>
-        <span>{`${counter} / ${total}`}</span>
-      </div>
       <h2>{question}</h2>
       <div className={styles.quizItems}>
         {options.map((option, index) => (

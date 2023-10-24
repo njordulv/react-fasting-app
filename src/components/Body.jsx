@@ -5,7 +5,9 @@ const Body = ({ children }) => {
   const location = useLocation()
 
   const bodyClass =
-    location.pathname === "/quiz" || location.pathname === "/quiz/"
+    location.pathname === "/quiz" ||
+    location.pathname === "/quiz/" ||
+    location.pathname === "/"
       ? styles.quizStartPage
       : styles.quizPage
 

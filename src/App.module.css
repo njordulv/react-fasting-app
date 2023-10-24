@@ -10,6 +10,13 @@
   box-sizing: border-box;
 }
 
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .content {
   position: relative;
   padding: 40px 0;
@@ -97,9 +104,45 @@
   border: 0;
 }
 
+.quizStartPage .btnBack,
 .quizStartPage .progressBar {
   opacity: 0;
+  pointer-events: none;
 }
+
 .quizStartPage .totalQuestions {
   display: none;
+}
+
+.button {
+  padding: 13px 20px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--btn);
+}
+
+.button:hover {
+  background-color: var(--btn-hover);
+}
+
+.buttonIcon {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: #ccc;
+  font-size: 28px;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+.buttonIcon:hover {
+  outline: none;
+  color: var(--primary-light);
+}
+
+.btnBack {
+  position: absolute;
+  left: 0;
 }

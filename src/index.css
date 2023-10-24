@@ -36,16 +36,8 @@ p {
 }
 
 button {
-  padding: 13px 20px;
-  font-size: 18px;
-  border-radius: 6px;
+  background: none;
   border: 0;
-  cursor: pointer;
-  color: #fff;
-  background-color: var(--btn);
+  padding: 0;
   transition: all 0.3s ease;
-}
-
-button:hover {
-  background-color: var(--btn-hover);
 }

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import styles from "./Quiz.module.css"
+import styles from "./Question.module.css"
 
 const Question = ({ question, options, navigateTo }) => {
   const [selectedOption, setSelectedOption] = useState("")
@@ -14,19 +14,19 @@ const Question = ({ question, options, navigateTo }) => {
   return (
     <>
       <h2>{question}</h2>
-      <div className={styles.quizItems}>
+      <div className={styles.questionItems}>
         {options.map((option, index) => (
           <div
             key={index}
             className={
               selectedOption === option
-                ? `${styles.quizItem} ${styles.quizItemActive}`
-                : `${styles.quizItem}`
+                ? `${styles.questionItem} ${styles.questionItemActive}`
+                : `${styles.questionItem}`
             }
           >
             <label>
               <input
-                className={styles.quizInput}
+                className={styles.questionInput}
                 type="radio"
                 value={option}
                 checked={selectedOption === option}

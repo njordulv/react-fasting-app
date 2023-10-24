@@ -1,19 +1,12 @@
 import { useLocation } from "react-router-dom"
+import routes from "../data/routes"
 import styles from "../App.module.css"
 
 const ProgressBar = () => {
   const location = useLocation()
 
-  const quizRoutes = [
-    "/quiz",
-    ...Array.from({ length: 10 }, (_, i = 0) => `/quiz/quiz-${i + 1}`),
-    "/quiz/quiz-height",
-    "/quiz/quiz-weight",
-    "/quiz/quiz-results",
-  ]
-
-  const currentIndex = quizRoutes.indexOf(location.pathname)
-  const totalRoutes = quizRoutes.length
+  const currentIndex = routes.indexOf(location.pathname)
+  const totalRoutes = routes.length
   const progress = (currentIndex / (totalRoutes - 1)) * 100
 
   return (

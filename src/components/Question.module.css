@@ -1,11 +1,11 @@
-.quizItems {
+.questionItems {
   display: flex;
   flex-direction: column;
   gap: 15px;
   margin-bottom: 30px;
 }
 
-.quizItem {
+.questionItem {
   position: relative;
   overflow: hidden;
   display: flex;
@@ -19,12 +19,12 @@
   transition: all 0.3s ease;
 }
 
-.quizItemActive {
+.questionItemActive {
   background-color: var(--primary-color);
   color: #fff;
 }
 
-.quizInput {
+.questionInput {
   position: absolute;
   border-radius: 10px;
   left: 0;

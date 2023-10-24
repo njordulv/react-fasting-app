@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom"
 import { IoFitnessOutline } from "react-icons/io5"
+import StepBack from "./StepBack"
 import styles from "../App.module.css"
 
 const Header = () => {
   return (
     <header>
       <div className={styles.wrapper}>
-        <Link to="/quiz" className={styles.logo} title="Fasting App">
-          <IoFitnessOutline className={styles.logoIcon} />
-        </Link>
+        <div className={styles.container}>
+          <StepBack />
+          <Link to="/quiz" className={styles.logo} title="Fasting App">
+            <IoFitnessOutline className={styles.logoIcon} />
+          </Link>
+        </div>
       </div>
     </header>
   )

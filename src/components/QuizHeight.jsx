@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import styles from "../App.module.css"
 
 const QuizHeight = () => {
   const navigate = useNavigate()
@@ -10,7 +11,11 @@ const QuizHeight = () => {
     <>
       <h2>Enter your height</h2>
       <div>
-        <button type="button" onClick={continueHandling}>
+        <button
+          type="button"
+          className={styles.button}
+          onClick={continueHandling}
+        >
           Continue
         </button>
       </div>

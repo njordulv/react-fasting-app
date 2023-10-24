@@ -5,6 +5,7 @@ import Home from "./components/Home"
 import QuizStart from "./components/QuizStart"
 import Quiz from "./components/Quiz"
 import QuizHeight from "./components/QuizHeight"
+import QuizWeight from "./components/QuizWeight"
 import Results from "./components/Results"
 import NotFound from "./components/NotFound"
 import questions from "./data/questions"
@@ -18,9 +19,10 @@ function App() {
           <Routes>
             <Route path="/" element={<StepLayout />}>
               <Route index element={<Home />} />
-              <Route path="/quiz" element={<QuizStart />} />
-              <Route path="/quiz/quiz-height" element={<QuizHeight />} />
-              <Route path="/quiz/quiz-results" element={<Results />} />
+              <Route path="quiz" element={<QuizStart />} />
+              <Route path="quiz/quiz-height" element={<QuizHeight />} />
+              <Route path="quiz/quiz-weight" element={<QuizWeight />} />
+              <Route path="quiz/quiz-results" element={<Results />} />
               <Route path="*" element={<NotFound />} />
               {questions.map((_, index) => (
                 <Route

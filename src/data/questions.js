@@ -11,7 +11,7 @@ const questions = [
   },
   {
     counter: "2",
-    question: "How often do you have full meals during the day?",
+    question: "How many full meals do you have during the day?",
     options: [
       "Three times a day",
       "More than three times a day",

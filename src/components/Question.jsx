@@ -32,7 +32,7 @@ const Question = ({ question, options, navigateTo }) => {
                 checked={selectedOption === option}
                 onChange={(e) => handleOptionChange(e, index)}
               />
-              {option}
+              <span>{option}</span>
             </label>
           </div>
         ))}

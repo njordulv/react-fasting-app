@@ -1,10 +1,9 @@
 import { useNavigate } from "react-router-dom"
-import styles from "../App.module.css"
 
 const QuizStart = () => {
   const navigate = useNavigate()
 
-  const startQuizHandling = () => {
+  const startQuizHandler = () => {
     return navigate("question-1")
   }
 
@@ -19,11 +18,7 @@ const QuizStart = () => {
         version of yourself right now!
       </p>
       <div>
-        <button
-          type="button"
-          className={styles.button}
-          onClick={startQuizHandling}
-        >
+        <button type="button" className="button" onClick={startQuizHandler}>
           Start Now
         </button>
       </div>

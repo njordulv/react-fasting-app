@@ -114,19 +114,6 @@
   display: none;
 }
 
-.button {
-  padding: 13px 20px;
-  font-size: 18px;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #fff;
-  background-color: var(--btn);
-}
-
-.button:hover {
-  background-color: var(--btn-hover);
-}
-
 .buttonIcon {
   border: 0;
   padding: 0;
@@ -145,4 +132,55 @@
 .btnBack {
   position: absolute;
   left: 0;
+}
+
+.heightForm {
+  position: relative;
+}
+
+.inputField {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.input {
+  height: 80px;
+  width: 80px;
+  padding: 10px;
+  font-size: 32px;
+  box-sizing: border-box;
+  color: var(--color);
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+  text-align: center;
+  background-color: transparent;
+}
+
+.input::placeholder {
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.input:focus-visible::placeholder {
+  opacity: 0;
+}
+
+.inputError {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 0;
+  color: coral;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 500;
 }

@@ -1,20 +1,20 @@
 import { useLocation } from "react-router-dom"
 import routes from "../routes/routes"
+import { progress } from "../data/formulas"
 import styles from "../App.module.css"
 
 const ProgressBar = () => {
   const location = useLocation()
-
   const currentIndex = routes.indexOf(location.pathname)
   const totalRoutes = routes.length
-  const progress = (currentIndex / (totalRoutes - 1)) * 100
+  const stepsProgress = progress(currentIndex, totalRoutes)
 
   return (
     <>
       <div className={styles.progressBar}>
         <div
           className={styles.progress}
-          style={{ width: `${progress}%` }}
+          style={{ width: `${stepsProgress}%` }}
         ></div>
       </div>
       <div className={styles.totalQuestions}>

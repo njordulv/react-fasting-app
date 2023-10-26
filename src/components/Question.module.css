@@ -12,7 +12,6 @@
   flex-direction: row;
   align-items: center;
   gap: 15px;
-  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   font-weight: 500;
@@ -22,20 +21,6 @@
 
 .questionItem:hover {
   box-shadow: 0px -1px 0 0px rgba(0, 0, 0, 0.2);
-}
-
-.questionItem:hover span {
-  position: relative;
-  top: 1px;
-  transition: all 0.3s ease;
-}
-
-.questionItemActive {
-  background-color: var(--primary-color);
-}
-
-.questionItemActive span {
-  color: #fff;
 }
 
 .questionInput {
@@ -51,7 +36,40 @@
   cursor: pointer;
 }
 
-.questionItem span {
-  position: relative;
+.questionItemBackground {
+  position: absolute;
+  border-radius: 10px;
+  background-color: #fff;
+  left: 0;
   top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.questionInput:checked + .questionItemBackground {
+  background-color: var(--primary-color);
+}
+
+.questionInput:checked + .questionItemBackground + .questionItemTitle {
+  color: #fff;
+}
+
+.questionItemTitle {
+  position: relative;
+  z-index: -1;
+  top: 0;
+}
+
+.questionItemActive .questionItemTitle {
+  color: #fff;
+}
+
+.questionItem:hover .questionItemTitle {
+  position: relative;
+  top: 1px;
+  transition: all 0.3s ease;
 }

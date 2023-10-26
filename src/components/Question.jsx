@@ -1,14 +1,21 @@
-import { useState } from "react"
+import { useLocation } from "react-router-dom"
+import { useSelectedOptions } from "./SelectedOptionsContext"
 import styles from "./Question.module.css"
 
 const Question = ({ question, options, navigateTo }) => {
-  const [selectedOption, setSelectedOption] = useState("")
+  const { selectedOptionsHistory, setSelectedOptionsHistory } =
+    useSelectedOptions()
+  const location = useLocation()
+  const selectedOption = selectedOptionsHistory[location.pathname] || ""
 
-  const handleOptionChange = (e) => {
-    setSelectedOption(e.target.value)
+  const handleOptionChange = (option) => {
     setTimeout(() => {
       navigateTo()
     }, 400)
+    setSelectedOptionsHistory((prevHistory) => ({
+      ...prevHistory,
+      [location.pathname]: option,
+    }))
   }
 
   return (
@@ -16,23 +23,17 @@ const Question = ({ question, options, navigateTo }) => {
       <h2>{question}</h2>
       <div className={styles.questionItems}>
         {options.map((option, index) => (
-          <div
-            key={index}
-            className={
-              selectedOption === option
-                ? `${styles.questionItem} ${styles.questionItemActive}`
-                : `${styles.questionItem}`
-            }
-          >
+          <div key={index} className={styles.questionItem}>
             <label>
               <input
                 className={styles.questionInput}
                 type="radio"
                 value={option}
-                checked={selectedOption === option}
-                onChange={(e) => handleOptionChange(e, index)}
+                checked={selectedOption === option ? "checked" : ""}
+                onChange={() => handleOptionChange(option)}
               />
-              <span>{option}</span>
+              <span className={styles.questionItemBackground}></span>
+              <span className={styles.questionItemTitle}>{option}</span>
             </label>
           </div>
         ))}

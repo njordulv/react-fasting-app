@@ -12,7 +12,7 @@ const Results = () => {
   const inputHeight = queryParams.get("inputHeight")
   const inputWeight = queryParams.get("inputWeight")
   const BMIcurrent = BMI(inputHeight, inputWeight)
-  const delay = 1800
+  const delay = 1700
 
   const btnBackHandler = () => {
     return navigate("/quiz/question-1")

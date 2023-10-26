@@ -1,21 +1,48 @@
 import { useLocation, useNavigate } from "react-router-dom"
+import { useState, useEffect } from "react"
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri"
 import { BMI } from "../data/formulas"
 import styles from "./Results.module.css"
 
-const Results = ({ movePercentage }) => {
+const Results = () => {
   const location = useLocation()
   const navigate = useNavigate()
+  const [active, setActive] = useState(null)
   const queryParams = new URLSearchParams(location.search)
   const inputHeight = queryParams.get("inputHeight")
   const inputWeight = queryParams.get("inputWeight")
   const BMIcurrent = BMI(inputHeight, inputWeight)
-  let BMIprogress
+  const delay = 1800
 
   const btnBackHandler = () => {
     return navigate("/quiz/question-1")
   }
 
+  useEffect(() => {
+    const timeoutDelayHandler = () => {
+      let activeIndex = null
+
+      if (BMIcurrent <= 18.4) {
+        activeIndex = 0
+      } else if (BMIcurrent >= 18.5 && BMIcurrent <= 24.9) {
+        activeIndex = 1
+      } else if (BMIcurrent >= 25 && BMIcurrent <= 39.9) {
+        activeIndex = 2
+      } else if (BMIcurrent > 40) {
+        activeIndex = 3
+      }
+
+      if (activeIndex !== null) {
+        setTimeout(() => {
+          setActive(activeIndex)
+        }, delay)
+      }
+    }
+
+    timeoutDelayHandler()
+  }, [BMIcurrent])
+
+  let BMIprogress
   if (BMIcurrent <= 18.4) {
     BMIprogress = 10
   } else if (BMIcurrent >= 18.5 && BMIcurrent <= 24.9) {
@@ -34,14 +61,14 @@ const Results = ({ movePercentage }) => {
       <div className={styles.bmiContainer}>
         <div className={styles.bmiTop}>
           <span>
-            Your BMI is{" "}
+            Your BMI is&nbsp;
             {!isNaN(BMIcurrent) ? (
-              BMIcurrent
+              <b>{BMIcurrent}</b>
             ) : (
               <span style={{ color: "#f26241" }}>Incorrect</span>
             )}
           </span>
-          <span>Normal - 21.4</span>
+          <span>Normal 21.4</span>
         </div>
         <div className={styles.bmiProgressBar}>
           <span
@@ -53,16 +80,32 @@ const Results = ({ movePercentage }) => {
           </span>
         </div>
         <div className={styles.bmiBottom}>
-          <span>
+          <span
+            className={
+              active === 0 ? `${styles.bmiUnderweight}` : `${styles.bmiVariant}`
+            }
+          >
             <b className={styles.bmiUnderweight}></b>Underweight
           </span>
-          <span>
+          <span
+            className={
+              active === 1 ? `${styles.bmiNormal}` : `${styles.bmiVariant}`
+            }
+          >
             <b className={styles.bmiNormal}></b>Normal
           </span>
-          <span>
+          <span
+            className={
+              active === 2 ? `${styles.bmiOverweight}` : `${styles.bmiVariant}`
+            }
+          >
             <b className={styles.bmiOverweight}></b>Overweight
           </span>
-          <span>
+          <span
+            className={
+              active === 3 ? `${styles.bmiObese}` : `${styles.bmiVariant}`
+            }
+          >
             <b className={styles.bmiObese}></b>Obese
           </span>
         </div>
@@ -70,10 +113,7 @@ const Results = ({ movePercentage }) => {
       {BMIcurrent <= 18.4 ? (
         <div className={styles.bmiText}>
           <p>
-            Individuals with a BMI of 18.4 or less fall into the
-            <span className={`${styles.bmiUnderweight} ${styles.bmiRes}`}>
-              Underweight
-            </span>
+            Individuals with a BMI of 18.4 or less fall into the "Underweight"
             category.
           </p>
           <p>
@@ -94,10 +134,7 @@ const Results = ({ movePercentage }) => {
         <div className={styles.bmiText}>
           <p>
             A BMI falling within the range of 18.5 to 24.9 is considered
-            <span className={`${styles.bmiNormal} ${styles.bmiRes}`}>
-              Normal
-            </span>
-            or "Healthy" weight.
+            "Normal" or "Healthy" weight.
           </p>
           <p>
             Individuals in this range are generally at a weight that is
@@ -114,12 +151,7 @@ const Results = ({ movePercentage }) => {
       )}
       {BMIcurrent >= 25 && BMIcurrent <= 39.9 ? (
         <div className={styles.bmiText}>
-          <p>
-            BMI values between 25.0 and 39.9 are classified as
-            <span className={`${styles.bmiOverweight} ${styles.bmiRes}`}>
-              Overweight
-            </span>
-          </p>
+          <p>BMI values between 25.0 and 39.9 are classified as Overweight</p>
           <p>
             Overweight individuals have excess body weight relative to their
             height, and this may increase their risk of various health problems,
@@ -135,10 +167,7 @@ const Results = ({ movePercentage }) => {
       )}
       {BMIcurrent >= 40 ? (
         <div className={styles.bmiText}>
-          <p>
-            A BMI of 40.0 or higher is categorized as
-            <span className={`${styles.bmiObese} ${styles.bmiRes}`}>Obese</span>
-          </p>
+          <p>A BMI of 40.0 or higher is categorized as Obese</p>
           <p>
             Obesity is associated with a significantly increased risk of serious
             health conditions, including cardiovascular diseases, hypertension,

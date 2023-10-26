@@ -4,18 +4,18 @@
 }
 
 .bmiTextError {
-  color: #f26241;
+  color: coral;
   margin-bottom: 25px;
   text-align: center;
 }
 
 .bmiTextSmall {
   padding: 20px;
-  background-color: aliceblue;
+  background-color: ghostwhite;
   border-radius: 8px;
   text-align: left;
   font-size: 12px;
-  line-height: 16px;
+  line-height: 18px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -46,15 +46,15 @@
 }
 
 .bmiNormal {
-  background-color: rgba(71, 214, 54, 1);
+  background-color: lightgreen;
 }
 
 .bmiOverweight {
-  background-color: darkorange;
+  background-color: orange;
 }
 
 .bmiObese {
-  background-color: #f26241;
+  background-color: coral;
 }
 
 .bmiProgressBar {
@@ -66,12 +66,12 @@
   background: linear-gradient(
     60deg,
     khaki 0%,
-    khaki 22%,
-    rgba(71, 214, 54, 1) 25%,
-    rgba(71, 214, 54, 1) 48%,
-    orange 51%,
+    khaki 20%,
+    lightgreen 26%,
+    lightgreen 47%,
+    orange 52%,
     orange 74%,
-    coral 77%,
+    coral 78%,
     coral 100%
   );
 }
@@ -86,7 +86,7 @@
   bottom: -22px;
   box-sizing: border-box;
   color: darkslategray;
-  animation: moveRight 2s;
+  animation: moveRight 1800ms;
   animation-timing-function: cubic-bezier(0.2, 0.8, 0.4, 1);
 }
 
@@ -121,17 +121,22 @@
   font-weight: 600;
 }
 
+.bmiTop b {
+  font-size: 13px;
+}
+
 .bmiBottom {
   display: grid;
   text-align: left;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 10px;
+  gap: 10px;
   font-size: 10px;
   line-height: 14px;
   font-weight: 600;
   text-transform: uppercase;
 
   @media (max-width: 480px) {
+    grid-template-columns: 1fr;
     font-size: 9px;
     line-height: 12px;
   }
@@ -143,15 +148,21 @@
   gap: 6px;
   align-items: center;
   padding: 3px;
+  transition: all 0.3s ease;
   border-radius: 10px;
+  letter-spacing: 0.4px;
+}
+
+.bmiVariant {
   background-color: whitesmoke;
 }
 
 .bmiBottom b {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   display: inline-block;
+  border: 2px solid #fff;
 }
 
 @keyframes moveRight {

@@ -1,11 +1,14 @@
 :root {
-  --background: #ecf3f8;
-  --primary-color: #f2b3ca;
-  --primary-light: #91b7d9;
+  --background: #fff;
+  --primary: rgba(145, 183, 217, 1);
+  --primary-1: rgba(145, 183, 217, 0.8);
+  --primary-2: rgba(145, 183, 217, 0.5);
+  --secondary: rgba(242, 179, 202, 1);
+  --secondary-1: rgba(242, 179, 202, 0.7);
   --secondary-color: #a63754;
   --secondary-light: #bf6083;
   --color: #042e48;
-  --btn: #91b7d9;
+  --btn: rgb(145, 183, 217);
   --btn-hover: #649aca;
   --font-size: 16px;
   --line-height: 24px;

@@ -4,7 +4,7 @@
 
 .wrapper {
   width: 100%;
-  max-width: 670px;
+  max-width: 640px;
   padding: 0 15px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -36,12 +36,8 @@
 
 .logoIcon {
   color: #fff;
-  background: var(--primary-color);
-  background: linear-gradient(
-    180deg,
-    var(--primary-color) 10%,
-    var(--primary-light) 90%
-  );
+  background: var(--secondary);
+  background: linear-gradient(180deg, var(--secondary) 10%, var(--primary) 90%);
   font-size: 40px;
   border-radius: 5px;
 }
@@ -67,7 +63,7 @@
   height: 3px;
   transition: all 0.45s ease-out;
   box-sizing: border-box;
-  background: var(--primary-light);
+  background: var(--primary);
 }
 
 .totalQuestions {
@@ -79,6 +75,10 @@
   text-transform: uppercase;
   transition: all 0.3s ease;
   margin-bottom: 20px;
+}
+
+.totalQuestions b {
+  color: #999;
 }
 
 .totalQuestions:before {
@@ -126,7 +126,7 @@
 
 .buttonIcon:hover {
   outline: none;
-  color: var(--primary-light);
+  color: var(--primary-1);
 }
 
 .btnBack {

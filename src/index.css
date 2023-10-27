@@ -7,6 +7,8 @@ body {
   font-family: "Noto Sans", sans-serif;
   color: var(--color);
   background-color: var(--background);
+  font-size: var(--font-size);
+  line-height: var(--line-height);
 }
 
 header {
@@ -22,13 +24,13 @@ h2 {
 }
 
 h1 {
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 35px;
+  line-height: 45px;
 }
 
 h2 {
-  font-size: 26px;
-  line-height: 36px;
+  font-size: 25px;
+  line-height: 35px;
 }
 
 p {
@@ -55,7 +57,7 @@ button:disabled {
   max-width: 288px;
   cursor: pointer;
   color: #fff;
-  background-color: var(--btn);
+  background-color: var(--primary);
   text-decoration: none;
   transition: all 0.3s ease;
 }

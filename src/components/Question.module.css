@@ -11,16 +11,33 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 15px;
+  text-align: left;
+  gap: 10px;
   border-radius: 10px;
-  padding: 20px;
-  font-weight: 500;
+  padding: 20px 20px 20px 55px;
   transition: all 0.3s ease;
-  box-shadow: 0px 1px 0 0px rgba(0, 0, 0, 0.2);
 }
 
-.questionItem:hover {
-  box-shadow: 0px -1px 0 0px rgba(0, 0, 0, 0.2);
+.questionCheckbox {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  margin-top: -11px;
+  background: #fff;
+  height: 22px;
+  width: 22px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.questionIcon {
+  font-size: 19px;
+  color: #555;
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 .questionInput {
@@ -39,7 +56,7 @@
 .questionItemBackground {
   position: absolute;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: var(--primary-2);
   left: 0;
   top: 0;
   right: 0;
@@ -50,26 +67,27 @@
   transition: all 0.3s ease;
 }
 
-.questionInput:checked + .questionItemBackground {
-  background-color: var(--primary-color);
+.questionItem:hover .questionItemBackground {
+  background-color: var(--primary-1);
 }
 
-.questionInput:checked + .questionItemBackground + .questionItemTitle {
-  color: #fff;
+.questionInput:checked + .questionItemBackground {
+  background-color: var(--secondary-1);
+}
+
+.questionInput:checked:hover + .questionItemBackground {
+  background-color: var(--secondary);
+}
+
+.questionInput:checked + span + span + .questionCheckbox .questionIcon {
+  opacity: 1;
 }
 
 .questionItemTitle {
   position: relative;
+  transition: all 0.3s ease;
+  color: black;
+  font-weight: 300;
   z-index: -1;
   top: 0;
-}
-
-.questionItemActive .questionItemTitle {
-  color: #fff;
-}
-
-.questionItem:hover .questionItemTitle {
-  position: relative;
-  top: 1px;
-  transition: all 0.3s ease;
 }

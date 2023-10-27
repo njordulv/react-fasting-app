@@ -1,18 +1,18 @@
 import { useLocation } from "react-router-dom"
-import { useSelectedOptions } from "./SelectedOptionsContext"
+import { RiCheckFill } from "react-icons/ri"
+import { useSelectedOptions } from "./OptionsContext"
 import styles from "./Question.module.css"
 
 const Question = ({ question, options, navigateTo }) => {
-  const { selectedOptionsHistory, setSelectedOptionsHistory } =
-    useSelectedOptions()
+  const { optionsHistory, setOptionsHistory } = useSelectedOptions()
   const location = useLocation()
-  const selectedOption = selectedOptionsHistory[location.pathname] || ""
+  const selectedOption = optionsHistory[location.pathname] || ""
 
   const handleOptionChange = (option) => {
     setTimeout(() => {
       navigateTo()
     }, 400)
-    setSelectedOptionsHistory((prevHistory) => ({
+    setOptionsHistory((prevHistory) => ({
       ...prevHistory,
       [location.pathname]: option,
     }))
@@ -34,6 +34,9 @@ const Question = ({ question, options, navigateTo }) => {
               />
               <span className={styles.questionItemBackground}></span>
               <span className={styles.questionItemTitle}>{option}</span>
+              <span className={styles.questionCheckbox}>
+                <RiCheckFill className={styles.questionIcon} />
+              </span>
             </label>
           </div>
         ))}

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { SelectedOptionsProvider } from "./components/SelectedOptionsContext"
+import { OptionsProvider } from "./components/OptionsContext"
 import Body from "./components/Body"
 import StepLayout from "./layouts/StepLayout"
 import Home from "./components/Home"
@@ -15,7 +15,7 @@ import "./variables.css"
 function App() {
   return (
     <BrowserRouter>
-      <SelectedOptionsProvider>
+      <OptionsProvider>
         <div className="App">
           <Body>
             <Routes>
@@ -37,7 +37,7 @@ function App() {
             </Routes>
           </Body>
         </div>
-      </SelectedOptionsProvider>
+      </OptionsProvider>
     </BrowserRouter>
   )
 }

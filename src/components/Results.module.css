@@ -11,12 +11,11 @@
 
 .bmiTextSmall {
   padding: 20px;
-  background-color: ghostwhite;
+  background-color: var(--primary-2);
   border-radius: 8px;
   text-align: left;
   font-size: 12px;
   line-height: 18px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .bmiRes {

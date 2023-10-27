@@ -19,7 +19,7 @@ const ProgressBar = () => {
       </div>
       <div className={styles.totalQuestions}>
         <span>
-          {currentIndex} / {totalRoutes - 1}
+          <b>{currentIndex}</b> / {totalRoutes - 1}
         </span>
       </div>
     </>

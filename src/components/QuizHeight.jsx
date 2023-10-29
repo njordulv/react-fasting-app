@@ -45,9 +45,9 @@ const QuizHeight = () => {
     <>
       <h2>Enter your height</h2>
       <Switcher
-        inputH={setinputHeight}
+        inputHeight={setinputHeight}
         disabled={setDisabled}
-        error={setHeightError}
+        errorHeight={setHeightError}
         metric={isMetric}
         setIsMetric={setIsMetric}
       />

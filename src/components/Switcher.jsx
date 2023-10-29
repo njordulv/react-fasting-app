@@ -1,11 +1,23 @@
 import styles from "../App.module.css"
 
-const Switcher = ({ inputH, error, disabled, metric, setIsMetric }) => {
+const Switcher = ({
+  metric = true,
+  setIsMetric = () => {},
+  inputHeight = () => {},
+  inputWeigh = () => {},
+  inputWeightImperial = () => {},
+  errorHeight = () => {},
+  errorWeight = () => {},
+  disabled = () => {},
+}) => {
   const metricHandler = () => {
     setIsMetric(!metric)
-    inputH("")
+    inputHeight("")
+    inputWeigh("")
+    inputWeightImperial("")
+    errorHeight("")
+    errorWeight("")
     disabled(true)
-    error("")
   }
 
   return (

@@ -33,8 +33,8 @@ const QuizHeightImperial = () => {
   const continueImperialHandler = (e) => {
     e.preventDefault()
 
-    if (!feet || !inch) {
-      setHeightError("")
+    if (feet === "" || inch === "") {
+      setHeightError("Please enter a values")
     } else if (isNaN(feet) || isNaN(inch)) {
       setHeightError("Ensure you input digits only")
     } else if (feet < 4) {

@@ -22,7 +22,7 @@ React Fasting App is a web application designed to help users track their health
 
 To use this app, follow these steps:
 
-1. Clone the repository to your local machine: `git clone https://github.com/your-username/React-Fasting-App.git`
+1. Clone the repository to your local machine: `git clone https://github.com/njordulv/React-Fasting-App.git`
 2. Install the required dependencies: `npm install`
 3. Start the development server: `npm start`
 4. Open your web browser and navigate to http://localhost:3000 to access the app.

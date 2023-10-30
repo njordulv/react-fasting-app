@@ -15,7 +15,7 @@ const Results = () => {
   const delay = 1700
 
   const btnBackHandler = () => {
-    return navigate("/quiz/question-1")
+    return navigate("/quiz")
   }
 
   useEffect(() => {

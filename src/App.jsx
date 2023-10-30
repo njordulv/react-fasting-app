@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { OptionsProvider } from "./components/OptionsContext"
-import Body from "./components/Body"
-import StepLayout from "./layouts/StepLayout"
+import DefaultLayout from "./layouts/DefaultLayout"
+import QuizLayout from "./layouts/QuizLayout"
 import Home from "./components/Home"
 import QuizStart from "./components/QuizStart"
 import Quiz from "./components/Quiz"
@@ -17,25 +17,25 @@ function App() {
     <BrowserRouter>
       <OptionsProvider>
         <div className="App">
-          <Body>
-            <Routes>
-              <Route path="/" element={<StepLayout />}>
-                <Route index element={<Home />} />
-                <Route path="quiz" element={<QuizStart />} />
-                <Route path="quiz/height" element={<QuizHeight />} />
-                <Route path="quiz/weight" element={<QuizWeight />} />
-                <Route path="quiz/results" element={<Results />} />
-                <Route path="*" element={<NotFound />} />
-                {questions.map((_, index) => (
-                  <Route
-                    key={index}
-                    path={`/quiz/question-${index + 1}`}
-                    element={<Quiz quizIndex={index} />}
-                  />
-                ))}
-              </Route>
-            </Routes>
-          </Body>
+          <Routes>
+            <Route path="/" element={<DefaultLayout />}>
+              <Route index element={<Home />} />
+              <Route path="*" element={<NotFound />} />
+              <Route path="/quiz" element={<QuizStart />} />
+            </Route>
+            <Route element={<QuizLayout />}>
+              <Route path="quiz/height" element={<QuizHeight />} />
+              <Route path="quiz/weight" element={<QuizWeight />} />
+              <Route path="quiz/results" element={<Results />} />
+              {questions.map((_, index) => (
+                <Route
+                  key={index}
+                  path={`quiz/question-${index + 1}`}
+                  element={<Quiz quizIndex={index} />}
+                />
+              ))}
+            </Route>
+          </Routes>
         </div>
       </OptionsProvider>
     </BrowserRouter>

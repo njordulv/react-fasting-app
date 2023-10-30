@@ -1,15 +1,13 @@
 import { Outlet } from "react-router-dom"
 import Header from "../components/Header"
-import ProgressBar from "../components/ProgressBar"
 import styles from "../App.module.css"
 
-const StepLayout = () => {
+const DefaultLayout = () => {
   return (
     <>
       <Header />
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <ProgressBar />
           <Outlet />
         </div>
       </div>
@@ -17,4 +15,4 @@ const StepLayout = () => {
   )
 }
 
-export default StepLayout
+export default DefaultLayout

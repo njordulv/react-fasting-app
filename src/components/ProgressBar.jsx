@@ -17,11 +17,6 @@ const ProgressBar = () => {
           style={{ width: `${stepsProgress}%` }}
         ></div>
       </div>
-      <div className={styles.totalQuestions}>
-        <span>
-          <b>{currentIndex}</b> / {totalRoutes - 1}
-        </span>
-      </div>
     </>
   )
 }

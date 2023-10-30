@@ -16,23 +16,21 @@ const QuizHeight = () => {
     const value = text.target.value
     setinputHeight(value)
 
-    if (isMetric) {
-      if (!value) {
-        setHeightError("")
-        setDisabled(true)
-      } else if (isNaN(value)) {
-        setHeightError("Ensure you input digits only")
-        setDisabled(true)
-      } else if (value < 120) {
-        setHeightError("The minimum allowable height is 120 cm")
-        setDisabled(true)
-      } else if (value > 240) {
-        setHeightError("The maximum allowable height is 240 cm")
-        setDisabled(true)
-      } else {
-        setHeightError("")
-        setDisabled(false)
-      }
+    if (!value) {
+      setHeightError("")
+      setDisabled(true)
+    } else if (isNaN(value)) {
+      setHeightError("Ensure you input digits only")
+      setDisabled(true)
+    } else if (value < 120) {
+      setHeightError("The minimum allowable height is 120 cm")
+      setDisabled(true)
+    } else if (value > 240) {
+      setHeightError("The maximum allowable height is 240 cm")
+      setDisabled(true)
+    } else {
+      setHeightError("")
+      setDisabled(false)
     }
   }
 

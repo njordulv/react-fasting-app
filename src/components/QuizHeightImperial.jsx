@@ -34,7 +34,7 @@ const QuizHeightImperial = () => {
     e.preventDefault()
 
     if (feet === "" || inch === "") {
-      setHeightError("Please enter a values")
+      setHeightError("This fields are required")
     } else if (isNaN(feet) || isNaN(inch)) {
       setHeightError("Ensure you input digits only")
     } else if (feet < 4) {
@@ -46,7 +46,7 @@ const QuizHeightImperial = () => {
       setHeightError("Please state at most 11 inch")
     } else {
       setHeightError("")
-      navigate(`/quiz/weight?inputHeight=${totalCm}`)
+      navigate("/quiz/weight", { state: { totalCm } })
     }
   }
 

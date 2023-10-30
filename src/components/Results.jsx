@@ -8,9 +8,16 @@ const Results = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const [active, setActive] = useState(null)
-  const queryParams = new URLSearchParams(location.search)
-  const inputHeight = queryParams.get("inputHeight")
-  const inputWeight = queryParams.get("inputWeight")
+  let { inputHeight, inputWeight, totalCm, totalKg } = location.state || {}
+
+  if (inputHeight === undefined) {
+    inputHeight = totalCm
+  }
+
+  if (inputWeight === undefined) {
+    inputWeight = totalKg
+  }
+
   const BMIcurrent = BMI(inputHeight, inputWeight)
   const delay = 1700
 

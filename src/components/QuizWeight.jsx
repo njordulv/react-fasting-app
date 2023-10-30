@@ -6,19 +6,18 @@ import Switcher from "./Switcher"
 const QuizWeight = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const [inputWeight, setinputWeight] = useState("")
+  const [inputWeight, setInputWeight] = useState("")
   const [weightImperial, setWeightImperial] = useState("")
   const [weightError, setWeightError] = useState("")
   const [disabled, setDisabled] = useState(true)
-  const queryParams = new URLSearchParams(location.search)
-  const inputHeight = queryParams.get("inputHeight")
   const [isMetric, setIsMetric] = useState(true)
   const totalKg = (weightImperial * 0.45359237).toFixed()
+  const { inputHeight, totalCm } = location.state || {}
 
   const inputWeightHandler = (text) => {
     text.preventDefault()
     const value = text.target.value
-    setinputWeight(value)
+    setInputWeight(value)
     setWeightImperial(value)
 
     if (!value) {
@@ -49,20 +48,17 @@ const QuizWeight = () => {
 
   const continueHandler = (e) => {
     e.preventDefault()
+
     isMetric
-      ? navigate(
-          `/quiz/results?inputHeight=${inputHeight}&inputWeight=${inputWeight}`
-        )
-      : navigate(
-          `/quiz/results?inputHeight=${inputHeight}&inputWeight=${totalKg}`
-        )
+      ? navigate("/quiz/results", { state: { inputHeight, inputWeight } })
+      : navigate("/quiz/results", { state: { totalCm, totalKg } })
   }
 
   return (
     <>
       <h2>Enter your weight</h2>
       <Switcher
-        inputWeigh={setinputWeight}
+        inputWeigh={setInputWeight}
         inputWeightImperial={setWeightImperial}
         errorWeight={setWeightError}
         disabled={setDisabled}

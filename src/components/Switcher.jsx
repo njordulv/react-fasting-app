@@ -4,7 +4,7 @@ const Switcher = ({
   metric = true,
   setIsMetric = () => {},
   inputHeight = () => {},
-  inputWeigh = () => {},
+  inputWeight = () => {},
   inputWeightImperial = () => {},
   errorHeight = () => {},
   errorWeight = () => {},
@@ -13,7 +13,7 @@ const Switcher = ({
   const metricHandler = () => {
     setIsMetric(!metric)
     inputHeight("")
-    inputWeigh("")
+    inputWeight("")
     inputWeightImperial("")
     errorHeight("")
     errorWeight("")

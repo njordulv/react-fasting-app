@@ -50,19 +50,23 @@ const QuizWeight = () => {
     e.preventDefault()
 
     isMetric
-      ? navigate("/quiz/results", { state: { inputHeight, inputWeight } })
-      : navigate("/quiz/results", { state: { totalCm, totalKg } })
+      ? navigate("/quiz/weight-goal", {
+          state: { inputHeight, inputWeight },
+        })
+      : navigate("/quiz/weight-goal", {
+          state: { totalCm, totalKg, weightImperial },
+        })
   }
 
   return (
     <>
       <h2>Enter your weight</h2>
       <Switcher
-        inputWeigh={setInputWeight}
+        inputWeight={setInputWeight}
         inputWeightImperial={setWeightImperial}
         errorWeight={setWeightError}
         disabled={setDisabled}
-        metric={isMetric}
+        isMetric={isMetric}
         setIsMetric={setIsMetric}
       />
       <form onSubmit={continueHandler} className={styles.weightForm}>
@@ -87,7 +91,7 @@ const QuizWeight = () => {
                 name="input-weight-lbs"
                 className={`${styles.input}`}
                 maxLength="3"
-                placeholder="100"
+                placeholder="130"
                 value={weightImperial}
                 onChange={inputWeightHandler}
               />

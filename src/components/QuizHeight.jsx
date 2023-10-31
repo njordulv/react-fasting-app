@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import styles from "../App.module.css"
+import Switcher from "./Switcher"
 import QuizHeightImperial from "./QuizHeightImperial"
 
 const QuizHeight = () => {
@@ -8,14 +9,14 @@ const QuizHeight = () => {
   const [inputHeight, setInputHeight] = useState("")
   const [heightError, setHeightError] = useState("")
   const [disabled, setDisabled] = useState(true)
-  const [switcher, setSwitcher] = useState(true)
+  const [isMetric, setIsMetric] = useState(true)
 
   const inputHeightHandler = (text) => {
     text.preventDefault()
     const value = text.target.value
     setInputHeight(value)
 
-    if (switcher) {
+    if (isMetric) {
       if (!value) {
         setHeightError("")
         setDisabled(true)
@@ -40,31 +41,17 @@ const QuizHeight = () => {
     navigate("/quiz/weight", { state: { inputHeight } })
   }
 
-  const metricHandler = () => {
-    setSwitcher(!switcher)
-    setInputHeight("")
-    setDisabled(true)
-    setHeightError("")
-  }
-
   return (
     <>
       <h2>Enter your height</h2>
-      <div className={styles.switcher}>
-        <div className={styles.switcherButton}>
-          <input
-            type="checkbox"
-            className={styles.switcherCheckbox}
-            defaultChecked={switcher}
-            onChange={() => metricHandler()}
-          />
-          <div className={styles.switcherKnobs}>
-            <span></span>
-          </div>
-          <div className={styles.switcherLayer}></div>
-        </div>
-      </div>
-      {switcher ? (
+      <Switcher
+        inputHeight={setInputHeight}
+        heightError={setHeightError}
+        disabled={setDisabled}
+        isMetric={isMetric}
+        setIsMetric={setIsMetric}
+      />
+      {isMetric ? (
         <form onSubmit={continueHandler} className={styles.heightForm}>
           <div className={styles.inputField}>
             <div>
@@ -78,9 +65,7 @@ const QuizHeight = () => {
                   value={inputHeight}
                   onChange={inputHeightHandler}
                 />
-                <span className={styles.inputMeasure}>
-                  {switcher ? "cm" : ""}
-                </span>
+                <span className={styles.inputMeasure}>cm</span>
               </label>
             </div>
             <div className={styles.inputError}>{heightError}</div>

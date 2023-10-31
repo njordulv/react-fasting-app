@@ -192,7 +192,7 @@ const Results = () => {
       )}
       {isNaN(BMIcurrent) ? (
         <div className={`${styles.bmiText} ${styles.bmiTextError}`}>
-          Try with the correct values
+          Try again with the correct values
         </div>
       ) : (
         ""

@@ -1,20 +1,26 @@
 import styles from "../App.module.css"
 
 const Switcher = ({
-  metric = true,
+  isMetric = true,
   setIsMetric = () => {},
   inputHeight = () => {},
   inputWeight = () => {},
   inputWeightImperial = () => {},
+  setGoal = () => {},
+  setGoalImperial = () => {},
+  setVerdict = () => {},
   errorHeight = () => {},
   errorWeight = () => {},
   disabled = () => {},
 }) => {
   const metricHandler = () => {
-    setIsMetric(!metric)
+    setIsMetric(!isMetric)
     inputHeight("")
     inputWeight("")
     inputWeightImperial("")
+    setGoal("")
+    setGoalImperial("")
+    setVerdict("")
     errorHeight("")
     errorWeight("")
     disabled(true)
@@ -27,7 +33,7 @@ const Switcher = ({
           <input
             type="checkbox"
             className={styles.switcherCheckbox}
-            defaultChecked={metric}
+            defaultChecked={isMetric}
             onChange={() => metricHandler()}
           />
           <div className={styles.switcherKnobs}>

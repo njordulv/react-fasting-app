@@ -7,6 +7,7 @@ import QuizStart from "./components/QuizStart"
 import Quiz from "./components/Quiz"
 import QuizHeight from "./components/QuizHeight"
 import QuizWeight from "./components/QuizWeight"
+import QuizWeightGoal from "./components/QuizWeightGoal"
 import Results from "./components/Results"
 import NotFound from "./components/NotFound"
 import questions from "./data/questions"
@@ -26,6 +27,7 @@ function App() {
             <Route element={<QuizLayout />}>
               <Route path="quiz/height" element={<QuizHeight />} />
               <Route path="quiz/weight" element={<QuizWeight />} />
+              <Route path="quiz/weight-goal" element={<QuizWeightGoal />} />
               <Route path="quiz/results" element={<Results />} />
               {questions.map((_, index) => (
                 <Route

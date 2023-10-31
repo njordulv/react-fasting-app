@@ -72,7 +72,7 @@ const QuizHeightImperial = () => {
               name="input-height-inch"
               className={`${styles.input} ${styles.inputMin}`}
               maxLength="2"
-              placeholder="7"
+              placeholder="9"
               value={heightImperial.inch}
               onChange={(e) => imperialInputHandler(e, "inch")}
             />

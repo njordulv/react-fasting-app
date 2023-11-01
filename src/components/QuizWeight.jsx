@@ -1,16 +1,24 @@
 import { useNavigate, useLocation } from "react-router-dom"
-import { useState } from "react"
+import { useAppContext } from "./AppContext"
 import styles from "../App.module.css"
 import Switcher from "./Switcher"
 
 const QuizWeight = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const [inputWeight, setInputWeight] = useState("")
-  const [weightImperial, setWeightImperial] = useState("")
-  const [weightError, setWeightError] = useState("")
-  const [disabled, setDisabled] = useState(true)
-  const [isMetric, setIsMetric] = useState(true)
+
+  const {
+    inputWeight,
+    setInputWeight,
+    weightImperial,
+    setWeightImperial,
+    weightError,
+    setWeightError,
+    disabled,
+    setDisabled,
+    isMetric,
+  } = useAppContext()
+
   const totalKg = (weightImperial * 0.45359237).toFixed()
   const { inputHeight, totalCm } = location.state || {}
 
@@ -61,14 +69,7 @@ const QuizWeight = () => {
   return (
     <>
       <h2>Enter your weight</h2>
-      <Switcher
-        inputWeight={setInputWeight}
-        inputWeightImperial={setWeightImperial}
-        errorWeight={setWeightError}
-        disabled={setDisabled}
-        isMetric={isMetric}
-        setIsMetric={setIsMetric}
-      />
+      <Switcher />
       <form onSubmit={continueHandler} className={styles.weightForm}>
         <div className={styles.inputField}>
           {isMetric ? (

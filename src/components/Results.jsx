@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
+import { useAppContext } from "./AppContext"
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri"
 import { BMI } from "../data/formulas"
 import styles from "./Results.module.css"
@@ -7,7 +8,7 @@ import styles from "./Results.module.css"
 const Results = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const [active, setActive] = useState(null)
+  const { active, setActive } = useAppContext()
   let { inputHeight, inputWeight, totalCm, totalKg } = location.state || {}
 
   if (inputHeight === undefined) {
@@ -47,7 +48,7 @@ const Results = () => {
     }
 
     timeoutDelayHandler()
-  }, [BMIcurrent])
+  }, [BMIcurrent, setActive])
 
   let BMIprogress
   if (BMIcurrent <= 18.4) {

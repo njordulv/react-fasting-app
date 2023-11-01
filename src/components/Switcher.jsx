@@ -1,29 +1,37 @@
+import { useAppContext } from "./AppContext"
 import styles from "../App.module.css"
 
-const Switcher = ({
-  isMetric = true,
-  setIsMetric = () => {},
-  inputHeight = () => {},
-  inputWeight = () => {},
-  inputWeightImperial = () => {},
-  setGoal = () => {},
-  setGoalImperial = () => {},
-  setVerdict = () => {},
-  errorHeight = () => {},
-  errorWeight = () => {},
-  disabled = () => {},
-}) => {
-  const metricHandler = () => {
+const Switcher = () => {
+  const {
+    isMetric,
+    setIsMetric,
+    setInputHeight,
+    setHeightImperial,
+    setInputWeight,
+    setWeightImperial,
+    setGoal,
+    setGoalImperial,
+    setVerdict,
+    setHeightError,
+    setWeightError,
+    setDisabled,
+  } = useAppContext()
+
+  const toggleMetric = () => {
     setIsMetric(!isMetric)
-    inputHeight("")
-    inputWeight("")
-    inputWeightImperial("")
-    setGoal("")
-    setGoalImperial("")
-    setVerdict("")
-    errorHeight("")
-    errorWeight("")
-    disabled(true)
+
+    if (isMetric) {
+      setInputHeight("")
+      setHeightImperial({ feet: "", inch: "" })
+      setInputWeight("")
+      setWeightImperial("")
+      setGoal("")
+      setGoalImperial("")
+      setVerdict("")
+      setHeightError("")
+      setWeightError("")
+      setDisabled(true)
+    }
   }
 
   return (
@@ -33,8 +41,8 @@ const Switcher = ({
           <input
             type="checkbox"
             className={styles.switcherCheckbox}
-            defaultChecked={isMetric}
-            onChange={() => metricHandler()}
+            checked={isMetric}
+            onChange={() => toggleMetric()}
           />
           <div className={styles.switcherKnobs}>
             <span></span>

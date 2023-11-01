@@ -1,22 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { OptionsProvider } from "./components/OptionsContext"
+import { AppContextProvider } from "./components/AppContext"
 import DefaultLayout from "./layouts/DefaultLayout"
 import QuizLayout from "./layouts/QuizLayout"
 import Home from "./components/Home"
+import NotFound from "./components/NotFound"
 import QuizStart from "./components/QuizStart"
 import Quiz from "./components/Quiz"
 import QuizHeight from "./components/QuizHeight"
 import QuizWeight from "./components/QuizWeight"
 import QuizWeightGoal from "./components/QuizWeightGoal"
 import Results from "./components/Results"
-import NotFound from "./components/NotFound"
 import questions from "./data/questions"
 import "./variables.css"
 
 function App() {
   return (
     <BrowserRouter>
-      <OptionsProvider>
+      <AppContextProvider>
         <div className="App">
           <Routes>
             <Route path="/" element={<DefaultLayout />}>
@@ -39,7 +39,7 @@ function App() {
             </Route>
           </Routes>
         </div>
-      </OptionsProvider>
+      </AppContextProvider>
     </BrowserRouter>
   )
 }

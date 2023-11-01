@@ -1,15 +1,21 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
-import styles from "../App.module.css"
-import Switcher from "./Switcher"
+import { useAppContext } from "./AppContext"
 import QuizHeightImperial from "./QuizHeightImperial"
+import Switcher from "./Switcher"
+import styles from "../App.module.css"
 
 const QuizHeight = () => {
   const navigate = useNavigate()
-  const [inputHeight, setInputHeight] = useState("")
-  const [heightError, setHeightError] = useState("")
-  const [disabled, setDisabled] = useState(true)
-  const [isMetric, setIsMetric] = useState(true)
+
+  const {
+    inputHeight,
+    setInputHeight,
+    heightError,
+    setHeightError,
+    disabled,
+    setDisabled,
+    isMetric,
+  } = useAppContext()
 
   const inputHeightHandler = (text) => {
     text.preventDefault()
@@ -44,13 +50,7 @@ const QuizHeight = () => {
   return (
     <>
       <h2>Enter your height</h2>
-      <Switcher
-        inputHeight={setInputHeight}
-        heightError={setHeightError}
-        disabled={setDisabled}
-        isMetric={isMetric}
-        setIsMetric={setIsMetric}
-      />
+      <Switcher />
       {isMetric ? (
         <form onSubmit={continueHandler} className={styles.heightForm}>
           <div className={styles.inputField}>

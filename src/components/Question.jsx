@@ -1,10 +1,10 @@
 import { useLocation } from "react-router-dom"
 import { RiCheckFill } from "react-icons/ri"
-import { useSelectedOptions } from "./OptionsContext"
+import { useAppContext } from "./AppContext"
 import styles from "./Question.module.css"
 
 const Question = ({ question, options, navigateTo }) => {
-  const { optionsHistory, setOptionsHistory } = useSelectedOptions()
+  const { optionsHistory, setOptionsHistory } = useAppContext()
   const location = useLocation()
   const selectedOption = optionsHistory[location.pathname] || ""
 

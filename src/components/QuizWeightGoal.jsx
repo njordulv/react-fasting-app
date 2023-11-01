@@ -1,20 +1,28 @@
 import { useNavigate, useLocation } from "react-router-dom"
-import { useState } from "react"
+import { useAppContext } from "./AppContext"
 import styles from "../App.module.css"
 import Switcher from "./Switcher"
 
 const QuizWeightGoal = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const [goal, setGoal] = useState("")
-  const [goalImperial, setGoalImperial] = useState("")
-  const [verdict, setVerdict] = useState("")
-  const [weightError, setWeightError] = useState("")
-  const [disabled, setDisabled] = useState(true)
-  const [isMetric, setIsMetric] = useState(true)
+
+  const {
+    goal,
+    setGoal,
+    goalImperial,
+    setGoalImperial,
+    verdict,
+    setVerdict,
+    weightError,
+    setWeightError,
+    disabled,
+    setDisabled,
+    isMetric,
+  } = useAppContext()
+
   const { inputHeight, inputWeight, totalCm, totalKg, weightImperial } =
     location.state || {}
-
   const percents = (((inputWeight - goal) / inputWeight) * 100).toFixed()
   const percentsImp = (
     ((weightImperial - goal) / weightImperial) *
@@ -45,7 +53,6 @@ const QuizWeightGoal = () => {
     const value = text.target.value
     const percentGoal = (value / inputWeight) * 10
     const percentGoalImp = (value / weightImperial) * 10
-    console.log(percentGoalImp)
     setGoal(value)
     setGoalImperial(value)
     setVerdict("")
@@ -56,23 +63,23 @@ const QuizWeightGoal = () => {
     }
 
     if (isMetric) {
-      if (!inputWeight && !weightImperial) {
+      if (!inputWeight) {
         setWeightError(
           "Something went wrong, look's like your weight value isn't set"
         )
-      } else if (percentGoal >= 9.8 && percentGoalImp >= 9.8) {
+      } else if (percentGoal >= 9.8) {
         setVerdict("")
         setDisabled(true)
-      } else if (percentGoal >= 9 && percentGoalImp >= 9) {
+      } else if (percentGoal >= 9) {
         setVerdict(answer1)
         setDisabled(false)
-      } else if (percentGoal >= 8 && percentGoalImp >= 8) {
+      } else if (percentGoal >= 8) {
         setVerdict(answer2)
         setDisabled(false)
-      } else if (percentGoal >= 7 && percentGoalImp >= 7) {
+      } else if (percentGoal >= 7) {
         setVerdict(answer3)
         setDisabled(false)
-      } else if (percentGoal >= 4 && percentGoalImp >= 4) {
+      } else if (percentGoal >= 4) {
         setVerdict(answer4)
         setDisabled(false)
       } else {
@@ -115,15 +122,7 @@ const QuizWeightGoal = () => {
   return (
     <>
       <h2>What is your goal weight?</h2>
-      <Switcher
-        setGoal={setGoal}
-        setGoalImperial={setGoalImperial}
-        setVerdict={setVerdict}
-        errorWeight={setWeightError}
-        disabled={setDisabled}
-        isMetric={isMetric}
-        setIsMetric={setIsMetric}
-      />
+      <Switcher />
       <form onSubmit={continueHandler} className={styles.weightForm}>
         <div className={styles.inputField}>
           {isMetric ? (

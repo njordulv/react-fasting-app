@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
+import { useAppContext } from "./AppContext"
 import styles from "../App.module.css"
 
 const QuizHeightImperial = () => {
   const navigate = useNavigate()
-  const [heightImperial, setHeightImperial] = useState({ feet: "", inch: "" })
-  const [heightError, setHeightError] = useState("")
+  const { heightImperial, setHeightImperial, heightError, setHeightError } =
+    useAppContext()
   const feet = heightImperial.feet
   const inch = heightImperial.inch
   const totalCm = (feet * 30.48 + inch * 2.54).toFixed()

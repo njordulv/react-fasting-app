@@ -6,11 +6,13 @@ const QuizLayout = () => {
   return (
     <>
       <HeaderQuiz />
-      <div className={styles.wrapper}>
-        <div className={styles.content}>
-          <Outlet />
+      <section>
+        <div className={styles.wrapper}>
+          <div className={styles.content}>
+            <Outlet />
+          </div>
         </div>
-      </div>
+      </section>
     </>
   )
 }

@@ -19,7 +19,7 @@ const QuizStart = () => {
       </p>
       <div>
         <button type="button" className="button" onClick={startQuizHandler}>
-          Start Now
+          Start Quiz
         </button>
       </div>
     </>

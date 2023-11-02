@@ -11,7 +11,7 @@ const HeaderQuiz = () => {
       <div className={styles.wrapper}>
         <div className={styles.container}>
           <StepBack />
-          <Link to="/quiz" className={styles.logo} title="Fasting App">
+          <Link to="/" className={styles.logo} title="Fasting App">
             <IoFitnessOutline className={styles.logoIcon} />
           </Link>
           <TotalQuiz />

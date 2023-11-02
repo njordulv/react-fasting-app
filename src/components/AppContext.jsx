@@ -19,7 +19,7 @@ export function AppContextProvider({ children }) {
   const [goal, setGoal] = useState("")
   const [goalImperial, setGoalImperial] = useState("")
   const [verdict, setVerdict] = useState("")
-  const [active, setActive] = useState(null)
+  const [active, setActive] = useState("")
 
   return (
     <AppContext.Provider

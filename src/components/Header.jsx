@@ -7,7 +7,7 @@ const Header = () => {
     <header>
       <div className={styles.wrapper}>
         <div className={styles.container}>
-          <Link to="/quiz" className={styles.logo} title="Fasting App">
+          <Link to="/" className={styles.logo} title="Fasting App">
             <IoFitnessOutline className={styles.logoIcon} />
           </Link>
         </div>

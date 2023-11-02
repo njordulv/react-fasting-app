@@ -6,15 +6,35 @@
 body {
   font-family: "Noto Sans", sans-serif;
   color: var(--color);
-  background-color: var(--background);
   font-size: var(--font-size);
   line-height: var(--line-height);
+  --s: 200px;
+  --f: #0000 90deg, #fafafa 0;
+  background: conic-gradient(from 116.56deg at calc(100% / 3) 0, var(--f)),
+    conic-gradient(from -63.44deg at calc(200% / 3) 100%, var(--f))
+      var(--primary-3);
+  background-size: var(--s) var(--s);
+  background-attachment: fixed;
 }
 
 header {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
   padding: 10px 0;
   text-align: center;
+}
+
+section {
+  position: relative;
+  min-height: 660px;
+}
+
+footer {
+  background-color: rgba(255, 255, 255, 0.6);
+  padding: 20px 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 20px;
 }
 
 h1,
@@ -37,6 +57,22 @@ p {
   margin-bottom: 20px;
 }
 
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+ul {
+  text-align: left;
+  padding-left: 15px;
+  font-size: 14px;
+}
+
 button {
   background: none;
   border: 0;
@@ -52,7 +88,7 @@ button:disabled {
 .button {
   padding: 15px 20px;
   font-size: 18px;
-  border-radius: 6px;
+  border-radius: 8px;
   width: 100%;
   max-width: 288px;
   cursor: pointer;
@@ -64,4 +100,12 @@ button:disabled {
 
 .button:hover {
   background-color: var(--btn-hover);
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
 }

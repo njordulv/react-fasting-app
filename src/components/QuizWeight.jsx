@@ -1,11 +1,13 @@
-import { useNavigate, useLocation } from "react-router-dom"
-import { useAppContext } from "./AppContext"
-import styles from "../App.module.css"
-import Switcher from "./Switcher"
+import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useAppContext } from './AppContext'
+import styles from '../App.module.css'
+import Switcher from './Switcher'
 
 const QuizWeight = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const [disabled, setDisabled] = useState(true)
 
   const {
     inputWeight,
@@ -14,8 +16,6 @@ const QuizWeight = () => {
     setWeightImperial,
     weightError,
     setWeightError,
-    disabled,
-    setDisabled,
     isMetric,
   } = useAppContext()
 
@@ -29,27 +29,27 @@ const QuizWeight = () => {
     setWeightImperial(value)
 
     if (!value) {
-      setWeightError("")
+      setWeightError('')
       setDisabled(true)
     } else if (isNaN(value)) {
-      setWeightError("Ensure you input digits only")
+      setWeightError('Ensure you input digits only')
       setDisabled(true)
     } else if (isMetric && (value < 40 || value > 230)) {
       setWeightError(
         isMetric
-          ? "Kindly input a weight between 40 and 230 kilograms"
-          : "Kindly input a weight between 90 and 540 lbs"
+          ? 'Kindly input a weight between 40 and 230 kilograms'
+          : 'Kindly input a weight between 90 and 540 lbs'
       )
       setDisabled(true)
     } else if (!isMetric && (value < 90 || value > 540)) {
       setWeightError(
         isMetric
-          ? "Kindly input a weight between 40 and 230 kilograms"
-          : "Kindly input a weight between 90 and 540 lbs"
+          ? 'Kindly input a weight between 40 and 230 kilograms'
+          : 'Kindly input a weight between 90 and 540 lbs'
       )
       setDisabled(true)
     } else {
-      setWeightError("")
+      setWeightError('')
       setDisabled(false)
     }
   }
@@ -58,10 +58,10 @@ const QuizWeight = () => {
     e.preventDefault()
 
     isMetric
-      ? navigate("/quiz/weight-goal", {
+      ? navigate('/quiz/weight-goal', {
           state: { inputHeight, inputWeight },
         })
-      : navigate("/quiz/weight-goal", {
+      : navigate('/quiz/weight-goal', {
           state: { totalCm, totalKg, weightImperial },
         })
   }

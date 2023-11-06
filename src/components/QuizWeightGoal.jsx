@@ -1,11 +1,13 @@
-import { useNavigate, useLocation } from "react-router-dom"
-import { useAppContext } from "./AppContext"
-import styles from "../App.module.css"
-import Switcher from "./Switcher"
+import { useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useAppContext } from './AppContext'
+import styles from '../App.module.css'
+import Switcher from './Switcher'
 
 const QuizWeightGoal = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const [disabled, setDisabled] = useState(true)
 
   const {
     goal,
@@ -16,8 +18,6 @@ const QuizWeightGoal = () => {
     setVerdict,
     weightError,
     setWeightError,
-    disabled,
-    setDisabled,
     isMetric,
   } = useAppContext()
 
@@ -34,9 +34,9 @@ const QuizWeightGoal = () => {
     if (index !== -1) {
       const updatedText =
         text.slice(0, index + keyword.length) +
-        " " +
+        ' ' +
         val +
-        "%" +
+        '%' +
         text.slice(index + keyword.length)
       return updatedText
     }
@@ -55,11 +55,11 @@ const QuizWeightGoal = () => {
     const percentGoalImp = (value / weightImperial) * 10
     setGoal(value)
     setGoalImperial(value)
-    setVerdict("")
+    setVerdict('')
 
     if (value.length < 2) {
       setDisabled(true)
-      setWeightError("")
+      setWeightError('')
     }
 
     if (isMetric) {
@@ -68,7 +68,7 @@ const QuizWeightGoal = () => {
           "Something went wrong, look's like your weight value isn't set"
         )
       } else if (percentGoal >= 9.8) {
-        setVerdict("")
+        setVerdict('')
         setDisabled(true)
       } else if (percentGoal >= 9) {
         setVerdict(answer1)
@@ -91,7 +91,7 @@ const QuizWeightGoal = () => {
           "Something went wrong, look's like your weight value isn't set"
         )
       } else if (percentGoalImp >= 9.8) {
-        setVerdict("")
+        setVerdict('')
         setDisabled(true)
       } else if (percentGoalImp >= 9) {
         setVerdict(answer1)
@@ -115,8 +115,8 @@ const QuizWeightGoal = () => {
     e.preventDefault()
 
     isMetric
-      ? navigate("/quiz/results", { state: { inputHeight, inputWeight } })
-      : navigate("/quiz/results", { state: { totalCm, totalKg } })
+      ? navigate('/quiz/results', { state: { inputHeight, inputWeight } })
+      : navigate('/quiz/results', { state: { totalCm, totalKg } })
   }
 
   return (
@@ -165,7 +165,7 @@ const QuizWeightGoal = () => {
             : `${styles.weightInfo}`
         }
       >
-        {verdictText(isMetric ? percents : percentsImp, verdict, "lose")}
+        {verdictText(isMetric ? percents : percentsImp, verdict, 'lose')}
       </div>
     </>
   )

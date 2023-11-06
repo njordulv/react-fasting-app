@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom"
-import { useAppContext } from "./AppContext"
-import QuizHeightImperial from "./QuizHeightImperial"
-import Switcher from "./Switcher"
-import styles from "../App.module.css"
+import { useNavigate } from 'react-router-dom'
+import { useAppContext } from './AppContext'
+import QuizHeightImperial from './QuizHeightImperial'
+import Switcher from './Switcher'
+import styles from '../App.module.css'
 
 const QuizHeight = () => {
   const navigate = useNavigate()
@@ -24,19 +24,19 @@ const QuizHeight = () => {
 
     if (isMetric) {
       if (!value) {
-        setHeightError("")
+        setHeightError('')
         setDisabled(true)
       } else if (isNaN(value)) {
-        setHeightError("Ensure you input digits only")
+        setHeightError('Ensure you input digits only')
         setDisabled(true)
       } else if (value < 120) {
-        setHeightError("The minimum allowable height is 120 cm")
+        setHeightError('The minimum allowable height is 120 cm')
         setDisabled(true)
       } else if (value > 240) {
-        setHeightError("The maximum allowable height is 240 cm")
+        setHeightError('The maximum allowable height is 240 cm')
         setDisabled(true)
       } else {
-        setHeightError("")
+        setHeightError('')
         setDisabled(false)
       }
     }
@@ -44,7 +44,7 @@ const QuizHeight = () => {
 
   const continueHandler = (e) => {
     e.preventDefault()
-    navigate("/quiz/weight", { state: { inputHeight } })
+    navigate('/quiz/weight', { state: { inputHeight } })
   }
 
   return (

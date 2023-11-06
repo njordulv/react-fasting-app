@@ -1,5 +1,5 @@
-import { useAppContext } from "./AppContext"
-import styles from "../App.module.css"
+import { useAppContext } from './AppContext'
+import styles from '../App.module.css'
 
 const Switcher = () => {
   const {
@@ -21,15 +21,15 @@ const Switcher = () => {
     setIsMetric(!isMetric)
 
     if (isMetric) {
-      setInputHeight("")
-      setHeightImperial({ feet: "", inch: "" })
-      setInputWeight("")
-      setWeightImperial("")
-      setGoal("")
-      setGoalImperial("")
-      setVerdict("")
-      setHeightError("")
-      setWeightError("")
+      setInputHeight('')
+      setHeightImperial({ feet: '', inch: '' })
+      setInputWeight('')
+      setWeightImperial('')
+      setGoal('')
+      setGoalImperial('')
+      setVerdict('')
+      setHeightError('')
+      setWeightError('')
       setDisabled(true)
     }
   }

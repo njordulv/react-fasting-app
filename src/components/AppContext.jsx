@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState } from 'react'
 
 const AppContext = createContext()
 
@@ -8,18 +8,18 @@ export function useAppContext() {
 
 export function AppContextProvider({ children }) {
   const [optionsHistory, setOptionsHistory] = useState({})
-  const [inputHeight, setInputHeight] = useState("")
-  const [heightError, setHeightError] = useState("")
+  const [inputHeight, setInputHeight] = useState('')
+  const [heightError, setHeightError] = useState('')
   const [disabled, setDisabled] = useState(true)
   const [isMetric, setIsMetric] = useState(true)
-  const [inputWeight, setInputWeight] = useState("")
-  const [weightImperial, setWeightImperial] = useState("")
-  const [weightError, setWeightError] = useState("")
-  const [heightImperial, setHeightImperial] = useState({ feet: "", inch: "" })
-  const [goal, setGoal] = useState("")
-  const [goalImperial, setGoalImperial] = useState("")
-  const [verdict, setVerdict] = useState("")
-  const [active, setActive] = useState("")
+  const [inputWeight, setInputWeight] = useState('')
+  const [weightImperial, setWeightImperial] = useState('')
+  const [weightError, setWeightError] = useState('')
+  const [heightImperial, setHeightImperial] = useState({ feet: '', inch: '' })
+  const [goal, setGoal] = useState('')
+  const [goalImperial, setGoalImperial] = useState('')
+  const [verdict, setVerdict] = useState('')
+  const [active, setActive] = useState('')
 
   return (
     <AppContext.Provider

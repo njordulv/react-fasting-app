@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
-import { GiWeightScale } from "react-icons/gi"
-import styles from "../App.module.css"
+import { useNavigate } from 'react-router-dom'
+import { GiWeightScale } from 'react-icons/gi'
+import styles from '../App.module.css'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ const Home = () => {
         <button
           type="button"
           className="button"
-          onClick={() => navigate("/quiz")}
+          onClick={() => navigate('/quiz')}
         >
           Start Now
         </button>

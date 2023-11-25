@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   toggleSwitch,
   selectSwitcherSystem,
-  selectSwitcherStatus,
+  selectSwitcherIsMetric,
 } from '../redux/slices/switcherSlice'
 import styles from '../App.module.css'
 
@@ -41,7 +41,7 @@ const Switcher = () => {
   }
 
   const dispatch = useDispatch()
-  const SwitcherStatus = useSelector(selectSwitcherStatus)
+  const SwitcherIsMetric = useSelector(selectSwitcherIsMetric)
   const SwitcherSystem = useSelector(selectSwitcherSystem)
 
   const toggleSystem = () => {
@@ -70,7 +70,7 @@ const Switcher = () => {
             type="checkbox"
             className={styles.switcherCheckbox}
             name={SwitcherSystem}
-            checked={SwitcherStatus}
+            checked={SwitcherIsMetric}
             onChange={() => toggleSystem()}
           />
           <div className={styles.switcherKnobs}>

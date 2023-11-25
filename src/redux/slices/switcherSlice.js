@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   system: 'Metric',
-  status: true,
+  isMetric: true,
 }
 
 const switcherSlice = createSlice({
@@ -13,7 +13,7 @@ const switcherSlice = createSlice({
       return {
         ...state,
         system: state.system === 'Metric' ? 'Imperial' : 'Metric',
-        status: !state.status,
+        isMetric: !state.isMetric,
       }
     },
   },
@@ -22,6 +22,6 @@ const switcherSlice = createSlice({
 export const { toggleSwitch } = switcherSlice.actions
 
 export const selectSwitcherSystem = (state) => state.switcher.system
-export const selectSwitcherStatus = (state) => state.switcher.status
+export const selectSwitcherIsMetric = (state) => state.switcher.isMetric
 
 export default switcherSlice.reducer

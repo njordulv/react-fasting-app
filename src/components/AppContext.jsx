@@ -7,7 +7,6 @@ export function useAppContext() {
 }
 
 export function AppContextProvider({ children }) {
-  const [optionsHistory, setOptionsHistory] = useState({})
   const [inputHeight, setInputHeight] = useState('')
   const [heightError, setHeightError] = useState('')
   const [disabled, setDisabled] = useState(true)
@@ -24,8 +23,6 @@ export function AppContextProvider({ children }) {
   return (
     <AppContext.Provider
       value={{
-        optionsHistory,
-        setOptionsHistory,
         inputHeight,
         setInputHeight,
         heightError,

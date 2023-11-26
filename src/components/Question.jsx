@@ -1,21 +1,20 @@
-import { useLocation } from "react-router-dom"
-import { RiCheckFill } from "react-icons/ri"
-import { useAppContext } from "./AppContext"
-import styles from "./Question.module.css"
+import { useSelector, useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
+import { RiCheckFill } from 'react-icons/ri'
+import { setOptionHistory } from '../redux/slices/optionHistorySlice'
+import styles from './Question.module.css'
 
 const Question = ({ question, options, navigateTo }) => {
-  const { optionsHistory, setOptionsHistory } = useAppContext()
+  const dispatch = useDispatch()
   const location = useLocation()
-  const selectedOption = optionsHistory[location.pathname] || ""
+  const selectedOption =
+    useSelector((state) => state.optionHistory[location.pathname]) || ''
 
   const handleOptionChange = (option) => {
     setTimeout(() => {
       navigateTo()
     }, 400)
-    setOptionsHistory((prevHistory) => ({
-      ...prevHistory,
-      [location.pathname]: option,
-    }))
+    dispatch(setOptionHistory({ pathname: location.pathname, option }))
   }
 
   return (
@@ -29,7 +28,7 @@ const Question = ({ question, options, navigateTo }) => {
                 className={styles.questionInput}
                 type="radio"
                 value={option}
-                checked={selectedOption === option ? "checked" : ""}
+                checked={selectedOption === option ? 'checked' : ''}
                 onChange={() => handleOptionChange(option)}
               />
               <span className={styles.questionItemBackground}></span>

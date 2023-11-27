@@ -1,50 +1,55 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useAppContext } from './AppContext'
 import QuizHeightImperial from './QuizHeightImperial'
 import Switcher from './Switcher'
+import {
+  setInputHeight,
+  setHeightError,
+  setDisabled,
+  selectInputHeight,
+  selectHeightError,
+  selectDisabled,
+  selectIsMetric,
+} from '../redux/slices/formSlice'
 import styles from '../App.module.css'
 
 const QuizHeight = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const {
-    inputHeight,
-    setInputHeight,
-    heightError,
-    setHeightError,
-    disabled,
-    setDisabled,
-    isMetric,
-  } = useAppContext()
+  const inputHeight = useSelector(selectInputHeight)
+  const heightError = useSelector(selectHeightError)
+  const disabled = useSelector(selectDisabled)
+  const isMetric = useSelector(selectIsMetric)
 
-  const inputHeightHandler = (text) => {
-    text.preventDefault()
-    const value = text.target.value
-    setInputHeight(value)
+  const inputHeightHandler = (e) => {
+    const value = e.target.value
+    dispatch(setInputHeight(value))
 
     if (isMetric) {
       if (!value) {
-        setHeightError('')
-        setDisabled(true)
+        dispatch(setHeightError(''))
+        dispatch(setDisabled(true))
       } else if (isNaN(value)) {
-        setHeightError('Ensure you input digits only')
-        setDisabled(true)
+        dispatch(setHeightError('Ensure you input digits only'))
+        dispatch(setDisabled(true))
       } else if (value < 120) {
-        setHeightError('The minimum allowable height is 120 cm')
-        setDisabled(true)
+        dispatch(setHeightError('The minimum allowable height is 120 cm'))
+        dispatch(setDisabled(true))
       } else if (value > 240) {
-        setHeightError('The maximum allowable height is 240 cm')
-        setDisabled(true)
+        dispatch(setHeightError('The maximum allowable height is 240 cm'))
+        dispatch(setDisabled(true))
       } else {
-        setHeightError('')
-        setDisabled(false)
+        dispatch(setHeightError(''))
+        dispatch(setDisabled(false))
       }
     }
   }
 
   const continueHandler = (e) => {
     e.preventDefault()
-    navigate('/quiz/weight', { state: { inputHeight } })
+    dispatch(setInputHeight(inputHeight))
+    navigate('/quiz/weight', { state: { inputHeight: inputHeight } })
   }
 
   return (

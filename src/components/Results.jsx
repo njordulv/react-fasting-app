@@ -1,14 +1,17 @@
-import { useLocation, useNavigate } from "react-router-dom"
-import { useEffect } from "react"
-import { useAppContext } from "./AppContext"
-import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri"
-import { BMI } from "../data/formulas"
-import styles from "./Results.module.css"
+import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri'
+import { setActive, selectActive } from '../redux/slices/formSlice'
+import { BMI } from '../data/formulas'
+import styles from './Results.module.css'
 
 const Results = () => {
-  const location = useLocation()
+  const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { active, setActive } = useAppContext()
+  const location = useLocation()
+
+  const active = useSelector(selectActive)
   let { inputHeight, inputWeight, totalCm, totalKg } = location.state || {}
 
   if (inputHeight === undefined) {
@@ -23,7 +26,7 @@ const Results = () => {
   const delay = 1700
 
   const btnBackHandler = () => {
-    return navigate("/quiz")
+    return navigate('/quiz')
   }
 
   useEffect(() => {
@@ -42,13 +45,13 @@ const Results = () => {
 
       if (activeIndex !== null) {
         setTimeout(() => {
-          setActive(activeIndex)
+          dispatch(setActive(activeIndex))
         }, delay)
       }
     }
 
     timeoutDelayHandler()
-  }, [BMIcurrent, setActive])
+  }, [BMIcurrent, dispatch])
 
   let BMIprogress
   if (BMIcurrent <= 18.4) {
@@ -73,7 +76,7 @@ const Results = () => {
             {!isNaN(BMIcurrent) ? (
               <b>{BMIcurrent}</b>
             ) : (
-              <span style={{ color: "#f26241" }}>Incorrect</span>
+              <span style={{ color: '#f26241' }}>Incorrect</span>
             )}
           </span>
           <span>Normal 21.4</span>
@@ -93,28 +96,32 @@ const Results = () => {
               active === 0 ? `${styles.bmiUnderweight}` : `${styles.bmiVariant}`
             }
           >
-            <b className={styles.bmiUnderweight}></b>Underweight
+            <b className={styles.bmiUnderweight}></b>
+            <strong>Underweight</strong>
           </span>
           <span
             className={
               active === 1 ? `${styles.bmiNormal}` : `${styles.bmiVariant}`
             }
           >
-            <b className={styles.bmiNormal}></b>Normal
+            <b className={styles.bmiNormal}></b>
+            <strong>Normal</strong>
           </span>
           <span
             className={
               active === 2 ? `${styles.bmiOverweight}` : `${styles.bmiVariant}`
             }
           >
-            <b className={styles.bmiOverweight}></b>Overweight
+            <b className={styles.bmiOverweight}></b>
+            <strong>Overweight</strong>
           </span>
           <span
             className={
               active === 3 ? `${styles.bmiObese}` : `${styles.bmiVariant}`
             }
           >
-            <b className={styles.bmiObese}></b>Obese
+            <b className={styles.bmiObese}></b>
+            <strong>Obese</strong>
           </span>
         </div>
       </div>
@@ -136,7 +143,7 @@ const Results = () => {
           </p>
         </div>
       ) : (
-        " "
+        ' '
       )}
       {BMIcurrent >= 18.5 && BMIcurrent <= 24.9 ? (
         <div className={styles.bmiText}>
@@ -155,7 +162,7 @@ const Results = () => {
           </p>
         </div>
       ) : (
-        " "
+        ' '
       )}
       {BMIcurrent >= 25 && BMIcurrent <= 39.9 ? (
         <div className={styles.bmiText}>
@@ -171,7 +178,7 @@ const Results = () => {
           </p>
         </div>
       ) : (
-        " "
+        ' '
       )}
       {BMIcurrent >= 40 ? (
         <div className={styles.bmiText}>
@@ -189,14 +196,14 @@ const Results = () => {
           </p>
         </div>
       ) : (
-        ""
+        ''
       )}
       {isNaN(BMIcurrent) ? (
         <div className={`${styles.bmiText} ${styles.bmiTextError}`}>
-          Try again with the correct values
+          Try again with correct values
         </div>
       ) : (
-        ""
+        ''
       )}
       <div className={styles.bmiTextSmall}>
         It's important to note that while BMI is a useful tool for evaluating

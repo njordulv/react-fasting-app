@@ -1,56 +1,57 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useAppContext } from './AppContext'
 import styles from '../App.module.css'
 import Switcher from './Switcher'
+import {
+  setInputWeight,
+  setWeightImperial,
+  setWeightError,
+  setDisabled,
+  selectInputWeight,
+  selectWeightImperial,
+  selectWeightError,
+  selectDisabled,
+  selectIsMetric,
+} from '../redux/slices/formSlice'
 
 const QuizWeight = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  const [disabled, setDisabled] = useState(true)
 
-  const {
-    inputWeight,
-    setInputWeight,
-    weightImperial,
-    setWeightImperial,
-    weightError,
-    setWeightError,
-    isMetric,
-  } = useAppContext()
+  const inputWeight = useSelector(selectInputWeight)
+  const weightError = useSelector(selectWeightError)
+  const weightImperial = useSelector(selectWeightImperial)
+  const disabled = useSelector(selectDisabled)
+  const isMetric = useSelector(selectIsMetric)
 
   const totalKg = (weightImperial * 0.45359237).toFixed()
   const { inputHeight, totalCm } = location.state || {}
 
-  const inputWeightHandler = (text) => {
-    text.preventDefault()
-    const value = text.target.value
-    setInputWeight(value)
-    setWeightImperial(value)
+  const inputWeightHandler = (e) => {
+    e.preventDefault()
+    const value = e.target.value
+    dispatch(setInputWeight(value))
 
-    if (!value) {
-      setWeightError('')
-      setDisabled(true)
-    } else if (isNaN(value)) {
-      setWeightError('Ensure you input digits only')
-      setDisabled(true)
-    } else if (isMetric && (value < 40 || value > 230)) {
-      setWeightError(
-        isMetric
-          ? 'Kindly input a weight between 40 and 230 kilograms'
-          : 'Kindly input a weight between 90 and 540 lbs'
-      )
-      setDisabled(true)
-    } else if (!isMetric && (value < 90 || value > 540)) {
-      setWeightError(
-        isMetric
-          ? 'Kindly input a weight between 40 and 230 kilograms'
-          : 'Kindly input a weight between 90 and 540 lbs'
-      )
-      setDisabled(true)
+    if (isMetric) {
+      dispatch(setWeightError(''))
+      if (!value || isNaN(value) || value < 40 || value > 230) {
+        dispatch(setDisabled(true))
+        dispatch(
+          setWeightError('Kindly input a weight between 40 and 230 kilograms')
+        )
+      } else {
+        dispatch(setDisabled(false))
+      }
     } else {
-      setWeightError('')
-      setDisabled(false)
+      dispatch(setWeightImperial(value))
+      dispatch(setWeightError(''))
+      if (!value || isNaN(value) || value < 90 || value > 540) {
+        dispatch(setDisabled(true))
+        dispatch(setWeightError('Kindly input a weight between 90 and 540 lbs'))
+      } else {
+        dispatch(setDisabled(false))
+      }
     }
   }
 
@@ -65,40 +66,26 @@ const QuizWeight = () => {
           state: { totalCm, totalKg, weightImperial },
         })
   }
-
   return (
     <>
       <h2>Enter your weight</h2>
       <Switcher />
       <form onSubmit={continueHandler} className={styles.weightForm}>
         <div className={styles.inputField}>
-          {isMetric ? (
-            <label htmlFor="input-weight">
-              <input
-                type="text"
-                name="input-weight"
-                className={`${styles.input}`}
-                maxLength="3"
-                placeholder="75"
-                value={inputWeight}
-                onChange={inputWeightHandler}
-              />
-              <span className={styles.inputMeasure}>kg</span>
-            </label>
-          ) : (
-            <label htmlFor="input-weight-lbs">
-              <input
-                type="text"
-                name="input-weight-lbs"
-                className={`${styles.input}`}
-                maxLength="3"
-                placeholder="130"
-                value={weightImperial}
-                onChange={inputWeightHandler}
-              />
-              <span className={styles.inputMeasure}>lbs</span>
-            </label>
-          )}
+          <label htmlFor="input-weight">
+            <input
+              type="text"
+              name="input-weight"
+              className={`${styles.input}`}
+              maxLength="3"
+              placeholder={isMetric ? '75' : '130'}
+              value={isMetric ? inputWeight : weightImperial}
+              onChange={inputWeightHandler}
+            />
+            <span className={styles.inputMeasure}>
+              {isMetric ? 'kg' : 'lbs'}
+            </span>
+          </label>
           <div className={styles.inputError}>{weightError}</div>
         </div>
         <button type="submit" disabled={disabled} className="button">

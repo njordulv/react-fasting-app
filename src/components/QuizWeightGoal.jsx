@@ -1,26 +1,33 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useAppContext } from './AppContext'
-import styles from '../App.module.css'
 import Switcher from './Switcher'
+import {
+  setGoal,
+  setGoalImperial,
+  setVerdict,
+  setWeightError,
+  setDisabled,
+  selectGoal,
+  selectGoalImperial,
+  selectWeightError,
+  selectVerdict,
+  selectDisabled,
+  selectIsMetric,
+} from '../redux/slices/formSlice'
 import { verdictData } from '../data/verdict'
+import styles from '../App.module.css'
 
 const QuizWeightGoal = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
-  const [disabled, setDisabled] = useState(true)
 
-  const {
-    goal,
-    setGoal,
-    goalImperial,
-    setGoalImperial,
-    verdict,
-    setVerdict,
-    weightError,
-    setWeightError,
-    isMetric,
-  } = useAppContext()
+  const goal = useSelector(selectGoal)
+  const goalImperial = useSelector(selectGoalImperial)
+  const weightError = useSelector(selectWeightError)
+  const verdict = useSelector(selectVerdict)
+  const disabled = useSelector(selectDisabled)
+  const isMetric = useSelector(selectIsMetric)
 
   const { inputHeight, inputWeight, totalCm, totalKg, weightImperial } =
     location.state || {}
@@ -37,60 +44,56 @@ const QuizWeightGoal = () => {
     ? (((inputWeight - goal) / inputWeight) * 100).toFixed()
     : (((weightImperial - goal) / weightImperial) * 100).toFixed()
 
-  const answer1 = verdictData[0].text
-  const answer2 = verdictData[1].text
-  const answer3 = verdictData[2].text
-  const answer4 = verdictData[3].text
+  const goalHandler = (e) => {
+    e.preventDefault()
+    const value = e.target.value
 
-  const goalHandler = (text) => {
-    text.preventDefault()
-    const value = text.target.value
-    const percentGoal = (value / inputWeight) * 10
-    const percentGoalImp = (value / weightImperial) * 10
-    setGoal(value)
-    setGoalImperial(value)
-    setVerdict('')
+    dispatch(setGoal(value))
+    dispatch(setGoalImperial(value))
+    dispatch(setVerdict(''))
 
     if (value.length < 2) {
-      setDisabled(true)
-      setWeightError('')
+      dispatch(setDisabled(true))
+      dispatch(setWeightError(''))
     }
 
-    const percentGoalToCheck = isMetric ? percentGoal : percentGoalImp
+    const percentGoal = (value / (isMetric ? inputWeight : weightImperial)) * 10
 
     if ((isMetric && !inputWeight) || (!isMetric && !weightImperial)) {
-      setWeightError(
-        "Something went wrong, it looks like your weight value isn't set"
+      dispatch(
+        setWeightError(
+          "Something went wrong, it looks like your weight value isn't set"
+        )
       )
       return
     }
 
-    if (percentGoalToCheck >= 9.8) {
-      setVerdict('')
-      setDisabled(true)
-    } else if (percentGoalToCheck >= 9) {
-      setVerdict(answer1)
-      setDisabled(false)
-    } else if (percentGoalToCheck >= 8) {
-      setVerdict(answer2)
-      setDisabled(false)
-    } else if (percentGoalToCheck >= 7) {
-      setVerdict(answer3)
-      setDisabled(false)
-    } else if (percentGoalToCheck >= 4) {
-      setVerdict(answer4)
-      setDisabled(false)
+    if (percentGoal >= 9.8) {
+      dispatch(setVerdict(''))
+      dispatch(setDisabled(true))
+    } else if (percentGoal >= 9) {
+      dispatch(setVerdict(verdictData[0].text))
+      dispatch(setDisabled(false))
+    } else if (percentGoal >= 8) {
+      dispatch(setVerdict(verdictData[1].text))
+      dispatch(setDisabled(false))
+    } else if (percentGoal >= 7) {
+      dispatch(setVerdict(verdictData[2].text))
+      dispatch(setDisabled(false))
+    } else if (percentGoal >= 4) {
+      dispatch(setVerdict(verdictData[3].text))
+      dispatch(setDisabled(false))
     } else {
-      setDisabled(true)
+      dispatch(setDisabled(true))
     }
   }
 
   const continueHandler = (e) => {
     e.preventDefault()
 
-    isMetric
-      ? navigate('/quiz/results', { state: { inputHeight, inputWeight } })
-      : navigate('/quiz/results', { state: { totalCm, totalKg } })
+    navigate('/quiz/results', {
+      state: isMetric ? { inputHeight, inputWeight } : { totalCm, totalKg },
+    })
   }
 
   return (
@@ -99,48 +102,31 @@ const QuizWeightGoal = () => {
       <Switcher />
       <form onSubmit={continueHandler} className={styles.weightForm}>
         <div className={styles.inputField}>
-          {isMetric ? (
-            <label htmlFor="input-weight">
-              <input
-                type="text"
-                name="input-weight"
-                className={`${styles.input}`}
-                maxLength="3"
-                placeholder="65"
-                value={goal}
-                onChange={goalHandler}
-              />
-              <span className={styles.inputMeasure}>kg</span>
-            </label>
-          ) : (
-            <label htmlFor="input-weight-lbs">
-              <input
-                type="text"
-                name="input-weight-lbs"
-                className={`${styles.input}`}
-                maxLength="3"
-                placeholder="120"
-                value={goalImperial}
-                onChange={goalHandler}
-              />
-              <span className={styles.inputMeasure}>lbs</span>
-            </label>
-          )}
+          <label htmlFor="input-weight">
+            <input
+              type="text"
+              name="input-weight"
+              className={`${styles.input}`}
+              maxLength="3"
+              placeholder={isMetric ? '65' : '120'}
+              value={isMetric ? goal : goalImperial}
+              onChange={goalHandler}
+            />
+            <span className={styles.inputMeasure}>
+              {isMetric ? 'kg' : 'lbs'}
+            </span>
+          </label>
           <div className={styles.inputError}>{weightError}</div>
         </div>
         <button type="submit" disabled={disabled} className="button">
           Continue
         </button>
       </form>
-      <div
-        className={
-          verdict
-            ? `${styles.weightInfo} ${styles.active}`
-            : `${styles.weightInfo}`
-        }
-      >
-        {verdictText(verdict, percentNumber)}
-      </div>
+      {verdict && (
+        <div className={`${styles.weightInfo} ${styles.active}`}>
+          {verdictText(verdict, percentNumber)}
+        </div>
+      )}
     </>
   )
 }

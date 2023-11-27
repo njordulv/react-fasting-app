@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri'
-import { setActive, selectActive } from '../redux/slices/formSlice'
+import { setActive, selectActive } from '../store/slices/formSlice'
 import { BMI } from '../data/formulas'
 import styles from './Results.module.css'
 

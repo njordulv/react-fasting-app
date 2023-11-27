@@ -3,12 +3,10 @@ import switcherReducer from './slices/switcherSlice'
 import optionHistoryReducer from './slices/optionHistorySlice'
 import formReducer from './slices/formSlice'
 
-const store = configureStore({
+export default configureStore({
   reducer: {
     switcher: switcherReducer,
     optionHistory: optionHistoryReducer,
     form: formReducer,
   },
 })
-
-export default store

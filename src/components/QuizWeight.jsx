@@ -12,7 +12,7 @@ import {
   selectWeightError,
   selectDisabled,
   selectIsMetric,
-} from '../redux/slices/formSlice'
+} from '../store/slices/formSlice'
 
 const QuizWeight = () => {
   const dispatch = useDispatch()

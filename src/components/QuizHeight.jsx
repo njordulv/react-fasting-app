@@ -10,7 +10,7 @@ import {
   selectHeightError,
   selectDisabled,
   selectIsMetric,
-} from '../redux/slices/formSlice'
+} from '../store/slices/formSlice'
 import styles from '../App.module.css'
 
 const QuizHeight = () => {

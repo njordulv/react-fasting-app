@@ -13,7 +13,7 @@ import {
   selectVerdict,
   selectDisabled,
   selectIsMetric,
-} from '../redux/slices/formSlice'
+} from '../store/slices/formSlice'
 import { verdictData } from '../data/verdict'
 import styles from '../App.module.css'
 

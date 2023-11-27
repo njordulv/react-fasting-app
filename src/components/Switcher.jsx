@@ -3,7 +3,7 @@ import {
   toggleSwitch,
   selectSwitcherSystem,
   selectSwitcherIsMetric,
-} from '../redux/slices/switcherSlice'
+} from '../store/slices/switcherSlice'
 import {
   setInputHeight,
   setHeightError,
@@ -16,7 +16,7 @@ import {
   setGoalImperial,
   setVerdict,
   setActive,
-} from '../redux/slices/formSlice'
+} from '../store/slices/formSlice'
 import styles from '../App.module.css'
 
 const Switcher = () => {

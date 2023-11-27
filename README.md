@@ -2,11 +2,11 @@
 
 React Fasting App is a web application designed to help users track their health and fitness progress. This app provides a variety of features to help users manage their fasting journey and maintain a healthy lifestyle.
 
-# Features
+### Features
 
 1. **Quiz Page:** The app starts with a quiz that guides users through a series of questions with different variants. This information is essential for tailoring the fasting and health recommendations provided by the app.
 
-2. **Context Management:** The app employs a context system to store and manage the user's responses to the quiz questions, ensuring that previous variants are saved for reference and further customization.
+2. **Redux Toolkit Slices:** The app leverages Redux Toolkit slices for efficient state management, ensuring structured and organized data handling across various components and pages.
 
 3. **Height and Weight Pages:** Users can input their height and weight, and the app offers a switcher to toggle between metric and imperial units, enabling users to calculate their Body Mass Index (BMI) easily.
 
@@ -18,7 +18,7 @@ React Fasting App is a web application designed to help users track their health
 
 7. **Navigation:** Users can move between 13 different pages in the app, including the quiz, question variants, height and weight input, and results page. The app includes a "Step Back" button component that makes it easy for users to return to the previous step in the process.
 
-# Usage
+### Usage
 
 To use this app, follow these steps:
 
@@ -27,16 +27,15 @@ To use this app, follow these steps:
 3. Start the development server: `npm start`
 4. Open your web browser and navigate to http://localhost:3000 to access the app.
 
-# Future Enhancements
+### Future Enhancements
 
-This project is actively maintained and open to further improvements.
-Some possible future enhancements include:
+This project is actively maintained and open to further improvements. Some possible future enhancements include:
 
 - Additional questions and quiz variants to gather more comprehensive user data.
 - Integration with a user account system to save and track progress over time.
 - Enhanced data visualization and analysis to provide more personalized health recommendations.
 
-# Contributing
+### Contributing
 
 Contributions to this project are welcome. To contribute, please follow these steps:
 
@@ -46,12 +45,12 @@ Contributions to this project are welcome. To contribute, please follow these st
 4. Push your changes to your fork: `git push origin feature/your-feature-name`
 5. Create a pull request on the original repository's main branch.
 
-# License
+### License
 
 This project is licensed under the MIT License.
-See the [MIT License](LICENSE). file for more details.
+See the [MIT License](LICENSE) file for more details.
 
-# Credits
+### Credits
 
 - Created by Njordr
 - This project was created with [Create React App](https://create-react-app.dev/).

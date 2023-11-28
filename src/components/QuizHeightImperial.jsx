@@ -1,9 +1,12 @@
-import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
+  setFeet,
+  setInch,
   setHeightError,
   setTotalCm,
+  selectHeightImperialFeet,
+  selectHeightImperialInch,
   selectHeightError,
 } from '../store/slices/formSlice'
 import styles from '../App.module.css'
@@ -13,15 +16,15 @@ const QuizHeightImperial = () => {
   const navigate = useNavigate()
 
   const heightError = useSelector(selectHeightError)
-  const [localFeet, setLocalFeet] = useState('')
-  const [localInch, setLocalInch] = useState('')
+  const localFeet = useSelector(selectHeightImperialFeet)
+  const localInch = useSelector(selectHeightImperialInch)
 
   const imperialInputHandler = (event, name) => {
     const value = event.target.value
     if (name === 'feet') {
-      setLocalFeet(value)
+      dispatch(setFeet(value))
     } else if (name === 'inch') {
-      setLocalInch(value)
+      dispatch(setInch(value))
     }
   }
 

@@ -53,6 +53,12 @@ const formSlice = createSlice({
     setHeightImperial(state, action) {
       state.heightImperial = action.payload
     },
+    setFeet: (state, action) => {
+      state.heightImperial.feet = action.payload
+    },
+    setInch: (state, action) => {
+      state.heightImperial.inch = action.payload
+    },
     setTotalCm(state, action) {
       state.totalCm = action.payload
     },
@@ -88,6 +94,8 @@ export const {
   setWeightImperial,
   setWeightError,
   setHeightImperial,
+  setFeet,
+  setInch,
   setTotalCm,
   setTotalKg,
   setGoal,

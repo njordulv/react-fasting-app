@@ -6,14 +6,14 @@ import {
   setGoalImperial,
   setVerdict,
   setWeightError,
-  setDisabled,
+  setDisabledGoal,
   selectGoal,
   selectInputWeight,
   selectGoalImperial,
   selectWeightImperial,
   selectWeightError,
   selectVerdict,
-  selectDisabled,
+  selectDisabledGoal,
   selectIsMetric,
 } from '../store/slices/formSlice'
 import { verdictData } from '../data/verdict'
@@ -29,7 +29,7 @@ const QuizWeightGoal = () => {
   const goalImperial = useSelector(selectGoalImperial)
   const weightError = useSelector(selectWeightError)
   const verdict = useSelector(selectVerdict)
-  const disabled = useSelector(selectDisabled)
+  const disabled = useSelector(selectDisabledGoal)
   const isMetric = useSelector(selectIsMetric)
 
   const verdictText = (text, percentNumber) => {
@@ -53,7 +53,7 @@ const QuizWeightGoal = () => {
     dispatch(setVerdict(''))
 
     if (value.length < 2) {
-      dispatch(setDisabled(true))
+      dispatch(setDisabledGoal(true))
       dispatch(setWeightError(''))
     }
 
@@ -72,21 +72,21 @@ const QuizWeightGoal = () => {
 
     if (percentGoal >= 9.8) {
       dispatch(setVerdict(''))
-      dispatch(setDisabled(true))
+      dispatch(setDisabledGoal(true))
     } else if (percentGoal >= 9) {
       dispatch(setVerdict(verdictData[0].text))
-      dispatch(setDisabled(false))
+      dispatch(setDisabledGoal(false))
     } else if (percentGoal >= 8) {
       dispatch(setVerdict(verdictData[1].text))
-      dispatch(setDisabled(false))
+      dispatch(setDisabledGoal(false))
     } else if (percentGoal >= 7) {
       dispatch(setVerdict(verdictData[2].text))
-      dispatch(setDisabled(false))
+      dispatch(setDisabledGoal(false))
     } else if (percentGoal >= 4) {
       dispatch(setVerdict(verdictData[3].text))
-      dispatch(setDisabled(false))
+      dispatch(setDisabledGoal(false))
     } else {
-      dispatch(setDisabled(true))
+      dispatch(setDisabledGoal(true))
     }
   }
 

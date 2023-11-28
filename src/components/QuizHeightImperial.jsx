@@ -1,12 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
-  setHeightImperial,
   setHeightError,
   setTotalCm,
-  selectHeightImperialFeet,
-  selectHeightImperialInch,
   selectHeightError,
 } from '../store/slices/formSlice'
 import styles from '../App.module.css'
@@ -15,59 +12,45 @@ const QuizHeightImperial = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const feet = useSelector(selectHeightImperialFeet)
-  const inch = useSelector(selectHeightImperialInch)
   const heightError = useSelector(selectHeightError)
-  const [localFeet, setLocalFeet] = useState(feet)
-  const [localInch, setLocalInch] = useState(inch)
+  const [localFeet, setLocalFeet] = useState('')
+  const [localInch, setLocalInch] = useState('')
 
   const imperialInputHandler = (event, name) => {
     const value = event.target.value
-
     if (name === 'feet') {
       setLocalFeet(value)
     } else if (name === 'inch') {
       setLocalInch(value)
-    }
-
-    const updatedFeet = name === 'feet' ? value : localFeet
-    const updatedInch = name === 'inch' ? value : localInch
-    const totalCm = (updatedFeet * 30.48 + updatedInch * 2.54).toFixed()
-
-    dispatch(setTotalCm(totalCm))
-
-    if (!updatedFeet || !updatedInch) {
-      dispatch(setHeightError(''))
-    } else if (isNaN(updatedFeet) || isNaN(updatedInch)) {
-      dispatch(setHeightError('Ensure you input digits only'))
-    } else if (updatedFeet < 4) {
-      dispatch(setHeightError('Please state at least 4 ft'))
-    } else if (updatedFeet > 7) {
-      dispatch(setHeightError('Please state at most 7 ft'))
-    } else if (updatedInch > 11) {
-      dispatch(setHeightImperial({ feet: updatedFeet, inch: '11' }))
-      dispatch(setHeightError('Please state at most 11 inch'))
-    } else {
-      dispatch(setHeightError(''))
     }
   }
 
   const continueImperialHandler = (e) => {
     e.preventDefault()
 
-    if (localFeet === '' || localInch === '') {
-      dispatch(setHeightError('This fields are required'))
-    } else if (isNaN(localFeet) || isNaN(localInch)) {
-      dispatch(setHeightError('Ensure you input digits only'))
-    } else if (localFeet < 4) {
-      dispatch(setHeightError('Please state at least 4 ft'))
-    } else if (localFeet > 7) {
-      dispatch(setHeightError('Please state at most 7 ft'))
-    } else if (localInch > 11) {
-      dispatch(setHeightImperial({ feet: localFeet, inch: '11' }))
-      dispatch(setHeightError('Please state at most 11 inch'))
+    const updatedFeet = parseInt(localFeet)
+    const updatedInch = parseInt(localInch)
+
+    if (
+      isNaN(updatedFeet) ||
+      isNaN(updatedInch) ||
+      updatedFeet < 4 ||
+      updatedFeet > 7 ||
+      updatedInch > 11
+    ) {
+      let errorMsg = ''
+      if (isNaN(updatedFeet) || isNaN(updatedInch)) {
+        errorMsg = 'Ensure you input digits only'
+      } else if (updatedFeet < 4 || updatedFeet > 7) {
+        errorMsg = 'Please state at least 4 ft and at most 7 ft'
+      } else if (updatedInch > 11) {
+        errorMsg = 'Please state at most 11 inch'
+      }
+      dispatch(setHeightError(errorMsg))
     } else {
       dispatch(setHeightError(''))
+      const totalCm = (updatedFeet * 30.48 + updatedInch * 2.54).toFixed()
+      dispatch(setTotalCm(totalCm))
       navigate('/quiz/weight')
     }
   }

@@ -4,20 +4,7 @@ import {
   selectSwitcherSystem,
   selectSwitcherIsMetric,
 } from '../store/slices/switcherSlice'
-import {
-  setInputHeight,
-  setHeightError,
-  setInputWeight,
-  setWeightError,
-  setIsMetric,
-  setHeightImperial,
-  setWeightImperial,
-  setGoal,
-  setGoalImperial,
-  setVerdict,
-  setActive,
-} from '../store/slices/formSlice'
-import { setDisabled } from '../store/slices/formSlice'
+import { resetForm, setIsMetric } from '../store/slices/formSlice'
 import styles from '../App.module.css'
 
 const Switcher = () => {
@@ -27,19 +14,8 @@ const Switcher = () => {
 
   const toggleSystem = () => {
     dispatch(toggleSwitch())
-
-    dispatch(setInputHeight(''))
-    dispatch(setHeightError(''))
-    dispatch(setInputWeight(''))
-    dispatch(setWeightError(''))
+    dispatch(resetForm())
     dispatch(setIsMetric(!SwitcherIsMetric))
-    dispatch(setHeightImperial({ feet: '', inch: '' }))
-    dispatch(setWeightImperial(''))
-    dispatch(setGoal(''))
-    dispatch(setGoalImperial(''))
-    dispatch(setVerdict(''))
-    dispatch(setActive(''))
-    dispatch(setDisabled(true))
   }
 
   return (

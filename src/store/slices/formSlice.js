@@ -4,6 +4,8 @@ const initialState = {
   inputHeight: '',
   heightError: '',
   disabled: true,
+  disabledWeight: true,
+  disabledGoal: true,
   isMetric: true,
   inputWeight: '',
   weightImperial: '',
@@ -29,6 +31,12 @@ const formSlice = createSlice({
     },
     setDisabled(state, action) {
       state.disabled = action.payload
+    },
+    setDisabledWeight(state, action) {
+      state.disabledWeight = action.payload
+    },
+    setDisabledGoal(state, action) {
+      state.disabledGoal = action.payload
     },
     setIsMetric(state, action) {
       state.isMetric = action.payload
@@ -63,6 +71,9 @@ const formSlice = createSlice({
     setActive(state, action) {
       state.active = action.payload
     },
+    resetForm(state, action) {
+      return initialState
+    },
   },
 })
 
@@ -70,6 +81,8 @@ export const {
   setInputHeight,
   setHeightError,
   setDisabled,
+  setDisabledWeight,
+  setDisabledGoal,
   setIsMetric,
   setInputWeight,
   setWeightImperial,
@@ -81,11 +94,14 @@ export const {
   setGoalImperial,
   setVerdict,
   setActive,
+  resetForm,
 } = formSlice.actions
 
 export const selectInputHeight = (state) => state.form.inputHeight
 export const selectHeightError = (state) => state.form.heightError
 export const selectDisabled = (state) => state.form.disabled
+export const selectDisabledWeight = (state) => state.form.disabledWeight
+export const selectDisabledGoal = (state) => state.form.disabledGoal
 export const selectIsMetric = (state) => state.form.isMetric
 export const selectInputWeight = (state) => state.form.inputWeight
 export const selectWeightImperial = (state) => state.form.weightImperial

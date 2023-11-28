@@ -6,11 +6,10 @@ import {
   setInputWeight,
   setWeightImperial,
   setWeightError,
-  setDisabled,
+  setDisabledWeight,
   selectInputWeight,
-  selectWeightImperial,
   selectWeightError,
-  selectDisabled,
+  selectDisabledWeight,
   selectIsMetric,
 } from '../store/slices/formSlice'
 
@@ -20,8 +19,7 @@ const QuizWeight = () => {
 
   const inputWeight = useSelector(selectInputWeight)
   const weightError = useSelector(selectWeightError)
-  const weightImperial = useSelector(selectWeightImperial)
-  const disabled = useSelector(selectDisabled)
+  const disabled = useSelector(selectDisabledWeight)
   const isMetric = useSelector(selectIsMetric)
 
   const inputWeightHandler = (e) => {
@@ -29,28 +27,29 @@ const QuizWeight = () => {
     dispatch(setInputWeight(value))
 
     if (isMetric) {
-      dispatch(setWeightError(''))
-      dispatch(setDisabled(true))
       if (!value) {
         dispatch(setWeightError(''))
+        dispatch(setDisabledWeight(true))
       } else if (isNaN(value) || value < 40 || value > 230) {
-        dispatch(setDisabled(true))
+        dispatch(setDisabledWeight(true))
         dispatch(
           setWeightError('Kindly input a weight between 40 and 230 kilograms')
         )
       } else {
-        dispatch(setDisabled(false))
+        dispatch(setDisabledWeight(false))
+        dispatch(setWeightError(''))
       }
     } else {
       dispatch(setWeightImperial(value))
-      dispatch(setWeightError(''))
       if (!value) {
         dispatch(setWeightError(''))
+        dispatch(setDisabledWeight(true))
       } else if (isNaN(value) || value < 90 || value > 540) {
-        dispatch(setDisabled(true))
+        dispatch(setDisabledWeight(true))
         dispatch(setWeightError('Kindly input a weight between 90 and 540 lbs'))
       } else {
-        dispatch(setDisabled(false))
+        dispatch(setDisabledWeight(false))
+        dispatch(setWeightError(''))
       }
     }
   }
@@ -73,7 +72,7 @@ const QuizWeight = () => {
               className={`${styles.input}`}
               maxLength="3"
               placeholder={isMetric ? '75' : '130'}
-              value={isMetric ? inputWeight : weightImperial}
+              value={inputWeight}
               onChange={inputWeightHandler}
             />
             <span className={styles.inputMeasure}>

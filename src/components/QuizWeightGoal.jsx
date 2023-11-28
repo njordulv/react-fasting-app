@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Switcher from './Switcher'
 import {
   setGoal,
@@ -8,7 +8,9 @@ import {
   setWeightError,
   setDisabled,
   selectGoal,
+  selectInputWeight,
   selectGoalImperial,
+  selectWeightImperial,
   selectWeightError,
   selectVerdict,
   selectDisabled,
@@ -20,17 +22,15 @@ import styles from '../App.module.css'
 const QuizWeightGoal = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const location = useLocation()
 
+  const inputWeight = useSelector(selectInputWeight)
+  const weightImperial = useSelector(selectWeightImperial)
   const goal = useSelector(selectGoal)
   const goalImperial = useSelector(selectGoalImperial)
   const weightError = useSelector(selectWeightError)
   const verdict = useSelector(selectVerdict)
   const disabled = useSelector(selectDisabled)
   const isMetric = useSelector(selectIsMetric)
-
-  const { inputHeight, inputWeight, totalCm, totalKg, weightImperial } =
-    location.state || {}
 
   const verdictText = (text, percentNumber) => {
     const updatedText = text.replace(
@@ -59,7 +59,9 @@ const QuizWeightGoal = () => {
 
     const percentGoal = (value / (isMetric ? inputWeight : weightImperial)) * 10
 
-    if ((isMetric && !inputWeight) || (!isMetric && !weightImperial)) {
+    if (!value) {
+      dispatch(setWeightError(''))
+    } else if ((isMetric && !inputWeight) || (!isMetric && !weightImperial)) {
       dispatch(
         setWeightError(
           "Something went wrong, it looks like your weight value isn't set"
@@ -90,10 +92,7 @@ const QuizWeightGoal = () => {
 
   const continueHandler = (e) => {
     e.preventDefault()
-
-    navigate('/quiz/results', {
-      state: isMetric ? { inputHeight, inputWeight } : { totalCm, totalKg },
-    })
+    navigate('/quiz/results')
   }
 
   return (

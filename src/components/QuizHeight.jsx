@@ -48,8 +48,7 @@ const QuizHeight = () => {
 
   const continueHandler = (e) => {
     e.preventDefault()
-    dispatch(setInputHeight(inputHeight))
-    navigate('/quiz/weight', { state: { inputHeight: inputHeight } })
+    navigate('/quiz/weight')
   }
 
   return (

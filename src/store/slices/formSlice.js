@@ -9,6 +9,8 @@ const initialState = {
   weightImperial: '',
   weightError: '',
   heightImperial: { feet: '', inch: '' },
+  totalCm: '',
+  totalKg: '',
   goal: '',
   goalImperial: '',
   verdict: '',
@@ -43,6 +45,12 @@ const formSlice = createSlice({
     setHeightImperial(state, action) {
       state.heightImperial = action.payload
     },
+    setTotalCm(state, action) {
+      state.totalCm = action.payload
+    },
+    setTotalKg(state, action) {
+      state.totalKg = action.payload
+    },
     setGoal(state, action) {
       state.goal = action.payload
     },
@@ -67,6 +75,8 @@ export const {
   setWeightImperial,
   setWeightError,
   setHeightImperial,
+  setTotalCm,
+  setTotalKg,
   setGoal,
   setGoalImperial,
   setVerdict,
@@ -84,6 +94,8 @@ export const selectHeightImperialFeet = (state) =>
   state.form.heightImperial.feet
 export const selectHeightImperialInch = (state) =>
   state.form.heightImperial.inch
+export const selectTotalCm = (state) => state.form.totalCm
+export const selectTotalKg = (state) => state.form.totalKg
 export const selectGoal = (state) => state.form.goal
 export const selectGoalImperial = (state) => state.form.goalImperial
 export const selectVerdict = (state) => state.form.verdict

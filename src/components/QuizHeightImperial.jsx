@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   setHeightImperial,
   setHeightError,
+  setTotalCm,
   selectHeightImperialFeet,
   selectHeightImperialInch,
   selectHeightError,
@@ -17,11 +18,8 @@ const QuizHeightImperial = () => {
   const feet = useSelector(selectHeightImperialFeet)
   const inch = useSelector(selectHeightImperialInch)
   const heightError = useSelector(selectHeightError)
-
   const [localFeet, setLocalFeet] = useState(feet)
   const [localInch, setLocalInch] = useState(inch)
-
-  const totalCm = (localFeet * 30.48 + localInch * 2.54).toFixed()
 
   const imperialInputHandler = (event, name) => {
     const value = event.target.value
@@ -34,8 +32,9 @@ const QuizHeightImperial = () => {
 
     const updatedFeet = name === 'feet' ? value : localFeet
     const updatedInch = name === 'inch' ? value : localInch
+    const totalCm = (updatedFeet * 30.48 + updatedInch * 2.54).toFixed()
 
-    dispatch(setHeightImperial({ feet: updatedFeet, inch: updatedInch }))
+    dispatch(setTotalCm(totalCm))
 
     if (!updatedFeet || !updatedInch) {
       dispatch(setHeightError(''))
@@ -69,7 +68,7 @@ const QuizHeightImperial = () => {
       dispatch(setHeightError('Please state at most 11 inch'))
     } else {
       dispatch(setHeightError(''))
-      navigate('/quiz/weight', { state: { totalCm } })
+      navigate('/quiz/weight')
     }
   }
 

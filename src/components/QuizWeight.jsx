@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styles from '../App.module.css'
 import Switcher from './Switcher'
 import {
@@ -17,7 +17,6 @@ import {
 const QuizWeight = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const location = useLocation()
 
   const inputWeight = useSelector(selectInputWeight)
   const weightError = useSelector(selectWeightError)
@@ -25,17 +24,16 @@ const QuizWeight = () => {
   const disabled = useSelector(selectDisabled)
   const isMetric = useSelector(selectIsMetric)
 
-  const totalKg = (weightImperial * 0.45359237).toFixed()
-  const { inputHeight, totalCm } = location.state || {}
-
   const inputWeightHandler = (e) => {
-    e.preventDefault()
     const value = e.target.value
     dispatch(setInputWeight(value))
 
     if (isMetric) {
       dispatch(setWeightError(''))
-      if (!value || isNaN(value) || value < 40 || value > 230) {
+      dispatch(setDisabled(true))
+      if (!value) {
+        dispatch(setWeightError(''))
+      } else if (isNaN(value) || value < 40 || value > 230) {
         dispatch(setDisabled(true))
         dispatch(
           setWeightError('Kindly input a weight between 40 and 230 kilograms')
@@ -46,7 +44,9 @@ const QuizWeight = () => {
     } else {
       dispatch(setWeightImperial(value))
       dispatch(setWeightError(''))
-      if (!value || isNaN(value) || value < 90 || value > 540) {
+      if (!value) {
+        dispatch(setWeightError(''))
+      } else if (isNaN(value) || value < 90 || value > 540) {
         dispatch(setDisabled(true))
         dispatch(setWeightError('Kindly input a weight between 90 and 540 lbs'))
       } else {
@@ -57,15 +57,9 @@ const QuizWeight = () => {
 
   const continueHandler = (e) => {
     e.preventDefault()
-
-    isMetric
-      ? navigate('/quiz/weight-goal', {
-          state: { inputHeight, inputWeight },
-        })
-      : navigate('/quiz/weight-goal', {
-          state: { totalCm, totalKg, weightImperial },
-        })
+    navigate('/quiz/weight-goal')
   }
+
   return (
     <>
       <h2>Enter your weight</h2>

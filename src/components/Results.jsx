@@ -1,28 +1,30 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri'
-import { setActive, selectActive } from '../store/slices/formSlice'
+import {
+  setActive,
+  selectActive,
+  selectInputHeight,
+  selectInputWeight,
+  selectWeightImperial,
+  selectTotalCm,
+} from '../store/slices/formSlice'
 import { BMI } from '../data/formulas'
 import styles from './Results.module.css'
 
 const Results = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const location = useLocation()
 
   const active = useSelector(selectActive)
-  let { inputHeight, inputWeight, totalCm, totalKg } = location.state || {}
+  const weightImperial = useSelector(selectWeightImperial)
+  let inputHeight = useSelector(selectInputHeight)
+  let inputWeight = useSelector(selectInputWeight)
+  let totalCm = useSelector(selectTotalCm)
+  let totalKg = (weightImperial * 0.45359237).toFixed()
 
-  if (inputHeight === undefined) {
-    inputHeight = totalCm
-  }
-
-  if (inputWeight === undefined) {
-    inputWeight = totalKg
-  }
-
-  const BMIcurrent = BMI(inputHeight, inputWeight)
+  const BMIcurrent = BMI(inputHeight, inputWeight, totalCm, totalKg)
   const delay = 1700
 
   const btnBackHandler = () => {

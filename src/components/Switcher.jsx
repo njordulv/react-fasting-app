@@ -17,6 +17,7 @@ import {
   setVerdict,
   setActive,
 } from '../store/slices/formSlice'
+import { setDisabled } from '../store/slices/formSlice'
 import styles from '../App.module.css'
 
 const Switcher = () => {
@@ -38,6 +39,7 @@ const Switcher = () => {
     dispatch(setGoalImperial(''))
     dispatch(setVerdict(''))
     dispatch(setActive(''))
+    dispatch(setDisabled(true))
   }
 
   return (

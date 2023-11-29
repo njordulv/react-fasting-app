@@ -27,8 +27,8 @@ const Results = () => {
   const BMIcurrent = BMI(inputHeight, inputWeight, totalCm, totalKg)
   const delay = 1700
 
-  const btnBackHandler = () => {
-    return navigate('/quiz')
+  const btnContinueHandler = () => {
+    return navigate('/testimonials')
   }
 
   useEffect(() => {
@@ -216,8 +216,8 @@ const Results = () => {
         healthcare provider who can consider other factors in addition to BMI.
       </div>
       <div className={styles.bmiBack}>
-        <button type="button" className="button" onClick={btnBackHandler}>
-          Calculate again
+        <button type="button" className="button" onClick={btnContinueHandler}>
+          Continue
         </button>
       </div>
     </>

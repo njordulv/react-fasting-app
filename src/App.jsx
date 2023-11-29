@@ -9,6 +9,7 @@ import QuizHeight from './components/QuizHeight'
 import QuizWeight from './components/QuizWeight'
 import QuizWeightGoal from './components/QuizWeightGoal'
 import Results from './components/Results'
+import Testimonials from './components/Testimonials'
 import questions from './data/questions'
 import './variables.css'
 
@@ -21,6 +22,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/quiz" element={<QuizStart />} />
+            <Route path="/testimonials" element={<Testimonials />} />
           </Route>
           <Route element={<QuizLayout />}>
             <Route path="quiz/height" element={<QuizHeight />} />

@@ -58,7 +58,7 @@
   height: 100%;
   min-height: 1px;
   opacity: 0.6;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 .slick-slide.slick-active {
   opacity: 1;

@@ -80,7 +80,7 @@
 }
 
 .progress {
-  content: "";
+  content: '';
   position: absolute;
   display: block;
   left: 0;
@@ -283,7 +283,7 @@
 
 .switcherButton .switcherKnobs:before,
 .switcherButton .switcherKnobs span {
-  content: "Imperial";
+  content: 'Imperial';
   position: absolute;
   top: 4px;
   left: 62px;
@@ -324,15 +324,15 @@
 }
 
 .switcherButton .switcherCheckbox:checked + .switcherKnobs:before {
-  content: "Metric";
+  content: 'Metric';
   left: 4px;
 }
 .switcherButton .switcherCheckbox + .switcherKnobs:after {
-  content: "Metric";
+  content: 'Metric';
   left: 4px;
 }
 .switcherButton .switcherCheckbox:checked + .switcherKnobs:after {
-  content: "Imperial";
+  content: 'Imperial';
   right: 4px;
   left: auto;
 }
@@ -344,4 +344,10 @@
 
 .switcherButton .switcherCheckbox:checked ~ .switcherLayer {
   background-color: var(--primary);
+}
+
+.CircularProgressbar {
+  width: 190;
+  height: 190px;
+  margin-bottom: 30px;
 }

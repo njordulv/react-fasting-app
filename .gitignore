@@ -1,3 +1,4 @@
 node_modules
+api/data/email.json
 build
 .DS_Store

@@ -36,7 +36,6 @@ const Testimonials = () => {
   return (
     <>
       <Loader />
-      <h1>Testimonials</h1>
       <h2>
         Over a thousand users have successfully reached their milestones using
         the React Fasting App

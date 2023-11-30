@@ -209,6 +209,72 @@
   font-weight: 500;
 }
 
+.inputFieldEmail {
+  position: relative;
+  margin: 0 auto 20px;
+}
+
+.inputEmail {
+  height: 50px;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 5px 10px 5px 33px;
+  text-align: left;
+  color: var(--color);
+}
+
+.inputIcon {
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  font-size: 18px;
+  color: #ddd;
+}
+
+.formEmail {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.inputErase {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.inputErase:disabled {
+  opacity: 0;
+}
+
+.formEmail button {
+  max-width: initial;
+}
+
+.formEmail .inputError {
+  bottom: -3px;
+  text-align: left;
+}
+
+.formPrivacy {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.formPrivacy svg {
+  font-size: 24px;
+  color: green;
+}
+
 .weightInfo {
   display: flex;
   flex-direction: column;

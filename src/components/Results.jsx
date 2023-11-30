@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri'
 import {
   setActive,
@@ -19,6 +19,7 @@ const Results = () => {
 
   const active = useSelector(selectActive)
   const weightImperial = useSelector(selectWeightImperial)
+  const [disabled, setDisabled] = useState(true)
   let inputHeight = useSelector(selectInputHeight)
   let inputWeight = useSelector(selectInputWeight)
   let totalCm = useSelector(selectTotalCm)
@@ -50,12 +51,19 @@ const Results = () => {
           dispatch(setActive(activeIndex))
         }, delay)
       }
+
+      if (isNaN(BMIcurrent)) {
+        setDisabled(true)
+      } else {
+        setDisabled(false)
+      }
     }
 
     timeoutDelayHandler()
   }, [BMIcurrent, dispatch])
 
   let BMIprogress
+
   if (BMIcurrent <= 18.4) {
     BMIprogress = 10
   } else if (BMIcurrent >= 18.5 && BMIcurrent <= 24.9) {
@@ -216,7 +224,12 @@ const Results = () => {
         healthcare provider who can consider other factors in addition to BMI.
       </div>
       <div className={styles.bmiBack}>
-        <button type="button" className="button" onClick={btnContinueHandler}>
+        <button
+          type="button"
+          className="button"
+          disabled={disabled}
+          onClick={btnContinueHandler}
+        >
           Continue
         </button>
       </div>

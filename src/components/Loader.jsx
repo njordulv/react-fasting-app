@@ -15,7 +15,7 @@ const Loader = () => {
       if (progress > 100) {
         clearInterval(interval)
         setTimeout(() => {
-          navigate('/quiz/')
+          navigate('/email/')
         }, 1000)
       } else {
         setPercentage(progress)

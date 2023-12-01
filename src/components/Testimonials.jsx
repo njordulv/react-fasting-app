@@ -1,5 +1,6 @@
 import Slider from 'react-slick'
 import { IoStarSharp } from 'react-icons/io5'
+import { SiTrustpilot } from 'react-icons/si'
 import { testimonials } from '../data/testimonials'
 import Loader from './Loader'
 import './slider/slick.css'
@@ -12,8 +13,9 @@ const Testimonials = () => {
     infinite: true,
     centerPadding: '50px',
     slidesToShow: 1,
-    speed: 500,
+    speed: 700,
     autoplay: true,
+    pauseOnHover: false,
     nav: false,
     responsive: [
       {
@@ -46,6 +48,9 @@ const Testimonials = () => {
             <div className="slide-inner">
               <div className="slide-top">
                 <img src={testimonial.image} alt="" />
+                <span className="slide-trust-icon">
+                  <SiTrustpilot /> Trustpilot
+                </span>
                 <div className="slide-name">
                   <h4>{testimonial.name}</h4>
                   <div>

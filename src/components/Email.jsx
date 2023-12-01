@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { HiOutlineMail } from 'react-icons/hi'
 import { GoShieldCheck } from 'react-icons/go'
 import { IoCloseOutline } from 'react-icons/io5'
+import { BiLoaderAlt } from 'react-icons/bi'
 import styles from '../App.module.css'
 import { useNavigate } from 'react-router'
 
@@ -13,6 +14,7 @@ const Email = () => {
   const API_URL = 'http://localhost:4000/submit-email'
   const [emailValue, setEmailValue] = useState('')
   const [disabled, setDisabled] = useState(true)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
   const validationSchema = yup.object().shape({
@@ -55,7 +57,10 @@ const Email = () => {
       .post(API_URL, data)
       .then((res) => {
         console.log(res.data)
-        navigate('/offer')
+        setLoading(true)
+        setTimeout(() => {
+          navigate('/offer')
+        }, 2400)
       })
       .catch((error) => console.error(error))
   }
@@ -96,8 +101,8 @@ const Email = () => {
             information.
           </span>
         </div>
-        <button type="submit" className="button">
-          Submit
+        <button type="submit" className={`${styles.button} button`}>
+          {loading ? <BiLoaderAlt className={styles.loaderEmail} /> : 'Submit'}
         </button>
       </form>
     </>

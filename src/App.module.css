@@ -242,8 +242,11 @@
 .inputErase {
   position: absolute;
   right: 10px;
-  top: 14px;
+  top: 15px;
   font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -252,8 +255,9 @@
   opacity: 0;
 }
 
-.formEmail button {
+.formEmail .button {
   max-width: initial;
+  padding: 10px;
 }
 
 .formEmail .inputError {
@@ -273,6 +277,11 @@
 .formPrivacy svg {
   font-size: 24px;
   color: green;
+}
+
+.loaderEmail {
+  animation: spinner 2s infinite linear;
+  font-size: 27px;
 }
 
 .weightInfo {
@@ -416,4 +425,14 @@
   width: 190;
   height: 190px;
   margin-bottom: 30px;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

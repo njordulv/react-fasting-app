@@ -93,6 +93,10 @@ button:disabled {
   max-width: 288px;
   cursor: pointer;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
   background-color: var(--primary);
   text-decoration: none;
   transition: all 0.3s ease;

@@ -7,11 +7,13 @@ import { HiOutlineMail } from 'react-icons/hi'
 import { GoShieldCheck } from 'react-icons/go'
 import { IoCloseOutline } from 'react-icons/io5'
 import styles from '../App.module.css'
+import { useNavigate } from 'react-router'
 
 const Email = () => {
   const API_URL = 'http://localhost:4000/submit-email'
   const [emailValue, setEmailValue] = useState('')
   const [disabled, setDisabled] = useState(true)
+  const navigate = useNavigate()
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -35,6 +37,7 @@ const Email = () => {
 
     if (value.length > 1) {
       setDisabled(false)
+      clearErrors()
     }
     if (!value) {
       setDisabled(true)
@@ -50,7 +53,10 @@ const Email = () => {
   const onSubmitHandler = (data) => {
     axios
       .post(API_URL, data)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data)
+        navigate('/offer')
+      })
       .catch((error) => console.error(error))
   }
 

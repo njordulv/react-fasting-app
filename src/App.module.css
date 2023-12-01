@@ -279,6 +279,18 @@
   color: green;
 }
 
+.formPrivacy a {
+  color: var(--btn-hover);
+}
+
+.formPrivacy a:hover {
+  color: var(--color);
+}
+
+.privacyText {
+  text-align: left;
+}
+
 .loaderEmail {
   animation: spinner 2s infinite linear;
   font-size: 27px;

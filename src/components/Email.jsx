@@ -3,12 +3,13 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
+import { Link } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { GoShieldCheck } from 'react-icons/go'
 import { IoCloseOutline } from 'react-icons/io5'
 import { BiLoaderAlt } from 'react-icons/bi'
 import styles from '../App.module.css'
-import { useNavigate } from 'react-router'
 
 const Email = () => {
   const API_URL = 'http://localhost:4000/submit-email'
@@ -97,8 +98,8 @@ const Email = () => {
         <div className={styles.formPrivacy}>
           <GoShieldCheck />
           <span>
-            Kindly review our Privacy Policy for insights on how we utilize your
-            information.
+            Kindly review our <Link to="/privacy-policy">Privacy Policy</Link>
+            &nbsp; for insights on how we utilize your information.
           </span>
         </div>
         <button type="submit" className={`${styles.button} button`}>

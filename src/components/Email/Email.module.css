@@ -1,0 +1,126 @@
+.formEmail {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.inputFieldEmail {
+  position: relative;
+  margin: 0 auto 20px;
+  padding-bottom: 15px;
+}
+
+.inputEmail {
+  height: 50px;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 5px 10px 5px 33px;
+  text-align: left;
+  color: var(--color);
+  box-sizing: border-box;
+  outline: none;
+  background-color: #fff;
+}
+
+.input::placeholder {
+  color: #ccc;
+  transition: all 0.3s ease;
+}
+
+.input:focus-visible::placeholder {
+  opacity: 0;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  font-size: 18px;
+  color: #ddd;
+}
+
+.inputError,
+.emailSuccess {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: left;
+  bottom: 0;
+  color: coral;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: 500;
+}
+
+.emailSuccess {
+  color: darkseagreen;
+}
+
+.inputErase {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.inputErase:disabled {
+  opacity: 0;
+}
+
+.loaderEmail {
+  animation: spinner 2s infinite linear;
+  font-size: 27px;
+}
+
+.formEmail .button {
+  max-width: initial;
+  padding: 10px;
+}
+
+.formEmail .inputError {
+  bottom: -3px;
+  text-align: left;
+}
+
+.formPrivacy {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+  line-height: 18px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.formPrivacy svg {
+  font-size: 24px;
+  color: darkseagreen;
+}
+
+.formPrivacy a {
+  color: var(--btn-hover);
+}
+
+.formPrivacy a:hover {
+  color: var(--color);
+}
+
+.privacyText {
+  text-align: left;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

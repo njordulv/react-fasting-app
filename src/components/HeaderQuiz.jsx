@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom"
-import { IoFitnessOutline } from "react-icons/io5"
-import StepBack from "./StepBack"
-import ProgressBar from "./ProgressBar"
-import TotalQuiz from "./TotalQuiz"
-import styles from "../App.module.css"
+import { Link } from 'react-router-dom'
+import { IoFitnessOutline } from 'react-icons/io5'
+import StepBack from './StepBack'
+import ProgressBar from './ProgressBar'
+import TotalQuiz from './Quiz/TotalQuiz'
+import styles from '../App.module.css'
 
 const HeaderQuiz = () => {
   return (

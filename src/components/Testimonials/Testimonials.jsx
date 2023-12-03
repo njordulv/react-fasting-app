@@ -1,10 +1,10 @@
 import Slider from 'react-slick'
 import { IoStarSharp } from 'react-icons/io5'
 import { SiTrustpilot } from 'react-icons/si'
-import { testimonials } from '../data/testimonials'
+import { testimonials } from '../../data/testimonials'
 import Loader from './Loader'
-import './slider/slick.css'
-import './slider/slick-theme.css'
+import '../slider/slick.css'
+import '../slider/slick-theme.css'
 
 const Testimonials = () => {
   const settings = {

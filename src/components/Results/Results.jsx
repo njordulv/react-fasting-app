@@ -9,8 +9,8 @@ import {
   selectInputWeight,
   selectWeightImperial,
   selectTotalCm,
-} from '../store/slices/formSlice'
-import { BMI } from '../data/formulas'
+} from '../../store/slices/formSlice'
+import { BMI } from '../../data/formulas'
 import styles from './Results.module.css'
 
 const Results = () => {

@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import styles from '../App.module.css'
-import Switcher from './Switcher'
+import Switcher from '../Switcher'
 import {
   setInputWeight,
   setWeightImperial,
@@ -11,7 +10,8 @@ import {
   selectWeightError,
   selectDisabledWeight,
   selectIsMetric,
-} from '../store/slices/formSlice'
+} from '../../store/slices/formSlice'
+import styles from '../../App.module.css'
 
 const QuizWeight = () => {
   const dispatch = useDispatch()

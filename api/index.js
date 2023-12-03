@@ -30,7 +30,7 @@ app.post('/submit-email', (req, res) => {
     'utf8'
   )
 
-  res.status(200).send('Data saved successfully')
+  res.status(200).send('Data was saved successfully')
 })
 
 app.listen(4000, () => {

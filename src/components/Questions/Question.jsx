@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 import { RiCheckFill } from 'react-icons/ri'
-import { setOptionHistory } from '../store/slices/optionHistorySlice'
+import { setOptionHistory } from '../../store/slices/optionHistorySlice'
 import styles from './Question.module.css'
 
 const Question = ({ question, options, navigateTo }) => {

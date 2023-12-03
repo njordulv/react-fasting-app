@@ -9,14 +9,18 @@ import { HiOutlineMail } from 'react-icons/hi'
 import { GoShieldCheck } from 'react-icons/go'
 import { IoCloseOutline } from 'react-icons/io5'
 import { BiLoaderAlt } from 'react-icons/bi'
-import styles from '../App.module.css'
+import styles from './Email.module.css'
 
 const Email = () => {
   const API_URL = 'http://localhost:4000/submit-email'
   const [emailValue, setEmailValue] = useState('')
+  const [success, setSuccess] = useState('')
   const [disabled, setDisabled] = useState(true)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const date = new Date()
+  const hours = String(date.getHours()).padStart(2, '0')
+  const minutes = String(date.getMinutes()).padStart(2, '0')
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -54,11 +58,14 @@ const Email = () => {
   }
 
   const onSubmitHandler = (data) => {
+    const dataWithTime = { ...data, time: `${hours}:${minutes}` }
+
     axios
-      .post(API_URL, data)
+      .post(API_URL, dataWithTime)
       .then((res) => {
         console.log(res.data)
         setLoading(true)
+        setSuccess('Data was sent successfully')
         setTimeout(() => {
           navigate('/offer')
         }, 2400)
@@ -87,6 +94,7 @@ const Email = () => {
           {errors.email && (
             <div className={styles.inputError}>{errors.email.message}</div>
           )}
+          {success && <div className={styles.emailSuccess}>{success}</div>}
           <button
             className={styles.inputErase}
             disabled={disabled}

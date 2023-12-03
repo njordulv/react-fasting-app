@@ -8,8 +8,8 @@ import {
   selectHeightImperialFeet,
   selectHeightImperialInch,
   selectHeightError,
-} from '../store/slices/formSlice'
-import styles from '../App.module.css'
+} from '../../store/slices/formSlice'
+import styles from '../../App.module.css'
 
 const QuizHeightImperial = () => {
   const dispatch = useDispatch()

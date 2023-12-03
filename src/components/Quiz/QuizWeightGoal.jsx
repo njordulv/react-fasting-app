@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Switcher from './Switcher'
+import Switcher from '../Switcher'
 import {
   setGoal,
   setGoalImperial,
@@ -15,9 +15,9 @@ import {
   selectVerdict,
   selectDisabledGoal,
   selectIsMetric,
-} from '../store/slices/formSlice'
-import { verdictData } from '../data/verdict'
-import styles from '../App.module.css'
+} from '../../store/slices/formSlice'
+import { verdictData } from '../../data/verdict'
+import styles from '../../App.module.css'
 
 const QuizWeightGoal = () => {
   const dispatch = useDispatch()

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
-import styles from '../App.module.css'
+import styles from '../../App.module.css'
 import { useNavigate } from 'react-router'
 
 const Loader = () => {

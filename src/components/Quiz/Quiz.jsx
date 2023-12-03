@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom"
-import Question from "./Question"
-import questions from "../data/questions"
+import { useNavigate } from 'react-router-dom'
+import Question from '../Questions/Question'
+import questions from '../../data/questions'
 
 const Quiz = ({ quizIndex }) => {
   const navigate = useNavigate()
@@ -10,7 +10,7 @@ const Quiz = ({ quizIndex }) => {
     if (quizIndex < questions.length - 1) {
       navigate(`/quiz/question-${quizIndex + 2}`)
     } else {
-      navigate("/quiz/height")
+      navigate('/quiz/height')
     }
   }
 

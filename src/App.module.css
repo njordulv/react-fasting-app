@@ -209,93 +209,6 @@
   font-weight: 500;
 }
 
-.inputFieldEmail {
-  position: relative;
-  margin: 0 auto 20px;
-}
-
-.inputEmail {
-  height: 50px;
-  width: 100%;
-  font-size: 18px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  padding: 5px 10px 5px 33px;
-  text-align: left;
-  color: var(--color);
-}
-
-.inputIcon {
-  position: absolute;
-  left: 10px;
-  top: 16px;
-  font-size: 18px;
-  color: #ddd;
-}
-
-.formEmail {
-  width: 100%;
-  max-width: 420px;
-  margin: 0 auto;
-}
-
-.inputErase {
-  position: absolute;
-  right: 10px;
-  top: 15px;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.inputErase:disabled {
-  opacity: 0;
-}
-
-.formEmail .button {
-  max-width: initial;
-  padding: 10px;
-}
-
-.formEmail .inputError {
-  bottom: -3px;
-  text-align: left;
-}
-
-.formPrivacy {
-  display: flex;
-  gap: 15px;
-  font-size: 13px;
-  line-height: 18px;
-  text-align: left;
-  margin-bottom: 20px;
-}
-
-.formPrivacy svg {
-  font-size: 24px;
-  color: green;
-}
-
-.formPrivacy a {
-  color: var(--btn-hover);
-}
-
-.formPrivacy a:hover {
-  color: var(--color);
-}
-
-.privacyText {
-  text-align: left;
-}
-
-.loaderEmail {
-  animation: spinner 2s infinite linear;
-  font-size: 27px;
-}
-
 .weightInfo {
   display: flex;
   flex-direction: column;
@@ -437,14 +350,4 @@
   width: 190;
   height: 190px;
   margin-bottom: 30px;
-}
-
-@keyframes spinner {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }

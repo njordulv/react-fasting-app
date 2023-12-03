@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import QuizHeightImperial from './QuizHeightImperial'
-import Switcher from './Switcher'
+import Switcher from '../Switcher'
 import {
   setInputHeight,
   setHeightError,
@@ -10,8 +10,8 @@ import {
   selectHeightError,
   selectDisabled,
   selectIsMetric,
-} from '../store/slices/formSlice'
-import styles from '../App.module.css'
+} from '../../store/slices/formSlice'
+import styles from '../../App.module.css'
 
 const QuizHeight = () => {
   const dispatch = useDispatch()

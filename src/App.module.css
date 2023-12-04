@@ -74,6 +74,10 @@
   gap: 10px;
 }
 
+.spaceBetween {
+  justify-content: space-between;
+}
+
 .progressBar {
   position: absolute;
   border-radius: 3px;

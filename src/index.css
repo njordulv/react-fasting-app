@@ -98,7 +98,6 @@ button:disabled {
   border-radius: 8px;
   width: 100%;
   max-width: 288px;
-  margin: 0 auto;
   cursor: pointer;
   color: #fff;
   display: flex;

@@ -1,0 +1,67 @@
+.offerTarget {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 15px;
+  padding: 0;
+  border-radius: 10px;
+  background-color: #e4eaf0;
+}
+
+.offerTargetTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 15px;
+  color: #fff;
+  font-size: 60px;
+  border-radius: 10px 10px 0 0;
+  padding: 30px 20px;
+  position: relative;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
+}
+
+.offerTargetMid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 0 20px;
+  gap: 15px;
+  color: var(--color);
+}
+
+.offerTargetBot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 20px;
+  padding: 0 20px 20px;
+  gap: 20px;
+  color: var(--color);
+}
+
+.rate {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  margin-top: 15px;
+}
+
+.rateEnd {
+  justify-content: end;
+}
+
+.rate svg {
+  font-size: 24px;
+  margin-right: -4px;
+}
+
+.ratePale {
+  color: #fff;
+}
+
+.rateVivid {
+  color: green;
+}

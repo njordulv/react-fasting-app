@@ -30,6 +30,8 @@ const ProgressScroll = () => {
           height: '4px',
           borderRadius: '2px',
           backgroundColor: '#91b7d9',
+          position: 'absolute',
+          bottom: 0,
         }}
       ></div>
     </>

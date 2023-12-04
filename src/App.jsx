@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import DefaultLayout from './layouts/DefaultLayout'
 import QuizLayout from './layouts/QuizLayout'
+import OfferLayout from './layouts/OfferLayout'
 import Home from './components/Home'
 import NotFound from './components/NotFound'
 import QuizStart from './components/Quiz/QuizStart'
@@ -27,7 +28,6 @@ function App() {
             <Route path="/quiz" element={<QuizStart />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/email" element={<Email />} />
-            <Route path="/offer" element={<Offer />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Route>
           <Route element={<QuizLayout />}>
@@ -42,6 +42,9 @@ function App() {
                 element={<Quiz quizIndex={index} />}
               />
             ))}
+          </Route>
+          <Route element={<OfferLayout />}>
+            <Route path="/offer" element={<Offer />} />
           </Route>
         </Routes>
       </div>

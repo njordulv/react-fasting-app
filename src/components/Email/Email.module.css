@@ -48,13 +48,17 @@
   right: 0;
   text-align: left;
   bottom: 0;
-  color: coral;
   font-size: 12px;
   line-height: 15px;
   font-weight: 500;
 }
 
+.inputError {
+  color: coral;
+}
+
 .emailSuccess {
+  bottom: -3px;
   color: darkseagreen;
 }
 

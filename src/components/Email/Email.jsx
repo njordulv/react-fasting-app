@@ -1,23 +1,30 @@
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import axios from 'axios'
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { GoShieldCheck } from 'react-icons/go'
 import { IoCloseOutline } from 'react-icons/io5'
 import { BiLoaderAlt } from 'react-icons/bi'
+import {
+  submitEmail,
+  clearNetworkError,
+  clearSuccess,
+  selectLoading,
+} from '../../store/slices/emailSlice'
 import styles from './Email.module.css'
 
 const Email = () => {
-  const API_URL = 'http://localhost:4000/submit-email'
-  const [emailValue, setEmailValue] = useState('')
-  const [success, setSuccess] = useState('')
-  const [disabled, setDisabled] = useState(true)
-  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const [emailValue, setEmailValue] = useState('')
+  const [disabled, setDisabled] = useState(true)
+  const loading = useSelector(selectLoading)
+  const { networkError, success } = useSelector((state) => state.email)
+
   const date = new Date()
   const hours = String(date.getHours()).padStart(2, '0')
   const minutes = String(date.getMinutes()).padStart(2, '0')
@@ -45,32 +52,39 @@ const Email = () => {
     if (value.length > 1) {
       setDisabled(false)
       clearErrors()
+      dispatch(clearNetworkError())
+      dispatch(clearSuccess())
     }
     if (!value) {
       setDisabled(true)
+      dispatch(clearSuccess())
     }
   }
 
   const eraseInputHandler = () => {
     setEmailValue('')
     setDisabled(true)
+    dispatch(clearNetworkError())
+    dispatch(clearSuccess())
     clearErrors()
   }
 
-  const onSubmitHandler = (data) => {
-    const dataWithTime = { ...data, time: `${hours}:${minutes}` }
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        dispatch(clearSuccess())
+      }, 2500)
 
-    axios
-      .post(API_URL, dataWithTime)
-      .then((res) => {
-        console.log(res.data)
-        setLoading(true)
-        setSuccess('Data was sent successfully')
-        setTimeout(() => {
-          navigate('/offer')
-        }, 2400)
-      })
-      .catch((error) => console.error(error))
+      return () => clearTimeout(timer)
+    }
+  }, [success, dispatch])
+
+  const onSubmitHandler = async (data) => {
+    const dataWithTime = { ...data, time: `${hours}:${minutes}` }
+    dispatch(submitEmail('http://localhost:4000/submit-email', dataWithTime))
+    setTimeout(() => {
+      navigate('/offer')
+    }, 2500)
   }
 
   return (
@@ -82,7 +96,7 @@ const Email = () => {
         onSubmit={handleSubmit(onSubmitHandler)}
         className={styles.formEmail}
       >
-        <div className={`${styles.inputField} ${styles.inputFieldEmail}`}>
+        <div className={`${styles.inputFieldEmail}`}>
           <HiOutlineMail className={styles.inputIcon} />
           <input
             {...register('email')}
@@ -91,10 +105,13 @@ const Email = () => {
             placeholder="Email"
             className={`${styles.input} ${styles.inputEmail}`}
           />
+          {success && <div className={styles.emailSuccess}>{success}</div>}
           {errors.email && (
             <div className={styles.inputError}>{errors.email.message}</div>
           )}
-          {success && <div className={styles.emailSuccess}>{success}</div>}
+          {networkError && (
+            <div className={styles.inputError}>{networkError}</div>
+          )}
           <button
             className={styles.inputErase}
             disabled={disabled}

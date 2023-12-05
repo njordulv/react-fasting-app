@@ -22,15 +22,17 @@ app.post('/submit-email', (req, res) => {
     console.error(err)
   }
 
-  emailData.push(formData)
+  setTimeout(() => {
+    emailData.push(formData)
 
-  fs.writeFileSync(
-    'data/email.json',
-    JSON.stringify(emailData, null, 2),
-    'utf8'
-  )
+    fs.writeFileSync(
+      'data/email.json',
+      JSON.stringify(emailData, null, 2),
+      'utf8'
+    )
 
-  res.status(200).send('Data was saved successfully')
+    res.status(200).send('Data was saved successfully')
+  }, 2500)
 })
 
 app.listen(4000, () => {

@@ -5,7 +5,7 @@ import { testimonials } from '../../data/testimonials'
 import './slick.css'
 import './slick-theme.css'
 
-const Testimonials = () => {
+const TestimonialsSlider = () => {
   const settings = {
     className: 'center',
     centerMode: true,
@@ -63,4 +63,4 @@ const Testimonials = () => {
   )
 }
 
-export default Testimonials
+export default TestimonialsSlider

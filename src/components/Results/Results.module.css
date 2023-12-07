@@ -14,8 +14,6 @@
   background-color: var(--primary-2);
   border-radius: 8px;
   text-align: left;
-  font-size: 12px;
-  line-height: 18px;
 }
 
 .bmiRes {
@@ -35,7 +33,9 @@
 }
 
 .bmiBack {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 30px 0 0;
 }
 

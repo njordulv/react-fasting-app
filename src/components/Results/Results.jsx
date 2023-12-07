@@ -215,14 +215,14 @@ const Results = () => {
       ) : (
         ''
       )}
-      <div className={styles.bmiTextSmall}>
+      <small className={styles.bmiTextSmall}>
         It's important to note that while BMI is a useful tool for evaluating
         weight status on a population level, it does not take into account
         factors like muscle mass, body composition, or distribution of fat,
         which can influence an individual's overall health. For a more
         comprehensive assessment of health, it is advisable to consult with a
         healthcare provider who can consider other factors in addition to BMI.
-      </div>
+      </small>
       <div className={styles.bmiBack}>
         <button
           type="button"

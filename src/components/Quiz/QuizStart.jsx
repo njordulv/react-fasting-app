@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
 const QuizStart = () => {
   const navigate = useNavigate()
 
   const startQuizHandler = () => {
-    return navigate("question-1")
+    return navigate('question-1')
   }
 
   return (
@@ -17,7 +17,7 @@ const QuizStart = () => {
         goals, habits, and needs. Start your unique path to becoming the best
         version of yourself right now!
       </p>
-      <div>
+      <div className="text-center">
         <button type="button" className="button" onClick={startQuizHandler}>
           Start Quiz
         </button>

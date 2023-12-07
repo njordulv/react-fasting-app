@@ -80,6 +80,12 @@ ul {
   font-size: 14px;
 }
 
+small {
+  font-size: 12px;
+  line-height: 18px;
+  display: block;
+}
+
 button {
   background: none;
   border: 0;
@@ -119,4 +125,22 @@ button:disabled {
 
 .text-center {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+}
+
+img {
+  width: 100%;
+  height: auto;
 }

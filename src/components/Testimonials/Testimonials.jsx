@@ -1,4 +1,4 @@
-import Slider from '../slider/Slider'
+import TestimonialsSlider from '../slider/TestimonialsSlider'
 import Loader from './Loader'
 
 const Testimonials = () => {
@@ -9,7 +9,7 @@ const Testimonials = () => {
         Over a thousand users have successfully reached their milestones using
         the React Fasting App
       </h2>
-      <Slider />
+      <TestimonialsSlider />
     </>
   )
 }

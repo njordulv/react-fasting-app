@@ -2,28 +2,22 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { GoShieldCheck } from 'react-icons/go'
 import { IoCloseOutline } from 'react-icons/io5'
 import { BiLoaderAlt } from 'react-icons/bi'
-import {
-  submitEmail,
-  clearNetworkError,
-  clearSuccess,
-  selectLoading,
-} from '../../store/slices/emailSlice'
+import { submitEmail, clearNetworkError } from '../../store/slices/emailSlice'
 import styles from './Email.module.css'
 
 const Email = () => {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [emailValue, setEmailValue] = useState('')
   const [disabled, setDisabled] = useState(true)
-  const loading = useSelector(selectLoading)
-  const { networkError, success } = useSelector((state) => state.email)
+  const [loading, setLoading] = useState(false)
+  const { networkError } = useSelector((state) => state.email)
 
   const date = new Date()
   const hours = String(date.getHours()).padStart(2, '0')
@@ -53,11 +47,9 @@ const Email = () => {
       setDisabled(false)
       clearErrors()
       dispatch(clearNetworkError())
-      dispatch(clearSuccess())
     }
     if (!value) {
       setDisabled(true)
-      dispatch(clearSuccess())
     }
   }
 
@@ -65,26 +57,23 @@ const Email = () => {
     setEmailValue('')
     setDisabled(true)
     dispatch(clearNetworkError())
-    dispatch(clearSuccess())
     clearErrors()
   }
 
-  useEffect(() => {
-    if (success) {
-      const timer = setTimeout(() => {
-        dispatch(clearSuccess())
-      }, 2500)
-
-      return () => clearTimeout(timer)
-    }
-  }, [success, dispatch])
-
   const onSubmitHandler = async (data) => {
     const dataWithTime = { ...data, time: `${hours}:${minutes}` }
-    dispatch(submitEmail('http://localhost:4000/submit-email', dataWithTime))
-    setTimeout(() => {
-      navigate('/offer')
-    }, 2500)
+    setLoading(true)
+    try {
+      const result = await dispatch(submitEmail(dataWithTime))
+      setLoading(false)
+
+      if (submitEmail.fulfilled.match(result)) {
+        navigate('/offer')
+      }
+    } catch (error) {
+      setLoading(false)
+      console.error('Error occurred:', error)
+    }
   }
 
   return (
@@ -105,7 +94,6 @@ const Email = () => {
             placeholder="Email"
             className={`${styles.input} ${styles.inputEmail}`}
           />
-          {success && <div className={styles.emailSuccess}>{success}</div>}
           {errors.email && (
             <div className={styles.inputError}>{errors.email.message}</div>
           )}

@@ -32,7 +32,7 @@ app.post('/submit-email', (req, res) => {
     )
 
     res.status(200).send('Data was saved successfully')
-  }, 2500)
+  }, 3000)
 })
 
 app.listen(4000, () => {

@@ -107,12 +107,15 @@
   color: darkseagreen;
 }
 
-.formPrivacy a {
-  color: var(--btn-hover);
+.formPrivacy a,
+.formPrivacy a:visited {
+  color: var(--color);
+  text-decoration: underline;
 }
 
 .formPrivacy a:hover {
-  color: var(--color);
+  color: var(--btn-hover);
+  text-decoration: none;
 }
 
 .privacyText {

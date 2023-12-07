@@ -2,31 +2,21 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 const initialState = {
-  loading: false,
+  networkError: null,
   success: '',
-  networkError: '',
 }
-
-// export const submitEmail = createAsyncThunk(
-//   'email/submitEmail',
-//   async (dataWithTime) => {
-//     try {
-//       const response = await axios.post(API_URL, dataWithTime)
-//       return response.data
-//     } catch (error) {
-//       throw new Error(error.message)
-//     }
-//   }
-// )
 
 export const submitEmail = createAsyncThunk(
   'email/submitEmail',
-  async (url, thunkAPI) => {
+  async (dataWithTime, { rejectWithValue }) => {
     try {
-      const response = await axios.post(url)
+      const response = await axios.post(
+        'http://localhost:4000/submit-email',
+        dataWithTime
+      )
       return response.data
     } catch (error) {
-      throw new Error(error.message)
+      return rejectWithValue(error.message)
     }
   }
 )
@@ -35,32 +25,27 @@ const emailSlice = createSlice({
   name: 'email',
   initialState,
   reducers: {
-    clearSuccess: (state) => {
-      state.success = ''
-    },
     clearNetworkError: (state) => {
-      state.networkError = ''
+      state.networkError = null
     },
   },
   extraReducers: (builder) => {
     builder.addCase(submitEmail.pending, (state) => {
-      state.loading = true
+      state.networkError = null
       state.success = ''
-      state.networkError = ''
     })
-    builder.addCase(submitEmail.fulfilled, (state, action) => {
-      state.loading = false
-      state.success = 'Data was sent successfully'
+    builder.addCase(submitEmail.fulfilled, (state) => {
+      state.networkError = ''
+      state.success = true
     })
     builder.addCase(submitEmail.rejected, (state, action) => {
-      state.loading = false
-      state.networkError = action.error.message
+      state.networkError = action.payload ? action.payload : 'Unknown error'
     })
   },
 })
 
-export const { clearNetworkError, clearSuccess } = emailSlice.actions
+export const { clearNetworkError } = emailSlice.actions
 
-export const selectLoading = (state) => state.email.loading
+export const selectNetworkError = (state) => state.email.networkError
 
 export default emailSlice.reducer

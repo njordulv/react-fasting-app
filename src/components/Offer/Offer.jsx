@@ -2,13 +2,19 @@ import { useSelector } from 'react-redux'
 import { PiPulseThin } from 'react-icons/pi'
 import { GiWeightScale, GiCheckMark, GiRoundStar } from 'react-icons/gi'
 import { BsGraphDownArrow, BsGraphUpArrow } from 'react-icons/bs'
-import { selectGoal } from '../../store/slices/formSlice'
+import {
+  selectIsMetric,
+  selectGoal,
+  selectGoalImperial,
+} from '../../store/slices/formSlice'
 import TestimonialsSlider from '../slider/TestimonialsSlider'
 import image from '../../images/mac-stuff.jpg'
 import styles from './Offer.module.css'
 
 const Offer = () => {
+  const isMetric = useSelector(selectIsMetric)
   const goal = useSelector(selectGoal)
+  const goalImperial = useSelector(selectGoalImperial)
 
   const handleScroll = () => {
     const getMyPlan = document.getElementById('getMyPlan')
@@ -68,7 +74,13 @@ const Offer = () => {
         <h4>Target Weight</h4>
         <span>
           <GiWeightScale className={styles.offerScaleIcon} />
-          {goal ? `${goal} lbs` : 'Please complete all the previous steps'}
+          {isMetric
+            ? goal
+              ? `${goal} kg`
+              : 'Please complete all the previous steps'
+            : goalImperial
+            ? `${goalImperial} lbs`
+            : 'Please complete all the previous steps'}
         </span>
       </div>
       <div id="getMyPlan"></div>

@@ -14,7 +14,7 @@ const HeaderOffer = () => {
     <header className={styles.sticky}>
       <div className={styles.wrapper}>
         <div className={`${styles.container} ${styles.spaceBetween}`}>
-          <div className="timer">00:00:00</div>
+          <div className="timer">00:00</div>
           <button className="button" onClick={handleScrollToPlan}>
             Get My Plan
           </button>

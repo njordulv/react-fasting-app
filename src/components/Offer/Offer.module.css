@@ -124,6 +124,11 @@
   margin-bottom: 30px;
 }
 
+.offerCheckboxes input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+}
+
 .offerLabel {
   display: grid;
   grid-template-columns: 1fr 35fr;

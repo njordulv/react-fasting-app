@@ -3,6 +3,14 @@ import { PiPulseThin } from 'react-icons/pi'
 import styles from './Offer.module.css'
 
 const Offer = () => {
+  const handleScrollToPlan = () => {
+    const getMyPlan = document.getElementById('getMyPlan')
+
+    if (getMyPlan) {
+      getMyPlan.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       <h1>Offer</h1>
@@ -41,6 +49,14 @@ const Offer = () => {
             </div>
           </div>
         </div>
+      </div>
+      <br />
+      <br />
+      <div id="getMyPlan"></div>
+      <div>
+        <button className="button" onClick={handleScrollToPlan}>
+          Grab My plan
+        </button>
       </div>
     </>
   )

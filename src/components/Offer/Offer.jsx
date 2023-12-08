@@ -10,6 +10,7 @@ import {
 import TestimonialsSlider from '../slider/TestimonialsSlider'
 import image from '../../images/mac-stuff.jpg'
 import styles from './Offer.module.css'
+import Payment from '../Payment/Payment'
 
 const Offer = () => {
   const isMetric = useSelector(selectIsMetric)
@@ -83,29 +84,8 @@ const Offer = () => {
             : 'Please complete all the previous steps'}
         </span>
       </div>
-      <div id="getMyPlan"></div>
-      <div className={styles.offerCheckboxes}>
-        <label htmlFor="conditions" className={styles.offerLabel}>
-          <input type="checkbox" name="conditions" />
-          <small>
-            By ticking this box, I acknowledge and accept the Terms and
-            Conditions as well as the Refund Policy
-          </small>
-        </label>
-        <label htmlFor="terms" className={styles.offerLabel}>
-          <input type="checkbox" name="terms" />
-          <small>
-            By selecting this option, I provide consent for the automatic
-            renewal of my subscription using the specified card. I am aware that
-            today I will be charged 36.73 USD and 78.15 USD for each subsequent
-            quarterly renewal until I opt to cancel. To avoid any charges, it's
-            necessary to cancel your subscription at least one day before its
-            expiration. This can be done by contacting support@fasting.app or
-            calling our US number: 555-01-39. The transaction details might
-            appear on your bank statement as: lasta, lasta.app, lasta.online, or
-            lasta.health.
-          </small>
-        </label>
+      <div id="getMyPlan">
+        <Payment />
       </div>
       <br />
       <div className="text-center">
@@ -158,6 +138,13 @@ const Offer = () => {
       <TestimonialsSlider />
       <br />
       <br />
+      <div className="text-center">
+        <button className="button" onClick={handleScroll}>
+          Grab My plan
+        </button>
+      </div>
+      <br />
+      <br />
       <h2>Witness noticeable transformations within a mere 3 weeks</h2>
       <div className={styles.offerTargetWeight}>
         <h4>Target Weight</h4>
@@ -166,11 +153,7 @@ const Offer = () => {
           {goal ? `${goal} lbs` : 'Please complete all the previous steps'}
         </span>
       </div>
-      <div className="text-center">
-        <button className="button" onClick={handleScroll}>
-          Grab My plan
-        </button>
-      </div>
+      <Payment />
     </div>
   )
 }

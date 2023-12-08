@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 import {
   setPlan1,
   setPlan2,
@@ -7,14 +8,15 @@ import {
   selectPlan2,
   selectPlan3,
 } from '../../store/slices/paymentSlice'
+import { setCheckbox, selectCheckbox } from '../../store/slices/checkboxSlice'
 import styles from './Payment.module.css'
-import { useEffect } from 'react'
 
 const Payment = () => {
   const dispatch = useDispatch()
   const plan1 = useSelector(selectPlan1)
   const plan2 = useSelector(selectPlan2)
   const plan3 = useSelector(selectPlan3)
+  const checkbox = useSelector(selectCheckbox)
 
   useEffect(() => {
     dispatch(setPlan2('3 months'))
@@ -30,6 +32,10 @@ const Payment = () => {
 
   const updatePlan3 = (value) => {
     dispatch(setPlan3(value))
+  }
+
+  const handleCheckboxChange = (event, name) => {
+    dispatch(setCheckbox({ ...checkbox, [name]: event.target.checked }))
   }
 
   const submitPaymentHandler = (e) => {
@@ -76,14 +82,24 @@ const Payment = () => {
       </div>
       <div className={styles.paymentCheckboxes}>
         <label htmlFor="conditions" className={styles.paymentCheckboxLabel}>
-          <input type="checkbox" name="conditions" />
+          <input
+            type="checkbox"
+            name="conditions"
+            checked={checkbox.conditions}
+            onChange={(e) => handleCheckboxChange(e, 'conditions')}
+          />
           <small>
             By ticking this box, I acknowledge and accept the Terms and
             Conditions as well as the Refund Policy
           </small>
         </label>
         <label htmlFor="terms" className={styles.paymentCheckboxLabel}>
-          <input type="checkbox" name="terms" />
+          <input
+            type="checkbox"
+            name="terms"
+            checked={checkbox.terms}
+            onChange={(e) => handleCheckboxChange(e, 'terms')}
+          />
           <small>
             By selecting this option, I provide consent for the automatic
             renewal of my subscription using the specified card. I am aware that
@@ -92,8 +108,7 @@ const Payment = () => {
             necessary to cancel your subscription at least one day before its
             expiration. This can be done by contacting support@fasting.app or
             calling our US number: 555-01-39. The transaction details might
-            appear on your bank statement as: lasta, lasta.app, lasta.online, or
-            lasta.health.
+            appear on your bank statement
           </small>
         </label>
       </div>

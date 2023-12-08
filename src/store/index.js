@@ -4,6 +4,7 @@ import optionHistoryReducer from './slices/optionHistorySlice'
 import formReducer from './slices/formSlice'
 import emailReducer from './slices/emailSlice'
 import paymentReducer from './slices/paymentSlice'
+import checkboxReducer from './slices/checkboxSlice'
 
 export default configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export default configureStore({
     form: formReducer,
     email: emailReducer,
     payment: paymentReducer,
+    checkbox: checkboxReducer,
   },
 })

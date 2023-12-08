@@ -8,12 +8,17 @@ import {
   selectPlan3,
 } from '../../store/slices/paymentSlice'
 import styles from './Payment.module.css'
+import { useEffect } from 'react'
 
 const Payment = () => {
   const dispatch = useDispatch()
   const plan1 = useSelector(selectPlan1)
   const plan2 = useSelector(selectPlan2)
   const plan3 = useSelector(selectPlan3)
+
+  useEffect(() => {
+    dispatch(setPlan2('3 months'))
+  }, [dispatch])
 
   const updatePlan1 = (value) => {
     dispatch(setPlan1(value))
@@ -38,7 +43,7 @@ const Payment = () => {
           <input
             type="radio"
             id="plan1"
-            name="plansGroup"
+            name="planOptions"
             value={plan1}
             className={styles.paymentInput}
             onChange={(e) => updatePlan1(e.target.value)}
@@ -49,10 +54,11 @@ const Payment = () => {
           <input
             type="radio"
             id="plan2"
-            name="plansGroup"
+            name="planOptions"
             value={plan2}
             className={styles.paymentInput}
             onChange={(e) => updatePlan2(e.target.value)}
+            defaultChecked
           />
           <label htmlFor="plan2">3-month plan</label>
         </div>
@@ -60,7 +66,7 @@ const Payment = () => {
           <input
             type="radio"
             id="plan3"
-            name="plansGroup"
+            name="planOptions"
             value={plan3}
             className={styles.paymentInput}
             onChange={(e) => updatePlan3(e.target.value)}

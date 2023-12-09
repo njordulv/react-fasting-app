@@ -137,10 +137,10 @@ const Results = () => {
       </div>
       {BMIcurrent <= 18.4 ? (
         <div className={styles.bmiText}>
-          <p>
+          <h3>
             Individuals with a BMI of 18.4 or less fall into the "Underweight"
             category.
-          </p>
+          </h3>
           <p>
             Being underweight may be an indicator of insufficient nutrition,
             which can have health consequences, such as weakened immune system,
@@ -157,10 +157,10 @@ const Results = () => {
       )}
       {BMIcurrent >= 18.5 && BMIcurrent <= 24.9 ? (
         <div className={styles.bmiText}>
-          <p>
+          <h3>
             A BMI falling within the range of 18.5 to 24.9 is considered
             "Normal" or "Healthy" weight.
-          </p>
+          </h3>
           <p>
             Individuals in this range are generally at a weight that is
             appropriate for their height, and they typically have a lower risk
@@ -176,7 +176,7 @@ const Results = () => {
       )}
       {BMIcurrent >= 25 && BMIcurrent <= 39.9 ? (
         <div className={styles.bmiText}>
-          <p>BMI values between 25.0 and 39.9 are classified as Overweight</p>
+          <h3>BMI values between 25.0 and 39.9 are classified as Overweight</h3>
           <p>
             Overweight individuals have excess body weight relative to their
             height, and this may increase their risk of various health problems,
@@ -192,7 +192,7 @@ const Results = () => {
       )}
       {BMIcurrent >= 40 ? (
         <div className={styles.bmiText}>
-          <p>A BMI of 40.0 or higher is categorized as Obese</p>
+          <h3>A BMI of 40.0 or higher is categorized as Obese</h3>
           <p>
             Obesity is associated with a significantly increased risk of serious
             health conditions, including cardiovascular diseases, hypertension,

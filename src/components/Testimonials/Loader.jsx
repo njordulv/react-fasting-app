@@ -33,7 +33,7 @@ const Loader = () => {
       strokeWidth={5}
       styles={buildStyles({
         textColor: 'var(--color)',
-        pathColor: 'var(--primary)',
+        pathColor: 'var(--purple)',
         trailColor: '#eee',
         textSize: '15px',
       })}

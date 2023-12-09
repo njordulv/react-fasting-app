@@ -45,16 +45,14 @@
 
 .logoIcon {
   color: #fff;
-  background: var(--secondary);
-  background: linear-gradient(180deg, var(--secondary) 10%, var(--primary) 90%);
+  background: linear-gradient(180deg, var(--gradient-2));
   font-size: 40px;
   border-radius: 5px;
 }
 
 .homeText {
   position: relative;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #111;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -87,7 +85,7 @@
   right: 0;
   height: 3px;
   transition: all 0.4s ease;
-  background-color: gainsboro;
+  background-color: #444;
 }
 
 .progress {
@@ -100,13 +98,21 @@
   height: 3px;
   transition: all 0.45s ease-out;
   box-sizing: border-box;
-  background: var(--primary);
+  background: linear-gradient(to right, var(--gradient-2));
+}
+
+.scrollProgressBar {
+  background: linear-gradient(to right, var(--gradient));
+  height: 4px;
+  border-radius: 2px;
+  position: absolute;
+  bottom: 0;
 }
 
 .totalQuestions {
   position: absolute;
   right: 0;
-  color: #ccc;
+  color: darkgray;
   font-size: 15px;
   line-height: 20px;
   font-weight: 500;
@@ -141,7 +147,7 @@
   border: 0;
   padding: 0;
   background: none;
-  color: #ccc;
+  color: var(--color);
   font-size: 28px;
   display: inline-flex;
   cursor: pointer;
@@ -149,7 +155,7 @@
 
 .buttonIcon:hover {
   outline: none;
-  color: var(--primary-1);
+  color: var(--blue);
 }
 
 .btnBack {
@@ -194,7 +200,7 @@
 }
 
 .input::placeholder {
-  color: #ccc;
+  color: #777;
   transition: all 0.3s ease;
 }
 
@@ -204,7 +210,7 @@
 
 .inputMeasure {
   font-weight: 600;
-  color: #777;
+  color: #555;
   margin-left: 5px;
 }
 
@@ -214,9 +220,9 @@
   right: 0;
   text-align: center;
   bottom: 0;
-  color: coral;
-  font-size: 12px;
-  line-height: 15px;
+  color: var(--red);
+  font-size: 13px;
+  line-height: 16px;
   font-weight: 500;
 }
 
@@ -226,8 +232,7 @@
   font-size: 13px;
   line-height: 20px;
   text-align: left;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--black);
   padding: 20px;
   border-radius: 10px;
   gap: 20px;
@@ -286,7 +291,7 @@
 
 .switcherLayer {
   width: 100%;
-  background-color: var(--secondary);
+  background-color: var(--black);
   transition: 0.3s ease all;
   opacity: 0.3;
   z-index: 1;
@@ -301,7 +306,7 @@
   width: 46px;
   height: 10px;
   color: #fff;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
   text-align: center;
   line-height: 1;
@@ -314,7 +319,7 @@
   width: 46px;
   height: 10px;
   color: #555;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
   text-align: center;
   transition: all 0.3s ease;
@@ -328,7 +333,7 @@
 }
 
 .switcherButton .switcherKnobs span {
-  background-color: var(--secondary);
+  background-color: var(--purple);
   border-radius: 4px;
   transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
   z-index: 1;
@@ -350,11 +355,11 @@
 
 .switcherButton .switcherCheckbox:checked + .switcherKnobs span {
   left: 4px;
-  background-color: var(--primary);
+  background-color: var(--blue);
 }
 
 .switcherButton .switcherCheckbox:checked ~ .switcherLayer {
-  background-color: var(--primary);
+  background-color: var(--black);
 }
 
 .CircularProgressbar {

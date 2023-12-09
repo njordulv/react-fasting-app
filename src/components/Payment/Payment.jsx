@@ -20,6 +20,7 @@ const Payment = () => {
   const plan3 = useSelector(selectPlan3)
   const checkbox = useSelector(selectCheckbox)
   const [errorDisplayed, setErrorDisplayed] = useState(false)
+  const [popular, setPopular] = useState('')
 
   useEffect(() => {
     dispatch(setPlan2('3 months'))
@@ -31,14 +32,17 @@ const Payment = () => {
 
   const updatePlan2 = (value) => {
     dispatch(setPlan2(value))
+    setPopular('')
   }
 
   const updatePlan3 = (value) => {
     dispatch(setPlan3(value))
+    setPopular('Most Popular')
   }
 
   const handleCheckboxChange = (event, name) => {
     dispatch(setCheckbox({ ...checkbox, [name]: event.target.checked }))
+    setPopular('')
   }
 
   const submitPaymentHandler = (e) => {
@@ -51,13 +55,17 @@ const Payment = () => {
         setErrorDisplayed(true)
       }
     } else {
-      toast.success('Good choice')
+      toast.success('Well Done!')
     }
   }
 
   return (
     <>
-      <ToastContainer position="bottom-right" autoClose={2000} />
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        theme="colored"
+      />
       <form className={styles.payment} onSubmit={submitPaymentHandler}>
         <div className={styles.paymentPlans}>
           <div className={styles.paymentPlan}>
@@ -69,7 +77,12 @@ const Payment = () => {
               className={styles.paymentInput}
               onChange={(e) => updatePlan1(e.target.value)}
             />
-            <label htmlFor="plan1">1-month plan</label>
+            <label htmlFor="plan1">
+              <div className={styles.paymentName}>1-month plan</div>
+              <div className={styles.paymentPrice}>
+                <span>$ 0.63</span> per day
+              </div>
+            </label>
           </div>
           <div className={styles.paymentPlan}>
             <input
@@ -81,7 +94,12 @@ const Payment = () => {
               onChange={(e) => updatePlan2(e.target.value)}
               defaultChecked
             />
-            <label htmlFor="plan2">3-month plan</label>
+            <label htmlFor="plan2">
+              <div className={styles.paymentName}>3-month plan</div>
+              <div className={styles.paymentPrice}>
+                <span>$ 0.48</span> per day
+              </div>
+            </label>
           </div>
           <div className={styles.paymentPlan}>
             <input
@@ -92,29 +110,43 @@ const Payment = () => {
               className={styles.paymentInput}
               onChange={(e) => updatePlan3(e.target.value)}
             />
-            <label htmlFor="plan3">6-month plan</label>
+            <label htmlFor="plan3">
+              <div className={styles.paymentName}>6-month plan</div>
+              <div className={styles.paymentPrice}>
+                <span>$ 0.31</span> per day
+              </div>
+            </label>
+            <div className={styles.paymentPopular}>{popular}</div>
           </div>
         </div>
-        <div className={styles.paymentCheckboxes}>
-          <label htmlFor="conditions" className={styles.paymentCheckboxLabel}>
-            <input
-              type="checkbox"
-              name="conditions"
-              checked={checkbox.conditions}
-              onChange={(e) => handleCheckboxChange(e, 'conditions')}
-            />
+        <div className={styles.checkboxes}>
+          <div className={styles.checkbox}>
+            <label className={styles.checkboxWrapper}>
+              <input
+                type="checkbox"
+                checked={checkbox.conditions}
+                onChange={(e) => handleCheckboxChange(e, 'conditions')}
+              />
+              <div className={styles.checkboxSlider}>
+                <div className={styles.checkboxKnob}></div>
+              </div>
+            </label>
             <small>
               By ticking this box, I acknowledge and accept the Terms and
               Conditions as well as the Refund Policy
             </small>
-          </label>
-          <label htmlFor="terms" className={styles.paymentCheckboxLabel}>
-            <input
-              type="checkbox"
-              name="terms"
-              checked={checkbox.terms}
-              onChange={(e) => handleCheckboxChange(e, 'terms')}
-            />
+          </div>
+          <div className={styles.checkbox}>
+            <label className={styles.checkboxWrapper}>
+              <input
+                type="checkbox"
+                checked={checkbox.terms}
+                onChange={(e) => handleCheckboxChange(e, 'terms')}
+              />
+              <div className={styles.checkboxSlider}>
+                <div className={styles.checkboxKnob}></div>
+              </div>
+            </label>
             <small>
               By selecting this option, I provide consent for the automatic
               renewal of my subscription using the specified card. I am aware
@@ -125,7 +157,7 @@ const Payment = () => {
               support@fasting.app or calling our US number: 555-01-39. The
               transaction details might appear on your bank statement
             </small>
-          </label>
+          </div>
         </div>
         <div className="text-center">
           <button type="submit" className="button">

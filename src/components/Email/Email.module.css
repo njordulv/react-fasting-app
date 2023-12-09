@@ -15,17 +15,17 @@
   width: 100%;
   font-size: 18px;
   border-radius: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid #333;
   padding: 5px 10px 5px 33px;
   text-align: left;
   color: var(--color);
   box-sizing: border-box;
   outline: none;
-  background-color: #fff;
+  background-color: #222;
 }
 
 .input::placeholder {
-  color: #ccc;
+  color: #777;
   transition: all 0.3s ease;
 }
 
@@ -38,7 +38,7 @@
   left: 10px;
   top: 16px;
   font-size: 18px;
-  color: #ddd;
+  color: var(--purple);
 }
 
 .inputError,
@@ -54,7 +54,7 @@
 }
 
 .inputError {
-  color: coral;
+  color: var(--red);
 }
 
 .emailSuccess {
@@ -71,6 +71,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: var(--color);
   transition: all 0.3s ease;
 }
 
@@ -85,7 +86,6 @@
 
 .formEmail .button {
   max-width: initial;
-  padding: 10px;
 }
 
 .formEmail .inputError {
@@ -99,23 +99,22 @@
   font-size: 13px;
   line-height: 18px;
   text-align: left;
+  color: #ccc;
   margin-bottom: 20px;
 }
 
 .formPrivacy svg {
   font-size: 24px;
-  color: darkseagreen;
+  color: var(--green);
 }
 
 .formPrivacy a,
 .formPrivacy a:visited {
-  color: var(--color);
-  text-decoration: underline;
+  color: #fff;
 }
 
 .formPrivacy a:hover {
-  color: var(--btn-hover);
-  text-decoration: none;
+  color: var(--green);
 }
 
 .privacyText {

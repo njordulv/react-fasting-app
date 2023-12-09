@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { PiPulseThin } from 'react-icons/pi'
 import { GiWeightScale, GiCheckMark, GiRoundStar } from 'react-icons/gi'
-import { BsGraphDownArrow, BsGraphUpArrow } from 'react-icons/bs'
+import { TbTargetArrow, TbTargetOff } from 'react-icons/tb'
 import {
   selectIsMetric,
   selectGoal,
@@ -30,10 +30,10 @@ const Offer = () => {
       <div className={styles.offerTarget}>
         <div className={styles.offerTargetTop}>
           <div>
-            <BsGraphDownArrow />
+            <TbTargetOff />
           </div>
           <div>
-            <BsGraphUpArrow />
+            <TbTargetArrow />
           </div>
         </div>
         <div className={styles.offerTargetMid}>
@@ -134,13 +134,13 @@ const Offer = () => {
         />
       </div>
       <br />
-      <h2>Hear the inspiring success stories from our users</h2>
+      <h2>Read the inspiring success stories from our users</h2>
       <TestimonialsSlider />
       <br />
       <br />
       <div className="text-center">
         <button className="button" onClick={handleScroll}>
-          Grab My plan
+          Grab My Plan
         </button>
       </div>
       <br />

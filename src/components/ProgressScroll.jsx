@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import styles from '../App.module.css'
 
 const ProgressScroll = () => {
   const [scrollProgress, setScrollProgress] = useState(0)
@@ -24,14 +25,9 @@ const ProgressScroll = () => {
   return (
     <>
       <div
-        className="scrollProgressBar"
+        className={styles.scrollProgressBar}
         style={{
           width: `${scrollProgress.toFixed(2)}%`,
-          height: '4px',
-          borderRadius: '2px',
-          backgroundColor: '#91b7d9',
-          position: 'absolute',
-          bottom: 0,
         }}
       ></div>
     </>

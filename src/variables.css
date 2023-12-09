@@ -1,5 +1,5 @@
 :root {
-  --background: #dbddff26;
+  --background: #27272b;
   --primary: rgba(145, 183, 217, 1);
   --primary-1: rgba(145, 183, 217, 0.8);
   --primary-2: rgba(145, 183, 217, 0.5);
@@ -8,9 +8,21 @@
   --secondary-1: rgba(242, 179, 202, 0.7);
   --secondary-color: #a63754;
   --secondary-light: #bf6083;
-  --color: #042e48;
-  --btn: rgb(145, 183, 217);
-  --btn-hover: #649aca;
+  --color: #eee;
+  --purple: #ab79d7;
+  --purple-light: #cd94ff;
+  --yellow: #dedf40;
+  --green: #62cb5c;
+  --green-light: #8aed85;
+  --blue: #00bbcb;
+  --pink: #d367c1;
+  --red: #e74c3c;
+  --black: #121212;
+  --dark: darkgrey;
+  --gradient: var(--pink) 15%, var(--green) 25%, var(--blue) 75%,
+    var(--purple) 90%;
+  --gradient-2: var(--purple) 30%, var(--blue) 65%;
+  --gradient-3: var(--pink) 45%, var(--yellow) 85%;
   --font-size: 16px;
   --line-height: 24px;
 }

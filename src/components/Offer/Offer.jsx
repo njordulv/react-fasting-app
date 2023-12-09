@@ -1,7 +1,11 @@
 import { useSelector } from 'react-redux'
-import { PiPulseThin } from 'react-icons/pi'
-import { GiWeightScale, GiCheckMark, GiRoundStar } from 'react-icons/gi'
-import { TbTargetArrow, TbTargetOff } from 'react-icons/tb'
+import { GiWeightScale, GiCheckMark } from 'react-icons/gi'
+import {
+  TbStretching2,
+  TbTargetOff,
+  TbStarFilled,
+  TbActivity,
+} from 'react-icons/tb'
 import {
   selectIsMetric,
   selectGoal,
@@ -33,7 +37,7 @@ const Offer = () => {
             <TbTargetOff />
           </div>
           <div>
-            <TbTargetArrow />
+            <TbStretching2 />
           </div>
         </div>
         <div className={styles.offerTargetMid}>
@@ -44,21 +48,21 @@ const Offer = () => {
           <div>
             <span>Metabolic rate</span>
             <div className={styles.rate}>
-              <PiPulseThin className={styles.rateVivid} />
-              <PiPulseThin className={styles.rateVivid} />
-              <PiPulseThin className={styles.rateVivid} />
-              <PiPulseThin className={styles.ratePale} />
-              <PiPulseThin className={styles.ratePale} />
+              <TbActivity className={styles.rateVivid} />
+              <TbActivity className={styles.rateVivid} />
+              <TbActivity className={styles.rateVivid} />
+              <TbActivity className={styles.ratePale} />
+              <TbActivity className={styles.ratePale} />
             </div>
           </div>
           <div>
             <span className={styles.rateEnd}>Metabolic rate</span>
             <div className={`${styles.rate} ${styles.rateEnd}`}>
-              <PiPulseThin className={styles.rateVivid} />
-              <PiPulseThin className={styles.rateVivid} />
-              <PiPulseThin className={styles.rateVivid} />
-              <PiPulseThin className={styles.rateVivid} />
-              <PiPulseThin className={styles.rateVivid} />
+              <TbActivity className={styles.rateVivid} />
+              <TbActivity className={styles.rateVivid} />
+              <TbActivity className={styles.rateVivid} />
+              <TbActivity className={styles.rateVivid} />
+              <TbActivity className={styles.rateVivid} />
             </div>
           </div>
         </div>
@@ -90,9 +94,9 @@ const Offer = () => {
       <br />
       <div className="text-center">
         <h2>
-          <GiRoundStar className={styles.offerIconStar} />
-          &nbsp;10 000+&nbsp;
-          <GiRoundStar className={styles.offerIconStar} />
+          <TbStarFilled className={styles.offerIconStar} />
+          &nbsp;10000+&nbsp;
+          <TbStarFilled className={styles.offerIconStar} />
         </h2>
         <p>
           Newcomers achieved their enduring weight loss goals with our program!

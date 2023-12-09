@@ -28,6 +28,7 @@ const Payment = () => {
 
   const updatePlan1 = (value) => {
     dispatch(setPlan1(value))
+    setPopular('')
   }
 
   const updatePlan2 = (value) => {

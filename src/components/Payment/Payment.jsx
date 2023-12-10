@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import {
@@ -27,10 +28,19 @@ const Payment = () => {
   const [errorDisplayed, setErrorDisplayed] = useState(false)
   const [popular, setPopular] = useState('')
 
+  // set default plan
   useEffect(() => {
     dispatch(setPlan2('3 months'))
   }, [dispatch])
 
+  // unique IDs for payment plan inputs
+  const [planIds] = useState({
+    plan1Id: 'plan1_' + uuidv4(),
+    plan2Id: 'plan2_' + uuidv4(),
+    plan3Id: 'plan3_' + uuidv4(),
+  })
+
+  // plan selection
   const updatePlan1 = (value) => {
     dispatch(setPlan1(value))
     setDefaultPrice(pricePlan1)
@@ -52,11 +62,13 @@ const Payment = () => {
     setPopular('Most Popular')
   }
 
+  // checkbox checking
   const handleCheckboxChange = (event, name) => {
     dispatch(setCheckbox({ ...checkbox, [name]: event.target.checked }))
     setPopular('')
   }
 
+  // form submiting
   const submitPaymentHandler = (e) => {
     e.preventDefault()
     setErrorDisplayed(false)
@@ -83,13 +95,13 @@ const Payment = () => {
           <div className={styles.paymentPlan}>
             <input
               type="radio"
-              id="plan1"
+              id={planIds.plan1Id}
               name="planOptions"
               value={plan1}
               className={styles.paymentInput}
               onChange={(e) => updatePlan1(e.target.value)}
             />
-            <label htmlFor="plan1">
+            <label htmlFor={planIds.plan1Id}>
               <div className={styles.paymentName}>1-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
@@ -103,14 +115,14 @@ const Payment = () => {
           <div className={styles.paymentPlan}>
             <input
               type="radio"
-              id="plan2"
+              id={planIds.plan2Id}
               name="planOptions"
               value={plan2}
               className={styles.paymentInput}
               onChange={(e) => updatePlan2(e.target.value)}
               defaultChecked
             />
-            <label htmlFor="plan2">
+            <label htmlFor={planIds.plan2Id}>
               <div className={styles.paymentName}>3-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
@@ -124,13 +136,13 @@ const Payment = () => {
           <div className={styles.paymentPlan}>
             <input
               type="radio"
-              id="plan3"
+              id={planIds.plan3Id}
               name="planOptions"
               value={plan3}
               className={styles.paymentInput}
               onChange={(e) => updatePlan3(e.target.value)}
             />
-            <label htmlFor="plan3">
+            <label htmlFor={planIds.plan3Id}>
               <div className={styles.paymentName}>6-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>

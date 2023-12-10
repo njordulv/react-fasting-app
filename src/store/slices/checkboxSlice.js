@@ -17,6 +17,7 @@ const checkboxSlice = createSlice({
 })
 
 export const { setCheckbox } = checkboxSlice.actions
+
 export const selectCheckbox = (state) => state.checkbox
 
 export default checkboxSlice.reducer

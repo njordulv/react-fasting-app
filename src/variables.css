@@ -10,7 +10,7 @@
   --pink: #d367c1;
   --red: #e74c3c;
   --black: #121212;
-  --dark: darkgrey;
+  --dark: #555;
   --gradient: var(--pink) 15%, var(--green) 25%, var(--blue) 75%,
     var(--purple) 90%;
   --gradient-2: var(--purple) 30%, var(--blue) 65%;

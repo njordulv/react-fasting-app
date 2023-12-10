@@ -19,13 +19,13 @@ const Payment = () => {
   const plan2 = useSelector(selectPlan2)
   const plan3 = useSelector(selectPlan3)
   const checkbox = useSelector(selectCheckbox)
-  const [errorDisplayed, setErrorDisplayed] = useState(false)
-  const [popular, setPopular] = useState('')
   const pricePlan1 = (0.77 * 30).toFixed(2)
   const pricePlan2 = (0.54 * 30).toFixed(2)
   const pricePlan3 = (0.31 * 30).toFixed(2)
   const [defaultPrice, setDefaultPrice] = useState(pricePlan2)
   const [fullPrice, setFullPrice] = useState(pricePlan2 * 2)
+  const [errorDisplayed, setErrorDisplayed] = useState(false)
+  const [popular, setPopular] = useState('')
 
   useEffect(() => {
     dispatch(setPlan2('3 months'))
@@ -92,7 +92,10 @@ const Payment = () => {
             <label htmlFor="plan1">
               <div className={styles.paymentName}>1-month plan</div>
               <div className={styles.paymentPrice}>
-                <span>$0.77</span> per day
+                <span>
+                  <b>$0.77</b> per day
+                </span>
+                <span className={styles.paymentOldPrice}>$1.54</span>
               </div>
             </label>
           </div>
@@ -109,7 +112,10 @@ const Payment = () => {
             <label htmlFor="plan2">
               <div className={styles.paymentName}>3-month plan</div>
               <div className={styles.paymentPrice}>
-                <span>$0.54</span> per day
+                <span>
+                  <b>$0.54</b> per day
+                </span>
+                <span className={styles.paymentOldPrice}>$1.08</span>
               </div>
             </label>
           </div>
@@ -125,7 +131,10 @@ const Payment = () => {
             <label htmlFor="plan3">
               <div className={styles.paymentName}>6-month plan</div>
               <div className={styles.paymentPrice}>
-                <span>$0.31</span> per day
+                <span>
+                  <b>$0.31</b> per day
+                </span>
+                <span className={styles.paymentOldPrice}>$0.62</span>
               </div>
             </label>
             <div className={styles.paymentPopular}>{popular}</div>

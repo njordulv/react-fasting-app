@@ -36,7 +36,7 @@ h2 {
   font-weight: 600;
   background: var(--pink);
   background: linear-gradient(to right, var(--pink) 40%, var(--blue) 75%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -89,6 +89,10 @@ small {
   font-size: 13px;
   line-height: 20px;
   display: block;
+}
+
+small b {
+  color: var(--pink);
 }
 
 button {

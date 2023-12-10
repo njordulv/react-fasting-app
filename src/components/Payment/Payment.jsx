@@ -21,6 +21,11 @@ const Payment = () => {
   const checkbox = useSelector(selectCheckbox)
   const [errorDisplayed, setErrorDisplayed] = useState(false)
   const [popular, setPopular] = useState('')
+  const pricePlan1 = (0.77 * 30).toFixed(2)
+  const pricePlan2 = (0.54 * 30).toFixed(2)
+  const pricePlan3 = (0.31 * 30).toFixed(2)
+  const [defaultPrice, setDefaultPrice] = useState(pricePlan2)
+  const [fullPrice, setFullPrice] = useState(pricePlan2 * 2)
 
   useEffect(() => {
     dispatch(setPlan2('3 months'))
@@ -28,16 +33,22 @@ const Payment = () => {
 
   const updatePlan1 = (value) => {
     dispatch(setPlan1(value))
+    setDefaultPrice(pricePlan1)
+    setFullPrice(pricePlan1 * 2)
     setPopular('')
   }
 
   const updatePlan2 = (value) => {
     dispatch(setPlan2(value))
+    setDefaultPrice(pricePlan2)
+    setFullPrice(pricePlan2 * 2)
     setPopular('')
   }
 
   const updatePlan3 = (value) => {
     dispatch(setPlan3(value))
+    setDefaultPrice(pricePlan3)
+    setFullPrice(pricePlan3 * 2)
     setPopular('Most Popular')
   }
 
@@ -81,7 +92,7 @@ const Payment = () => {
             <label htmlFor="plan1">
               <div className={styles.paymentName}>1-month plan</div>
               <div className={styles.paymentPrice}>
-                <span>$ 0.63</span> per day
+                <span>$0.77</span> per day
               </div>
             </label>
           </div>
@@ -98,7 +109,7 @@ const Payment = () => {
             <label htmlFor="plan2">
               <div className={styles.paymentName}>3-month plan</div>
               <div className={styles.paymentPrice}>
-                <span>$ 0.48</span> per day
+                <span>$0.54</span> per day
               </div>
             </label>
           </div>
@@ -114,7 +125,7 @@ const Payment = () => {
             <label htmlFor="plan3">
               <div className={styles.paymentName}>6-month plan</div>
               <div className={styles.paymentPrice}>
-                <span>$ 0.31</span> per day
+                <span>$0.31</span> per day
               </div>
             </label>
             <div className={styles.paymentPopular}>{popular}</div>
@@ -151,12 +162,13 @@ const Payment = () => {
             <small>
               By selecting this option, I provide consent for the automatic
               renewal of my subscription using the specified card. I am aware
-              that today I will be charged 36.73 USD and 78.15 USD for each
-              subsequent quarterly renewal until I opt to cancel. To avoid any
-              charges, it's necessary to cancel your subscription at least one
-              day before its expiration. This can be done by contacting
-              support@fasting.app or calling our US number: 555-01-39. The
-              transaction details might appear on your bank statement
+              that today I will be charged <b>${defaultPrice}</b> and{' '}
+              <b>${fullPrice}</b> for each subsequent quarterly renewal until I
+              opt to cancel. To avoid any charges, it's necessary to cancel your
+              subscription at least one day before its expiration. This can be
+              done by contacting support@fasting.app or calling our US number:
+              555-01-39. The transaction details might appear on your bank
+              statement
             </small>
           </div>
         </div>

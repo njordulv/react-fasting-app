@@ -92,7 +92,7 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  margin: 0 5px;
+  margin: 0 2px;
   padding: 0;
   cursor: pointer;
 }
@@ -128,13 +128,10 @@
   content: '•';
   text-align: center;
   opacity: 0.25;
-  color: #000;
+  color: var(--dark);
+  transition: all 0.3s ease;
 }
 .slick-dots li.slick-active button:before {
   opacity: 0.75;
-  color: #000;
-}
-.slick-arrow.slick-prev,
-.slick-arrow.slick-next {
-  display: none !important;
+  color: var(--purple);
 }

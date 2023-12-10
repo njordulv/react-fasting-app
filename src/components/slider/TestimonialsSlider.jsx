@@ -15,7 +15,10 @@ const TestimonialsSlider = () => {
     speed: 700,
     autoplay: true,
     pauseOnHover: false,
-    nav: false,
+    nav: true,
+    dots: true,
+    arrows: false,
+    swipeToSlide: true,
     responsive: [
       {
         breakpoint: 640,

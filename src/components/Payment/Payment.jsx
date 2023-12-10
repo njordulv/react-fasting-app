@@ -5,17 +5,20 @@ import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { setPlans, selectPlans } from '../../store/slices/paymentSlice'
 import { setCheckbox, selectCheckbox } from '../../store/slices/checkboxSlice'
+import { paymentData } from '../../data/payments'
 import styles from './Payment.module.css'
 
 const Payment = () => {
   const dispatch = useDispatch()
   const plans = useSelector(selectPlans)
   const checkbox = useSelector(selectCheckbox)
-  const pricePlan1 = (0.77 * 30).toFixed(2)
-  const pricePlan2 = (0.54 * 30).toFixed(2)
-  const pricePlan3 = (0.31 * 30).toFixed(2)
-  const [defaultPrice, setDefaultPrice] = useState(pricePlan2)
-  const [fullPrice, setFullPrice] = useState(pricePlan2 * 2)
+  const pricePlan1 = paymentData.plan1.discountFullPrice
+  const pricePlan2 = paymentData.plan2.discountFullPrice
+  const pricePlan3 = paymentData.plan3.discountFullPrice
+  const [defaultPrice, setDefaultPrice] = useState(
+    paymentData.plan2.discountFullPrice
+  )
+  const [fullPrice, setFullPrice] = useState(paymentData.plan2.monthPrice)
   const [errorDisplayed, setErrorDisplayed] = useState(false)
   const [popular, setPopular] = useState('')
 
@@ -37,21 +40,20 @@ const Payment = () => {
 
     dispatch(setPlans(updatedPlans))
 
-    const { plan1, plan2, plan3 } = updatedPlans
+    const { plan1, plan2 } = updatedPlans
 
     if (plan1) {
       setDefaultPrice(pricePlan1)
-      setFullPrice(pricePlan1 * 2)
+      setFullPrice(paymentData.plan1.monthPrice)
       setPopular('')
     } else if (plan2) {
       setDefaultPrice(pricePlan2)
-      setFullPrice(pricePlan2 * 2)
+      setFullPrice(paymentData.plan2.monthPrice)
       setPopular('')
-    } else if (plan3) {
-      setDefaultPrice(pricePlan3)
-      setFullPrice(pricePlan3 * 2)
-      setPopular('Most Popular')
     } else {
+      setDefaultPrice(pricePlan3)
+      setFullPrice(paymentData.plan3.monthPrice)
+      setPopular('Most Popular')
     }
   }
 
@@ -92,10 +94,17 @@ const Payment = () => {
               <div className={styles.paymentName}>1-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
-                  <b>$0.77</b>&nbsp;
+                  <b>
+                    {paymentData.currency.dollar}
+                    {paymentData.plan1.discountPrice}
+                  </b>
+                  &nbsp;
                   <i>per day</i>
                 </span>
-                <span className={styles.paymentOldPrice}>$1.54</span>
+                <span className={styles.paymentOldPrice}>
+                  {paymentData.currency.dollar}
+                  {paymentData.plan1.oldPrice}
+                </span>
               </div>
             </label>
           </div>
@@ -112,10 +121,17 @@ const Payment = () => {
               <div className={styles.paymentName}>3-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
-                  <b>$0.54</b>&nbsp;
+                  <b>
+                    {paymentData.currency.dollar}
+                    {paymentData.plan2.discountPrice}
+                  </b>
+                  &nbsp;
                   <i>per day</i>
                 </span>
-                <span className={styles.paymentOldPrice}>$1.08</span>
+                <span className={styles.paymentOldPrice}>
+                  {paymentData.currency.dollar}
+                  {paymentData.plan2.oldPrice}
+                </span>
               </div>
             </label>
           </div>
@@ -132,10 +148,17 @@ const Payment = () => {
               <div className={styles.paymentName}>6-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
-                  <b>$0.31</b>&nbsp;
+                  <b>
+                    {paymentData.currency.dollar}
+                    {paymentData.plan3.discountPrice}
+                  </b>
+                  &nbsp;
                   <i>per day</i>
                 </span>
-                <span className={styles.paymentOldPrice}>$0.62</span>
+                <span className={styles.paymentOldPrice}>
+                  {paymentData.currency.dollar}
+                  {paymentData.plan3.oldPrice}
+                </span>
               </div>
             </label>
             <div className={styles.paymentPopular}>{popular}</div>
@@ -172,11 +195,20 @@ const Payment = () => {
             <small>
               By selecting this option, I provide consent for the automatic
               renewal of my subscription using the specified card. I am aware
-              that today I will be charged <b>${defaultPrice}</b> and{' '}
-              <b>${fullPrice}</b> for each subsequent quarterly renewal until I
-              opt to cancel. To avoid any charges, it's necessary to cancel your
-              subscription at least one day before its expiration. This can be
-              done by contacting support@fasting.app or calling our US number:
+              that today I will be charged{' '}
+              <b>
+                {paymentData.currency.dollar}
+                {defaultPrice}
+              </b>{' '}
+              and{' '}
+              <b>
+                {paymentData.currency.dollar}
+                {fullPrice}
+              </b>{' '}
+              for each subsequent quarterly renewal until I opt to cancel. To
+              avoid any charges, it's necessary to cancel your subscription at
+              least one day before its expiration. This can be done by
+              contacting support@fasting.app or calling our US number:
               555-01-39. The transaction details might appear on your bank
               statement
             </small>

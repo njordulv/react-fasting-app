@@ -142,6 +142,7 @@ const Offer = () => {
       <TestimonialsSlider />
       <br />
       <br />
+      <br />
       <div className="text-center">
         <button className="button" onClick={handleScroll}>
           Grab My Plan

@@ -22,6 +22,8 @@ const Home = () => {
             <li>Receive results and recommendations based on your BMI</li>
             <li>Track your progress with our progress bars</li>
             <li>Easily navigate through different quiz and result pages</li>
+            <li>See our customers reviews</li>
+            <li>Choose your best activity plan</li>
           </ul>
           <GiWeightScale className={styles.sectionIcon} />
         </div>

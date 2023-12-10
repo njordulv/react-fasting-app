@@ -93,7 +93,8 @@ const Payment = () => {
               <div className={styles.paymentName}>1-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
-                  <b>$0.77</b> per day
+                  <b>$0.77</b>&nbsp;
+                  <i>per day</i>
                 </span>
                 <span className={styles.paymentOldPrice}>$1.54</span>
               </div>
@@ -113,7 +114,8 @@ const Payment = () => {
               <div className={styles.paymentName}>3-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
-                  <b>$0.54</b> per day
+                  <b>$0.54</b>&nbsp;
+                  <i>per day</i>
                 </span>
                 <span className={styles.paymentOldPrice}>$1.08</span>
               </div>
@@ -132,7 +134,8 @@ const Payment = () => {
               <div className={styles.paymentName}>6-month plan</div>
               <div className={styles.paymentPrice}>
                 <span>
-                  <b>$0.31</b> per day
+                  <b>$0.31</b>&nbsp;
+                  <i>per day</i>
                 </span>
                 <span className={styles.paymentOldPrice}>$0.62</span>
               </div>

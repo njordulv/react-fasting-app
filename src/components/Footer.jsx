@@ -7,11 +7,17 @@ const Footer = () => {
   return (
     <footer>
       <div className={`${styles.wrapper} ${styles.FooterWrapper}`}>
-        <div>&copy; {year} React Fasting App</div>
         <div>
-          Stay motivated and achieve your health goals. Remember, the journey to
-          a healthier you starts with the first step. Keep pushing forward, and
-          you'll see progress!
+          Copyright &copy; {year} React Fasting App. All Rights Reserved.
+        </div>
+        <div>
+          <div>
+            Stay motivated and achieve your health goals. Keep pushing forward,
+            and you'll see progress!
+          </div>
+          <div>
+            Remember, the journey to a healthier you starts with the first step.
+          </div>
         </div>
       </div>
     </footer>

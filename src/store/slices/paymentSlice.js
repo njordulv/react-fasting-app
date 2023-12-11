@@ -92,5 +92,8 @@ export const selectPlanTwo = (state) => state.payment.planTwo
 export const selectPlanThree = (state) => state.payment.planThree
 export const selectOffer = (state) => state.payment.bestOffer
 export const selectPopular = (state) => state.payment.popular
+export const selectDiscountFullPrice = (state) =>
+  state.payment.discountFullPrice
+export const selectMonthPrice = (state) => state.payment.monthPrice
 
 export default paymentSlice.reducer

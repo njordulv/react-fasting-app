@@ -9,8 +9,6 @@ import {
   setPlans,
   setOffer,
   setPopular,
-  setDiscountFullPrice,
-  setMonthPrice,
   selectPlans,
   selectCurrency,
   selectPlanOne,
@@ -31,8 +29,8 @@ const Payment = () => {
   const planOne = useSelector(selectPlanOne)
   const planTwo = useSelector(selectPlanTwo)
   const planThree = useSelector(selectPlanThree)
-  const defaultPrice = useSelector(selectPlanTwo).discountFullPrice
-  const fullPrice = useSelector(selectPlanTwo).monthPrice
+  const [defaultPrice, setDefaultPrice] = useState(planTwo.discountFullPrice)
+  const [fullPrice, setFullPrice] = useState(planTwo.monthPrice)
   const offer = useSelector(selectOffer)
   const popular = useSelector(selectPopular)
   const [errorDisplayed, setErrorDisplayed] = useState(false)
@@ -59,18 +57,18 @@ const Payment = () => {
     const { plan1, plan2 } = updatedPlans
 
     if (plan1) {
-      dispatch(setDiscountFullPrice(planOne.discountFullPrice))
-      dispatch(setMonthPrice(planOne.monthPrice))
+      setDefaultPrice(planOne.discountFullPrice)
+      setFullPrice(planOne.monthPrice)
       dispatch(setOffer(''))
       dispatch(setPopular(''))
     } else if (plan2) {
-      dispatch(setDiscountFullPrice(planTwo.discountFullPrice))
-      dispatch(setMonthPrice(planTwo.monthPrice))
+      setDefaultPrice(planTwo.discountFullPrice)
+      setFullPrice(planTwo.monthPrice)
       dispatch(setOffer('Best Offer'))
       dispatch(setPopular(''))
     } else {
-      dispatch(setDiscountFullPrice(planThree.discountFullPrice))
-      dispatch(setMonthPrice(planThree.monthPrice))
+      setDefaultPrice(planThree.discountFullPrice)
+      setFullPrice(planThree.monthPrice)
       dispatch(setOffer(''))
       dispatch(setPopular('Most Popular'))
     }

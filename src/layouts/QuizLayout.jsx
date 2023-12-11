@@ -1,6 +1,7 @@
-import { Outlet } from "react-router-dom"
-import HeaderQuiz from "../components/HeaderQuiz"
-import styles from "../App.module.css"
+import { Outlet } from 'react-router-dom'
+import HeaderQuiz from '../components/HeaderQuiz'
+import Footer from '../components/Footer'
+import styles from '../App.module.css'
 
 const QuizLayout = () => {
   return (
@@ -13,6 +14,7 @@ const QuizLayout = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   )
 }

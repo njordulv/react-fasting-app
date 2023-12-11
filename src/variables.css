@@ -15,6 +15,7 @@
     var(--purple) 90%;
   --gradient-2: var(--purple) 30%, var(--blue) 65%;
   --gradient-3: var(--pink) 45%, var(--yellow) 85%;
+  --gradient-4: var(--background) 60%, var(--black) 90%;
   --font-size: 16px;
   --line-height: 24px;
 }

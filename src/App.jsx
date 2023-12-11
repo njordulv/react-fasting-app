@@ -13,6 +13,7 @@ import Results from './components/Results/Results'
 import Testimonials from './components/Testimonials/Testimonials'
 import Email from './components/Email/Email'
 import Offer from './components/Offer/Offer'
+import Checkout from './components/Checkout/Checkout'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import questions from './data/questions'
 import './variables.css'
@@ -29,6 +30,7 @@ function App() {
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/email" element={<Email />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Route>
           <Route element={<QuizLayout />}>
             <Route path="quiz/height" element={<QuizHeight />} />

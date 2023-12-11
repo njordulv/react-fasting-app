@@ -20,12 +20,12 @@ header {
 
 section {
   position: relative;
-  min-height: 660px;
+  min-height: 650px;
 }
 
 footer {
   padding: 30px 0;
-  background-color: #121212;
+  background-color: var(--black);
   text-align: center;
   font-size: 13px;
   line-height: 20px;
@@ -93,6 +93,7 @@ small {
 
 small b {
   color: var(--pink);
+  font-weight: 500;
 }
 
 button {

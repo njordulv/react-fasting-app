@@ -5,9 +5,21 @@ import { v4 as uuidv4 } from 'uuid'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { BiLoaderAlt } from 'react-icons/bi'
-import { setPlans, selectPlans } from '../../store/slices/paymentSlice'
+import {
+  setPlans,
+  setOffer,
+  setPopular,
+  setDiscountFullPrice,
+  setMonthPrice,
+  selectPlans,
+  selectCurrency,
+  selectPlanOne,
+  selectPlanTwo,
+  selectPlanThree,
+  selectOffer,
+  selectPopular,
+} from '../../store/slices/paymentSlice'
 import { setCheckbox, selectCheckbox } from '../../store/slices/checkboxSlice'
-import { paymentData } from '../../data/payments'
 import styles from './Payment.module.css'
 
 const Payment = () => {
@@ -15,15 +27,15 @@ const Payment = () => {
   const navigate = useNavigate()
   const plans = useSelector(selectPlans)
   const checkbox = useSelector(selectCheckbox)
-  const pricePlan1 = paymentData.plan1.discountFullPrice
-  const pricePlan2 = paymentData.plan2.discountFullPrice
-  const pricePlan3 = paymentData.plan3.discountFullPrice
-  const [defaultPrice, setDefaultPrice] = useState(
-    paymentData.plan2.discountFullPrice
-  )
-  const [fullPrice, setFullPrice] = useState(paymentData.plan2.monthPrice)
+  const currency = useSelector(selectCurrency)
+  const planOne = useSelector(selectPlanOne)
+  const planTwo = useSelector(selectPlanTwo)
+  const planThree = useSelector(selectPlanThree)
+  const defaultPrice = useSelector(selectPlanTwo).discountFullPrice
+  const fullPrice = useSelector(selectPlanTwo).monthPrice
+  const offer = useSelector(selectOffer)
+  const popular = useSelector(selectPopular)
   const [errorDisplayed, setErrorDisplayed] = useState(false)
-  const [popular, setPopular] = useState('')
   const [loading, setLoading] = useState(false)
 
   // unique IDs for payment plan inputs
@@ -47,17 +59,20 @@ const Payment = () => {
     const { plan1, plan2 } = updatedPlans
 
     if (plan1) {
-      setDefaultPrice(pricePlan1)
-      setFullPrice(paymentData.plan1.monthPrice)
-      setPopular('')
+      dispatch(setDiscountFullPrice(planOne.discountFullPrice))
+      dispatch(setMonthPrice(planOne.monthPrice))
+      dispatch(setOffer(''))
+      dispatch(setPopular(''))
     } else if (plan2) {
-      setDefaultPrice(pricePlan2)
-      setFullPrice(paymentData.plan2.monthPrice)
-      setPopular('')
+      dispatch(setDiscountFullPrice(planTwo.discountFullPrice))
+      dispatch(setMonthPrice(planTwo.monthPrice))
+      dispatch(setOffer('Best Offer'))
+      dispatch(setPopular(''))
     } else {
-      setDefaultPrice(pricePlan3)
-      setFullPrice(paymentData.plan3.monthPrice)
-      setPopular('Most Popular')
+      dispatch(setDiscountFullPrice(planThree.discountFullPrice))
+      dispatch(setMonthPrice(planThree.monthPrice))
+      dispatch(setOffer(''))
+      dispatch(setPopular('Most Popular'))
     }
   }
 
@@ -95,23 +110,23 @@ const Payment = () => {
               id={planIds.plan1Id}
               name="planOptions"
               className={styles.paymentInput}
-              checked={plans.plan1}
+              checked={plans && plans.plan1}
               onChange={(e) => handlePlanChange(e, 'plan1')}
             />
             <label htmlFor={planIds.plan1Id}>
-              <div className={styles.paymentName}>1-month plan</div>
+              <div className={styles.paymentName}>{planOne.name}</div>
               <div className={styles.paymentPrice}>
                 <span>
                   <b>
-                    {paymentData.currency.dollar}
-                    {paymentData.plan1.discountPrice}
+                    {currency.symbol}
+                    {planOne.discountPrice}
                   </b>
                   &nbsp;
                   <i>per day</i>
                 </span>
                 <span className={styles.paymentOldPrice}>
-                  {paymentData.currency.dollar}
-                  {paymentData.plan1.oldPrice}
+                  {currency.symbol}
+                  {planOne.oldPrice}
                 </span>
               </div>
             </label>
@@ -122,26 +137,31 @@ const Payment = () => {
               id={planIds.plan2Id}
               name="planOptions"
               className={styles.paymentInput}
-              checked={plans.plan2}
+              checked={plans && plans.plan2}
               onChange={(e) => handlePlanChange(e, 'plan2')}
             />
             <label htmlFor={planIds.plan2Id}>
-              <div className={styles.paymentName}>3-month plan</div>
+              <div className={styles.paymentName}>{planTwo.name}</div>
               <div className={styles.paymentPrice}>
                 <span>
                   <b>
-                    {paymentData.currency.dollar}
-                    {paymentData.plan2.discountPrice}
+                    {currency.symbol}
+                    {planTwo.discountPrice}
                   </b>
                   &nbsp;
                   <i>per day</i>
                 </span>
                 <span className={styles.paymentOldPrice}>
-                  {paymentData.currency.dollar}
-                  {paymentData.plan2.oldPrice}
+                  {currency.symbol}
+                  {planTwo.oldPrice}
                 </span>
               </div>
             </label>
+            <div
+              className={`${styles.paymentPopular} ${styles.paymentBestOffer}`}
+            >
+              {offer}
+            </div>
           </div>
           <div className={styles.paymentPlan}>
             <input
@@ -149,23 +169,23 @@ const Payment = () => {
               id={planIds.plan3Id}
               name="planOptions"
               className={styles.paymentInput}
-              checked={plans.plan3}
+              checked={plans && plans.plan3}
               onChange={(e) => handlePlanChange(e, 'plan3')}
             />
             <label htmlFor={planIds.plan3Id}>
-              <div className={styles.paymentName}>6-month plan</div>
+              <div className={styles.paymentName}>{planThree.name}</div>
               <div className={styles.paymentPrice}>
                 <span>
                   <b>
-                    {paymentData.currency.dollar}
-                    {paymentData.plan3.discountPrice}
+                    {currency.symbol}
+                    {planThree.discountPrice}
                   </b>
                   &nbsp;
                   <i>per day</i>
                 </span>
                 <span className={styles.paymentOldPrice}>
-                  {paymentData.currency.dollar}
-                  {paymentData.plan3.oldPrice}
+                  {currency.symbol}
+                  {planThree.oldPrice}
                 </span>
               </div>
             </label>
@@ -205,13 +225,13 @@ const Payment = () => {
               renewal of my subscription using the specified card. I am aware
               that today I will be charged&nbsp;
               <b>
-                {paymentData.currency.dollar}
                 {defaultPrice}
+                &nbsp;{currency.abbr}
               </b>
               &nbsp;and&nbsp;
               <b>
-                {paymentData.currency.dollar}
                 {fullPrice}
+                &nbsp;{currency.abbr}
               </b>
               &nbsp; for each subsequent quarterly renewal until I opt to
               cancel. To avoid any charges, it's necessary to cancel your

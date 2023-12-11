@@ -19,10 +19,10 @@ const Home = () => {
           <ul>
             <li>Take our quiz to customize your fasting plan</li>
             <li>Calculate your Body Mass Index (BMI)</li>
-            <li>Receive results and recommendations based on your BMI</li>
+            <li>Get results and recommendations based on your BMI</li>
             <li>Track your progress with our progress bars</li>
             <li>Easily navigate through different quiz and result pages</li>
-            <li>See our customers reviews</li>
+            <li>Check our testimonials</li>
             <li>Choose your best activity plan</li>
           </ul>
           <GiWeightScale className={styles.sectionIcon} />

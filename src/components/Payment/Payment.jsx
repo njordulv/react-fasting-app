@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { v4 as uuidv4 } from 'uuid'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { BiLoaderAlt } from 'react-icons/bi'
 import { setPlans, selectPlans } from '../../store/slices/paymentSlice'
 import { setCheckbox, selectCheckbox } from '../../store/slices/checkboxSlice'
 import { paymentData } from '../../data/payments'
@@ -10,6 +12,7 @@ import styles from './Payment.module.css'
 
 const Payment = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const plans = useSelector(selectPlans)
   const checkbox = useSelector(selectCheckbox)
   const pricePlan1 = paymentData.plan1.discountFullPrice
@@ -21,6 +24,7 @@ const Payment = () => {
   const [fullPrice, setFullPrice] = useState(paymentData.plan2.monthPrice)
   const [errorDisplayed, setErrorDisplayed] = useState(false)
   const [popular, setPopular] = useState('')
+  const [loading, setLoading] = useState(false)
 
   // unique IDs for payment plan inputs
   const [planIds] = useState({
@@ -74,6 +78,10 @@ const Payment = () => {
       }
     } else {
       toast.success('Well Done!')
+      setLoading(true)
+      setTimeout(() => {
+        navigate('/checkout')
+      }, 4000)
     }
   }
 
@@ -195,29 +203,35 @@ const Payment = () => {
             <small>
               By selecting this option, I provide consent for the automatic
               renewal of my subscription using the specified card. I am aware
-              that today I will be charged{' '}
+              that today I will be charged&nbsp;
               <b>
                 {paymentData.currency.dollar}
                 {defaultPrice}
-              </b>{' '}
-              and{' '}
+              </b>
+              &nbsp;and&nbsp;
               <b>
                 {paymentData.currency.dollar}
                 {fullPrice}
-              </b>{' '}
-              for each subsequent quarterly renewal until I opt to cancel. To
-              avoid any charges, it's necessary to cancel your subscription at
-              least one day before its expiration. This can be done by
-              contacting support@fasting.app or calling our US number:
+              </b>
+              &nbsp; for each subsequent quarterly renewal until I opt to
+              cancel. To avoid any charges, it's necessary to cancel your
+              subscription at least one day before its expiration. This can be
+              done by contacting support@fasting.app or calling our US number:
               555-01-39. The transaction details might appear on your bank
               statement
             </small>
           </div>
         </div>
         <div className="text-center">
-          <button type="submit" className="button">
-            Get My Plan
-          </button>
+          {loading ? (
+            <button type="submit" className="button loading">
+              <BiLoaderAlt className="spinner" />
+            </button>
+          ) : (
+            <button type="submit" className="button">
+              Get My Plan
+            </button>
+          )}
         </div>
       </form>
       <ToastContainer

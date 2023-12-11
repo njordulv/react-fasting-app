@@ -115,9 +115,15 @@ const Email = () => {
             &nbsp; for insights on how we utilize your information.
           </span>
         </div>
-        <button type="submit" className={`${styles.button} button`}>
-          {loading ? <BiLoaderAlt className={styles.loaderEmail} /> : 'Submit'}
-        </button>
+        {loading ? (
+          <button type="submit" className="button loading">
+            <BiLoaderAlt className="spinner" />
+          </button>
+        ) : (
+          <button type="submit" className="button">
+            Submit
+          </button>
+        )}
       </form>
     </>
   )

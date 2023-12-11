@@ -144,6 +144,17 @@ img {
   background-color: transparent;
 }
 
+.button.loading {
+  background-color: transparent;
+  cursor: default;
+  pointer-events: none;
+}
+
+.spinner {
+  animation: spinner 2s infinite linear;
+  font-size: 27px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -153,4 +164,14 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -79,11 +79,6 @@
   opacity: 0;
 }
 
-.loaderEmail {
-  animation: spinner 2s infinite linear;
-  font-size: 27px;
-}
-
 .formEmail .button {
   max-width: initial;
 }
@@ -119,14 +114,4 @@
 
 .privacyText {
   text-align: left;
-}
-
-@keyframes spinner {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
 }

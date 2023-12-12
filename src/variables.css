@@ -19,6 +19,7 @@
   --gradient-3: var(--pink) 45%, var(--yellow) 85%;
   --gradient-4: var(--background) 60%, var(--black) 90%;
   --gradient-5: var(--red) 45%, var(--orange) 85%;
+  --gradient-focus: var(--pink) 30%, var(--green) 65%;
   --font-size: 16px;
   --line-height: 24px;
 }

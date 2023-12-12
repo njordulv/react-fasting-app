@@ -55,7 +55,7 @@
 }
 
 .inputHolder:before {
-  background: linear-gradient(to right bottom, var(--gradient-3));
+  background: linear-gradient(to right bottom, var(--gradient-focus));
 }
 
 .inputHolder.isError:after {

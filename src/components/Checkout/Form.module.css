@@ -1,0 +1,117 @@
+.checkoutForm {
+  min-height: auto;
+  margin-bottom: 30px;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--black);
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+
+.invert {
+  grid-template-columns: 1fr 1fr 2fr;
+}
+
+.inputField {
+  position: relative;
+}
+
+.inputHolder {
+  position: relative;
+  border-radius: 6px;
+  padding: 1px;
+}
+
+.inputHolder:after,
+.inputHolder:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  border-radius: 6px;
+  padding: 1px;
+  transition: all 0.35s ease;
+}
+
+.inputHolder:after {
+  background: linear-gradient(to right bottom, var(--gradient-2));
+}
+
+.inputHolder:before {
+  background: linear-gradient(to right bottom, var(--gradient-3));
+}
+
+.inputHolder.isError:after {
+  background: linear-gradient(to right bottom, var(--gradient-5));
+}
+
+.inputField:focus-within .inputHolder:after {
+  opacity: 0;
+}
+
+.input {
+  position: relative;
+  height: 36px;
+  width: 100%;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  padding: 3px 12px;
+  text-align: left;
+  color: var(--grey);
+  z-index: 1;
+  box-sizing: border-box;
+  outline: none;
+  background-color: #222;
+}
+
+.input::placeholder {
+  color: var(--dark);
+  transition: all 0.3s ease;
+}
+
+.input:focus-visible::placeholder {
+  opacity: 0;
+  font-size: 10px;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 10px;
+  top: 16px;
+  font-size: 18px;
+  color: var(--purple);
+}
+
+.inputError,
+.emailSuccess {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: left;
+  bottom: -14px;
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 400;
+}
+
+.inputError {
+  color: var(--red);
+}

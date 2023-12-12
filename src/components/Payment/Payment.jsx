@@ -29,10 +29,10 @@ const Payment = () => {
   const planOne = useSelector(selectPlanOne)
   const planTwo = useSelector(selectPlanTwo)
   const planThree = useSelector(selectPlanThree)
-  const [defaultPrice, setDefaultPrice] = useState(planTwo.discountFullPrice)
-  const [fullPrice, setFullPrice] = useState(planTwo.monthPrice)
   const offer = useSelector(selectOffer)
   const popular = useSelector(selectPopular)
+  const [defaultPrice, setDefaultPrice] = useState(planTwo.discountFullPrice)
+  const [fullPrice, setFullPrice] = useState(planTwo.monthPrice)
   const [errorDisplayed, setErrorDisplayed] = useState(false)
   const [loading, setLoading] = useState(false)
 

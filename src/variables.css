@@ -9,13 +9,16 @@
   --blue: #00bbcb;
   --pink: #d367c1;
   --red: #e74c3c;
+  --orange: orange;
   --black: #121212;
-  --dark: #555;
+  --dark: #666;
+  --grey: #ccc;
   --gradient: var(--pink) 15%, var(--green) 25%, var(--blue) 75%,
     var(--purple) 90%;
   --gradient-2: var(--purple) 30%, var(--blue) 65%;
   --gradient-3: var(--pink) 45%, var(--yellow) 85%;
   --gradient-4: var(--background) 60%, var(--black) 90%;
+  --gradient-5: var(--red) 45%, var(--orange) 85%;
   --font-size: 16px;
   --line-height: 24px;
 }

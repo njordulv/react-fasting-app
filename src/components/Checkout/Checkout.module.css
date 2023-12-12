@@ -1,3 +1,7 @@
+.orderDetails {
+  min-height: auto;
+}
+
 .orderDetailsItems {
   display: flex;
   flex-direction: column;

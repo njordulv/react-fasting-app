@@ -1,5 +1,12 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import {
+  FaCreditCard,
+  FaCcVisa,
+  FaCcMastercard,
+  FaCcAmex,
+  FaCcDiscover,
+} from 'react-icons/fa6'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Plans from './Plans'
@@ -13,6 +20,7 @@ const Checkout = () => {
   const [firstNameValue, setFirstNameValue] = useState('')
   const [lastNameValue, setLastNameValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
+  const [paymentCard, setPaymentCard] = useState(<FaCreditCard />)
 
   const {
     register,
@@ -29,7 +37,7 @@ const Checkout = () => {
     },
   }
 
-  const expirationDateValidation = {
+  const expDateValidation = {
     required: 'Expiration date is required',
     pattern: {
       value: /^(0[1-9]|1[0-2])\/\d{2}$/,
@@ -89,6 +97,30 @@ const Checkout = () => {
 
     if (!value) {
       clearErrors('cardNumber')
+    }
+
+    switch (value.charAt(0)) {
+      case '1':
+        setPaymentCard(<FaCcVisa />)
+        break
+      case '2':
+        setPaymentCard(<FaCcMastercard />)
+        break
+      case '3':
+        setPaymentCard(<FaCcAmex />)
+        break
+      case '4':
+        setPaymentCard(<FaCcVisa />)
+        break
+      case '5':
+        setPaymentCard(<FaCcMastercard />)
+        break
+      case '6':
+        setPaymentCard(<FaCcDiscover />)
+        break
+      default:
+        setPaymentCard(<FaCreditCard />)
+        break
     }
   }
 
@@ -161,10 +193,11 @@ const Checkout = () => {
             <div className={`${styles.inputRow}`}>
               <label className={`${styles.inputField}`}>
                 <div
-                  className={`${styles.inputHolder} ${
+                  className={`${styles.inputHolder} ${styles.withIcon} ${
                     errors.cardNumber && `${styles.isError}`
                   }`}
                 >
+                  {paymentCard}
                   <input
                     {...register('cardNumber', cardValidation)}
                     className={`${styles.input}`}
@@ -188,7 +221,7 @@ const Checkout = () => {
                   }`}
                 >
                   <input
-                    {...register('expDate', expirationDateValidation)}
+                    {...register('expDate', expDateValidation)}
                     className={`${styles.input}`}
                     type="text"
                     maxLength="5"
@@ -306,7 +339,7 @@ const Checkout = () => {
           className="button"
           onClick={handleSubmit(checkoutFormSubmit)}
         >
-          Submit
+          Submit Order
         </button>
       </div>
     </>

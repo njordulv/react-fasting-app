@@ -92,30 +92,29 @@ const Checkout = () => {
   }
 
   const cardHandler = (e) => {
-    const value = e.target.value
+    const val = e.target.value
+    const value = val.replace(/\D/g, '')
     setCardValue(value)
 
     if (!value) {
       clearErrors('cardNumber')
+      setPaymentCard(<FaCreditCard />)
+      return
     }
 
-    switch (value.charAt(0)) {
-      case '1':
+    const cardType = checkCardType(value)
+
+    switch (cardType) {
+      case 'Visa':
         setPaymentCard(<FaCcVisa />)
         break
-      case '2':
+      case 'Mastercard':
         setPaymentCard(<FaCcMastercard />)
         break
-      case '3':
+      case 'American Express':
         setPaymentCard(<FaCcAmex />)
         break
-      case '4':
-        setPaymentCard(<FaCcVisa />)
-        break
-      case '5':
-        setPaymentCard(<FaCcMastercard />)
-        break
-      case '6':
+      case 'Discover':
         setPaymentCard(<FaCcDiscover />)
         break
       default:
@@ -124,9 +123,30 @@ const Checkout = () => {
     }
   }
 
+  const checkCardType = (cardNumber) => {
+    const visaPattern = /^4/
+    const mastercardPattern = /^5[1-5]/
+    const amexPattern = /^3[47]/
+    const discoverPattern = /^6(?:011|5[0-9]{2})/
+
+    if (visaPattern.test(cardNumber)) {
+      return 'Visa'
+    } else if (mastercardPattern.test(cardNumber)) {
+      return 'Mastercard'
+    } else if (amexPattern.test(cardNumber)) {
+      return 'American Express'
+    } else if (discoverPattern.test(cardNumber)) {
+      return 'Discover'
+    } else {
+      return 'Unknown'
+    }
+  }
+
   const expDateHandler = (e) => {
     let value = e.target.value
     const lastChar = value.charAt(value.length - 1)
+
+    value = value.replace(/[^\d/]/g, '')
 
     if (value.length === 3 && lastChar === '/') {
       value = value.substring(0, 2)
@@ -144,7 +164,8 @@ const Checkout = () => {
   }
 
   const cvvHandler = (e) => {
-    const value = e.target.value
+    const val = e.target.value
+    const value = val.replace(/\D/g, '')
     setCvvValue(value)
 
     if (!value) {
@@ -179,7 +200,7 @@ const Checkout = () => {
     }
   }
 
-  const checkoutFormSubmit = (data) => {
+  const onSubmit = (data, e) => {
     console.log(data)
     toast.success('Form submitted successfully!')
   }
@@ -337,7 +358,7 @@ const Checkout = () => {
         <button
           type="submit"
           className="button"
-          onClick={handleSubmit(checkoutFormSubmit)}
+          onClick={handleSubmit(onSubmit)}
         >
           Submit Order
         </button>

@@ -32,32 +32,6 @@ function writeFileAsync(filePath, content) {
     })
   })
 }
-// createFileIfNotExists('data/email.json', [])
-// createFileIfNotExists('data/checkout.json', [])
-
-// app.post('/submit-email', (req, res) => {
-//   const formData = req.body
-
-//   let emailData = []
-//   try {
-//     const data = fs.readFileSync('data/email.json', 'utf8')
-//     emailData = JSON.parse(data)
-//   } catch (err) {
-//     console.error(err)
-//   }
-
-//   setTimeout(() => {
-//     emailData.push(formData)
-
-//     fs.writeFileSync(
-//       'data/email.json',
-//       JSON.stringify(emailData, null, 2),
-//       'utf8'
-//     )
-
-//     res.status(200).send('Data was saved successfully')
-//   }, 3000)
-// })
 
 app.post('/submit-email', async (req, res) => {
   try {

@@ -289,8 +289,6 @@ const Checkout = () => {
                   <div className={styles.inputError}>{errors.cvv.message}</div>
                 )}
               </label>
-            </div>
-            <div className={`${styles.inputRow} ${styles.invert}`}>
               <label className={`${styles.inputField}`}>
                 <div
                   className={`${styles.inputHolder} ${

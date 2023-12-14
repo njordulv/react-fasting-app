@@ -1,5 +1,6 @@
-import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
 import {
   FaCreditCard,
   FaCcVisa,
@@ -32,7 +33,7 @@ const Checkout = () => {
   const cardValidation = {
     required: 'Credit card number is required',
     pattern: {
-      value: /^[0-9]{16}$/,
+      value: /^\d{4} \d{4} \d{4} \d{4}$/,
       message: 'Invalid credit card number',
     },
   }
@@ -93,7 +94,9 @@ const Checkout = () => {
 
   const cardHandler = (e) => {
     const val = e.target.value
-    const value = val.replace(/\D/g, '')
+    const cleanedValue = val.replace(/\D/g, '')
+    const groups = cleanedValue.match(/.{1,4}/g)
+    const value = groups ? groups.join(' ') : ''
     setCardValue(value)
 
     if (!value) {
@@ -200,9 +203,18 @@ const Checkout = () => {
     }
   }
 
-  const onSubmit = (data, e) => {
-    console.log(data)
-    toast.success('Form submitted successfully!')
+  const onSubmit = async (checkoutData) => {
+    try {
+      const response = await axios.post(
+        'http://localhost:4000/submit-checkout',
+        {
+          checkoutData,
+        }
+      )
+      toast.success(response.data)
+    } catch (error) {
+      toast.error('Error sending data: ' + error)
+    }
   }
 
   return (
@@ -223,7 +235,7 @@ const Checkout = () => {
                     {...register('cardNumber', cardValidation)}
                     className={`${styles.input}`}
                     type="text"
-                    maxLength="16"
+                    maxLength="19"
                     placeholder="Card Number"
                     value={cardValue}
                     onChange={cardHandler}

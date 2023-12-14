@@ -11,7 +11,7 @@ const initialState = {
   },
   planOne: {
     status: false,
-    name: '1-month Plan',
+    name: '1-Month Plan',
     discountPrice: '0.77',
     oldPrice: '1.54',
     discountFullPrice: '23.10',
@@ -19,7 +19,7 @@ const initialState = {
   },
   planTwo: {
     status: true,
-    name: '3-months Plan',
+    name: '3-Month Plan',
     discountPrice: '0.54',
     oldPrice: '1.08',
     discountFullPrice: '16.20',
@@ -27,7 +27,7 @@ const initialState = {
   },
   planThree: {
     status: false,
-    name: '6-months Plan',
+    name: '6-Months Plan',
     discountPrice: '0.31',
     oldPrice: '0.62',
     discountFullPrice: '9.30',

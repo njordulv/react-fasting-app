@@ -65,11 +65,13 @@ const Email = () => {
     setLoading(true)
     try {
       const result = await dispatch(submitEmail(dataWithTime))
-      setLoading(false)
 
-      if (submitEmail.fulfilled.match(result)) {
-        navigate('/offer')
-      }
+      setTimeout(() => {
+        if (submitEmail.fulfilled.match(result)) {
+          setLoading(false)
+          navigate('/offer')
+        }
+      }, 3000)
     } catch (error) {
       setLoading(false)
       console.error('Error occurred:', error)

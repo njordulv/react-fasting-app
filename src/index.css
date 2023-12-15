@@ -13,7 +13,6 @@ body {
 
 header {
   background-color: var(--background);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   padding: 10px 0;
   text-align: center;
 }
@@ -76,7 +75,7 @@ a {
 }
 
 a:hover {
-  color: var(--green);
+  color: var(--purple);
 }
 
 ul {

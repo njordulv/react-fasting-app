@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {
   LiaCreditCard,
@@ -373,6 +374,14 @@ const Checkout = () => {
         </button>
       </div>
       <PaymentCards />
+      <div className="text-left">
+        <small>
+          By placing this order, you acknowledge that you've reviewed and
+          accepted our <Link to="/privacy-policy">Privacy Policy</Link>. Please
+          note, in certain instances, physical access to the device may be
+          necessary.
+        </small>
+      </div>
     </>
   )
 }

@@ -76,7 +76,7 @@
 }
 
 .questionInput:checked:hover + .questionItemBackground {
-  background-color: var(--blue);
+  background-color: var(--green);
 }
 
 .questionInput:checked + span + span + .questionCheckbox .questionIcon {

@@ -1,6 +1,4 @@
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -23,21 +21,20 @@ const Email = () => {
   const hours = String(date.getHours()).padStart(2, '0')
   const minutes = String(date.getMinutes()).padStart(2, '0')
 
-  const validationSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email('Invalid email address')
-      .required('Email is required'),
-  })
-
   const {
     register,
     handleSubmit,
-    formState: { errors },
     clearErrors,
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-  })
+    formState: { errors },
+  } = useForm()
+
+  const emailValidation = {
+    required: 'Email is required',
+    pattern: {
+      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: 'Invalid email address',
+    },
+  }
 
   const inputHandler = (e) => {
     const value = e.target.value
@@ -48,6 +45,7 @@ const Email = () => {
       clearErrors()
       dispatch(clearNetworkError())
     }
+
     if (!value) {
       setDisabled(true)
     }
@@ -90,11 +88,12 @@ const Email = () => {
         <div className={`${styles.inputFieldEmail}`}>
           <HiOutlineMail className={styles.inputIcon} />
           <input
-            {...register('email')}
-            onChange={inputHandler}
-            value={emailValue}
-            placeholder="Email"
+            {...register('email', emailValidation)}
+            type="text"
             className={`${styles.input} ${styles.inputEmail}`}
+            placeholder="Email"
+            value={emailValue}
+            onChange={inputHandler}
           />
           {errors.email && (
             <div className={styles.inputError}>{errors.email.message}</div>

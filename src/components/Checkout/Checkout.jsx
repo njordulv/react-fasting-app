@@ -2,15 +2,16 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import {
-  FaCreditCard,
-  FaCcVisa,
-  FaCcMastercard,
-  FaCcAmex,
-  FaCcDiscover,
-} from 'react-icons/fa6'
+  LiaCreditCard,
+  LiaCcVisa,
+  LiaCcMastercard,
+  LiaCcAmex,
+  LiaCcDiscover,
+} from 'react-icons/lia'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Plans from './Plans'
+import PaymentCards from './PaymentCards'
 import styles from './Form.module.css'
 
 const Checkout = () => {
@@ -21,7 +22,7 @@ const Checkout = () => {
   const [firstNameValue, setFirstNameValue] = useState('')
   const [lastNameValue, setLastNameValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
-  const [paymentCard, setPaymentCard] = useState(<FaCreditCard />)
+  const [paymentCard, setPaymentCard] = useState(<LiaCreditCard />)
 
   const {
     register,
@@ -101,7 +102,7 @@ const Checkout = () => {
 
     if (!value) {
       clearErrors('cardNumber')
-      setPaymentCard(<FaCreditCard />)
+      setPaymentCard(<LiaCreditCard />)
       return
     }
 
@@ -109,19 +110,19 @@ const Checkout = () => {
 
     switch (cardType) {
       case 'Visa':
-        setPaymentCard(<FaCcVisa />)
+        setPaymentCard(<LiaCcVisa />)
         break
       case 'Mastercard':
-        setPaymentCard(<FaCcMastercard />)
+        setPaymentCard(<LiaCcMastercard />)
         break
       case 'American Express':
-        setPaymentCard(<FaCcAmex />)
+        setPaymentCard(<LiaCcAmex />)
         break
       case 'Discover':
-        setPaymentCard(<FaCcDiscover />)
+        setPaymentCard(<LiaCcDiscover />)
         break
       default:
-        setPaymentCard(<FaCreditCard />)
+        setPaymentCard(<LiaCreditCard />)
         break
     }
   }
@@ -362,8 +363,6 @@ const Checkout = () => {
         />
       </section>
       <Plans />
-      <br />
-      <br />
       <div className="text-center">
         <button
           type="submit"
@@ -373,6 +372,7 @@ const Checkout = () => {
           Submit Order
         </button>
       </div>
+      <PaymentCards />
     </>
   )
 }

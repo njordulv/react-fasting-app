@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const initialState = {
   networkError: null,
+  emailValue: '',
   success: '',
 }
 
@@ -28,6 +29,9 @@ const emailSlice = createSlice({
     clearNetworkError: (state) => {
       state.networkError = null
     },
+    setEmailValue: (state, action) => {
+      state.emailValue = action.payload
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(submitEmail.pending, (state) => {
@@ -44,8 +48,9 @@ const emailSlice = createSlice({
   },
 })
 
-export const { clearNetworkError } = emailSlice.actions
+export const { clearNetworkError, setEmailValue } = emailSlice.actions
 
 export const selectNetworkError = (state) => state.email.networkError
+export const selectEmailValue = (state) => state.email.emailValue
 
 export default emailSlice.reducer

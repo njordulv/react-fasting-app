@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios'
 import {
   LiaCreditCard,
@@ -11,18 +12,20 @@ import {
 } from 'react-icons/lia'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { setEmailValue, selectEmailValue } from '../../store/slices/emailSlice'
 import Plans from './Plans'
 import PaymentCards from './PaymentCards'
 import styles from './Form.module.css'
 
 const Checkout = () => {
+  const dispatch = useDispatch()
   const currentYear = new Date().getFullYear()
   const [cardValue, setCardValue] = useState('')
   const [expDateValue, setExpDateValue] = useState('')
   const [cvvValue, setCvvValue] = useState('')
   const [firstNameValue, setFirstNameValue] = useState('')
   const [lastNameValue, setLastNameValue] = useState('')
-  const [emailValue, setEmailValue] = useState('')
+  const emailValue = useSelector(selectEmailValue)
   const [paymentCard, setPaymentCard] = useState(<LiaCreditCard />)
 
   const {
@@ -198,12 +201,14 @@ const Checkout = () => {
 
   const emailHandler = (e) => {
     const value = e.target.value
-    setEmailValue(value)
+    dispatch(setEmailValue(value))
 
     if (!value) {
       clearErrors('email')
     }
   }
+
+  console.log(emailValue)
 
   const onSubmit = async (checkoutData) => {
     try {

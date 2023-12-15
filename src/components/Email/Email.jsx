@@ -6,16 +6,22 @@ import { HiOutlineMail } from 'react-icons/hi'
 import { GoShieldCheck } from 'react-icons/go'
 import { IoCloseOutline } from 'react-icons/io5'
 import { BiLoaderAlt } from 'react-icons/bi'
-import { submitEmail, clearNetworkError } from '../../store/slices/emailSlice'
+import {
+  submitEmail,
+  setEmailValue,
+  selectEmailValue,
+  clearNetworkError,
+  selectNetworkError,
+} from '../../store/slices/emailSlice'
 import styles from './Email.module.css'
 
 const Email = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const [emailValue, setEmailValue] = useState('')
+  const emailValue = useSelector(selectEmailValue)
+  const networkError = useSelector(selectNetworkError)
   const [disabled, setDisabled] = useState(true)
   const [loading, setLoading] = useState(false)
-  const { networkError } = useSelector((state) => state.email)
 
   const date = new Date()
   const hours = String(date.getHours()).padStart(2, '0')
@@ -38,12 +44,12 @@ const Email = () => {
 
   const inputHandler = (e) => {
     const value = e.target.value
-    setEmailValue(value)
+    dispatch(setEmailValue(value))
 
     if (value.length > 1) {
+      dispatch(clearNetworkError())
       setDisabled(false)
       clearErrors()
-      dispatch(clearNetworkError())
     }
 
     if (!value) {
@@ -52,9 +58,9 @@ const Email = () => {
   }
 
   const eraseInputHandler = () => {
-    setEmailValue('')
-    setDisabled(true)
+    dispatch(setEmailValue())
     dispatch(clearNetworkError())
+    setDisabled(true)
     clearErrors()
   }
 

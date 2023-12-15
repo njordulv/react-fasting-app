@@ -12,15 +12,21 @@ React Fasting App is a web application designed to help users track their health
 
 4. **BMI Results Page:** Based on the height, weight, and other user-provided information, the app calculates the user's BMI and classifies it into one of four categories: UNDERWEIGHT, NORMAL, OVERWEIGHT, or OBESE. Additionally, it provides detailed descriptions for each BMI category.
 
-5. **Testimonials Component:** The app now includes a Testimonials component that showcases feedback from satisfied users who have successfully achieved their health goals using the React Fasting App.
+5. **Testimonials:** The app now includes a Testimonials component that showcases feedback from satisfied users who have successfully achieved their health goals using the React Fasting App.
 
-6. **Loader Component:** Introducing a Loader component that displays a loading animation, providing a visually appealing transition between different sections of the app.
+6. **Loader:** Introducing a Loader component that displays a loading animation, providing a visually appealing transition between different sections of the app.
 
 7. **Progress Bars:** The app features a progress bar that dynamically reflects the user's BMI category. This allows users to monitor their health progress at a glance.
 
 8. **Routing and Communication:** The app includes routing for all pages, allowing users to navigate seamlessly between the quiz, question variants, height and weight input, and results page. It also implements communication between components to provide a smooth and interactive user experience.
 
 9. **Navigation:** Users can move between 13 different pages in the app, including the quiz, question variants, height and weight input, and results page. The app includes a "Step Back" button component that makes it easy for users to return to the previous step in the process.ncludes a "Step Back" button component that makes it easy for users to return to the previous step in the process.
+
+10. **Email:** The app introduces an Email component that enables users to save their data to the backend API. It includes frontend and backend validation to ensure data accuracy.
+
+11. **Offer:** A new Offer component allows users to choose from three available plans.
+
+12. **Checkout:** The app now includes a Checkout component that simulates payment, performs form validation, and sends data to the backend server using the /submit-checkout endpoint.
 
 ### Usage
 

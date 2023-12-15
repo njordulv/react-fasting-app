@@ -93,7 +93,7 @@ const Checkout = () => {
     required: 'Email is required',
     pattern: {
       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: 'Wrong email address',
+      message: 'Invalid email address',
     },
   }
 
@@ -208,12 +208,10 @@ const Checkout = () => {
     }
   }
 
-  console.log(emailValue)
-
   const onSubmit = async (checkoutData) => {
     try {
       const response = await axios.post(
-        'http://localhost:4000/submit-checkout',
+        'http://localhost:4000/submit-checkout1',
         {
           checkoutData,
         }

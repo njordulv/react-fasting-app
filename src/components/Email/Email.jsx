@@ -58,7 +58,7 @@ const Email = () => {
   }
 
   const eraseInputHandler = () => {
-    dispatch(setEmailValue())
+    dispatch(setEmailValue(''))
     dispatch(clearNetworkError())
     setDisabled(true)
     clearErrors()

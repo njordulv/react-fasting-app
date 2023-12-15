@@ -32,6 +32,7 @@ const Checkout = () => {
     register,
     handleSubmit,
     clearErrors,
+    setError,
     formState: { errors },
   } = useForm()
 
@@ -93,7 +94,7 @@ const Checkout = () => {
     required: 'Email is required',
     pattern: {
       value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      message: 'Invalid email address',
+      message: 'Invalid email address format',
     },
   }
 
@@ -104,10 +105,15 @@ const Checkout = () => {
     const value = groups ? groups.join(' ') : ''
     setCardValue(value)
 
-    if (!value) {
+    if (!value || value.length === 19) {
       clearErrors('cardNumber')
       setPaymentCard(<LiaCreditCard />)
       return
+    } else {
+      setError('cardNumber', {
+        type: 'manual',
+        message: 'Invalid card number',
+      })
     }
 
     const cardType = checkCardType(value)
@@ -164,8 +170,13 @@ const Checkout = () => {
       value += '/'
     }
 
-    if (!value) {
+    if (!value || value.length > 4) {
       clearErrors('expDate')
+    } else {
+      setError('expDate', {
+        type: 'manual',
+        message: 'Invalid expiration date',
+      })
     }
 
     setExpDateValue(value)
@@ -176,8 +187,13 @@ const Checkout = () => {
     const value = val.replace(/\D/g, '')
     setCvvValue(value)
 
-    if (!value) {
+    if (!value || value.length > 2) {
       clearErrors('cvv')
+    } else {
+      setError('cvv', {
+        type: 'manual',
+        message: 'Invalid CVV/CVC number',
+      })
     }
   }
 
@@ -185,7 +201,7 @@ const Checkout = () => {
     const value = e.target.value
     setFirstNameValue(value)
 
-    if (!value) {
+    if (!value || value.length >= 1) {
       clearErrors('firstName')
     }
   }
@@ -194,16 +210,28 @@ const Checkout = () => {
     const value = e.target.value
     setLastNameValue(value)
 
-    if (!value) {
+    if (!value || value.length >= 1) {
       clearErrors('lastName')
     }
+  }
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
   }
 
   const emailHandler = (e) => {
     const value = e.target.value
     dispatch(setEmailValue(value))
 
-    if (!value) {
+    if (!value || isValidEmail(value)) {
+      clearErrors('email')
+    } else if (value.length > 3) {
+      setError('email', {
+        type: 'manual',
+        message: 'Invalid email address format',
+      })
+    } else {
       clearErrors('email')
     }
   }
@@ -211,7 +239,7 @@ const Checkout = () => {
   const onSubmit = async (checkoutData) => {
     try {
       const response = await axios.post(
-        'http://localhost:4000/submit-checkout1',
+        'http://localhost:4000/submit-checkout',
         {
           checkoutData,
         }

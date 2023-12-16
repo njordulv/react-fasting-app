@@ -1,5 +1,5 @@
-import ProgressScroll from './ProgressScroll'
-import styles from '../App.module.css'
+import ProgressScroll from '../ProgressScroll'
+import styles from '../../App.module.css'
 
 const HeaderOffer = () => {
   const handleScrollToPlan = () => {

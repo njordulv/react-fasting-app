@@ -8,7 +8,7 @@ React Fasting App is a web application designed to help users track their health
 
 2. **Redux Toolkit Slices:** The app leverages Redux Toolkit slices for efficient state management, ensuring structured and organized data handling across various components and pages.
 
-3. **Height and Weight Pages:** Users can input their height and weight, and the app offers a switcher to toggle between metric and imperial units, enabling users to calculate their Body Mass Index (BMI) easily.
+3. **Height and Weight Pages:** Users can input their height, weight and desired weight, and the app offers a switcher to toggle between metric and imperial units, enabling users to calculate their Body Mass Index (BMI) easily.
 
 4. **BMI Results Page:** Based on the height, weight, and other user-provided information, the app calculates the user's BMI and classifies it into one of four categories: UNDERWEIGHT, NORMAL, OVERWEIGHT, or OBESE. Additionally, it provides detailed descriptions for each BMI category.
 
@@ -20,7 +20,7 @@ React Fasting App is a web application designed to help users track their health
 
 8. **Routing and Communication:** The app includes routing for all pages, allowing users to navigate seamlessly between the quiz, question variants, height and weight input, and results page. It also implements communication between components to provide a smooth and interactive user experience.
 
-9. **Navigation:** Users can move between 13 different pages in the app, including the quiz, question variants, height and weight input, and results page. The app includes a "Step Back" button component that makes it easy for users to return to the previous step in the process.ncludes a "Step Back" button component that makes it easy for users to return to the previous step in the process.
+9. **Navigation:** Users can move between 13 different pages in the app, including the quiz, question variants, height and weight input, and results page. The app includes a "Step Back" button component that makes it easy for users to return to the previous step in the process.
 
 10. **Email:** The app introduces an Email component that enables users to save their data to the backend API. It includes frontend and backend validation to ensure data accuracy.
 

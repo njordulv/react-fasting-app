@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
-import HeaderOffer from '../components/HeaderOffer'
-import Footer from '../components/Footer'
+import HeaderOffer from '../components/Common/HeaderOffer'
+import Footer from '../components/Common/Footer'
 import styles from '../App.module.css'
 
 const OfferLayout = () => {

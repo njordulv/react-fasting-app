@@ -34,7 +34,7 @@ const Loader = () => {
       styles={buildStyles({
         textColor: 'var(--color)',
         pathColor: 'var(--purple)',
-        trailColor: '#eee',
+        trailColor: 'var(--color)',
         textSize: '15px',
       })}
     />

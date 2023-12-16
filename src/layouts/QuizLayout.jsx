@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
-import HeaderQuiz from '../components/HeaderQuiz'
-import Footer from '../components/Footer'
+import HeaderQuiz from '../components/Common/HeaderQuiz'
+import Footer from '../components/Common/Footer'
 import styles from '../App.module.css'
 
 const QuizLayout = () => {

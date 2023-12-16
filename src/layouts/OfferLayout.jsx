@@ -7,7 +7,7 @@ const OfferLayout = () => {
   return (
     <>
       <HeaderOffer />
-      <section>
+      <section className={styles.mainSection}>
         <div className={styles.wrapper}>
           <div className={styles.content}>
             <Outlet />

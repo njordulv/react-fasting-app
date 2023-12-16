@@ -3,6 +3,11 @@
   scroll-behavior: smooth;
 }
 
+.mainSection {
+  min-height: 585px;
+  background-color: var(--background);
+}
+
 .wrapper {
   position: relative;
   width: 100%;
@@ -22,7 +27,7 @@
 
 .content {
   position: relative;
-  padding: 40px 0;
+  padding: 50px 0 50px;
   text-align: center;
 }
 

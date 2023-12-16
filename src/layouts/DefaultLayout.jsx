@@ -7,7 +7,7 @@ const DefaultLayout = () => {
   return (
     <>
       <Header />
-      <section>
+      <section className={styles.mainSection}>
         <div className={styles.wrapper}>
           <div className={styles.content}>
             <Outlet />

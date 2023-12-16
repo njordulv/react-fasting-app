@@ -8,18 +8,17 @@ body {
   color: var(--color);
   font-size: var(--font-size);
   line-height: var(--line-height);
-  background-color: var(--background);
+  background-color: var(--black);
 }
 
 header {
-  background-color: var(--background);
   padding: 10px 0;
   text-align: center;
+  background-color: var(--black);
 }
 
 section {
   position: relative;
-  min-height: 650px;
 }
 
 footer {

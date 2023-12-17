@@ -13,6 +13,12 @@ import {
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { setEmailValue, selectEmailValue } from '../../store/slices/emailSlice'
+import {
+  selectPlans,
+  selectPlanOne,
+  selectPlanTwo,
+  selectPlanThree,
+} from '../../store/slices/paymentSlice'
 import Plans from './Plans'
 import PaymentCards from './PaymentCards'
 import styles from './Form.module.css'
@@ -27,6 +33,29 @@ const Checkout = () => {
   const [lastNameValue, setLastNameValue] = useState('')
   const emailValue = useSelector(selectEmailValue)
   const [paymentCard, setPaymentCard] = useState(<LiaCreditCard />)
+
+  const plans = useSelector(selectPlans)
+  const planOne = useSelector(selectPlanOne)
+  const planTwo = useSelector(selectPlanTwo)
+  const planThree = useSelector(selectPlanThree)
+
+  let totalPrice = ''
+  let totalDiscountPrice = ''
+
+  if (plans.plan1 === true) {
+    totalPrice = planOne.totalPrice
+    totalDiscountPrice = planOne.totalDiscountPrice
+  }
+
+  if (plans.plan2 === true) {
+    totalPrice = planTwo.totalPrice
+    totalDiscountPrice = planTwo.totalDiscountPrice
+  }
+
+  if (plans.plan3 === true) {
+    totalPrice = planThree.totalPrice
+    totalDiscountPrice = planThree.totalDiscountPrice
+  }
 
   const {
     register,
@@ -237,12 +266,15 @@ const Checkout = () => {
   }
 
   const onSubmit = async (checkoutData) => {
+    const updatedCheckoutData = {
+      ...checkoutData,
+      total: totalPrice ? totalPrice : '0',
+      totalDiscount: totalDiscountPrice ? totalDiscountPrice : '0',
+    }
     try {
       const response = await axios.post(
         'http://localhost:4000/submit-checkout',
-        {
-          checkoutData,
-        }
+        { checkoutData: updatedCheckoutData }
       )
       toast.success(response.data)
     } catch (error) {
@@ -404,7 +436,12 @@ const Checkout = () => {
           Submit Order
         </button>
       </div>
-      <PaymentCards />
+      <PaymentCards
+        LiaCcVisa={LiaCcVisa}
+        LiaCcMastercard={LiaCcMastercard}
+        LiaCcAmex={LiaCcAmex}
+        LiaCcDiscover={LiaCcDiscover}
+      />
       <div className="text-left">
         <small>
           By placing this order, you acknowledge that you've reviewed and

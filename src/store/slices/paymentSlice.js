@@ -16,6 +16,8 @@ const initialState = {
     oldPrice: '1.54',
     discountFullPrice: '23.10',
     monthPrice: '46.20',
+    totalPrice: '46.20',
+    totalDiscountPrice: '23.10',
   },
   planTwo: {
     status: true,
@@ -24,6 +26,8 @@ const initialState = {
     oldPrice: '1.08',
     discountFullPrice: '16.20',
     monthPrice: '32.40',
+    totalPrice: '97.20',
+    totalDiscountPrice: '48.60',
   },
   planThree: {
     status: false,
@@ -32,6 +36,8 @@ const initialState = {
     oldPrice: '0.62',
     discountFullPrice: '9.30',
     monthPrice: '18.65',
+    totalPrice: '111.90',
+    totalDiscountPrice: '55.80',
   },
   bestOffer: 'Best Offer',
   popular: '',
@@ -70,6 +76,12 @@ const paymentSlice = createSlice({
     setMonthPrice: (state, action) => {
       state.monthPrice = action.payload
     },
+    setTotalPrice: (state, action) => {
+      state.totalPrice = action.payload
+    },
+    setTotalDiscountPrice: (state, action) => {
+      state.totalDiscountPrice = action.payload
+    },
   },
 })
 
@@ -83,6 +95,8 @@ export const {
   setPopular,
   setDiscountFullPrice,
   setMonthPrice,
+  setTotalPrice,
+  setTotalDiscountPrice,
 } = paymentSlice.actions
 
 export const selectPlans = (state) => state.payment
@@ -92,8 +106,5 @@ export const selectPlanTwo = (state) => state.payment.planTwo
 export const selectPlanThree = (state) => state.payment.planThree
 export const selectOffer = (state) => state.payment.bestOffer
 export const selectPopular = (state) => state.payment.popular
-export const selectDiscountFullPrice = (state) =>
-  state.payment.discountFullPrice
-export const selectMonthPrice = (state) => state.payment.monthPrice
 
 export default paymentSlice.reducer

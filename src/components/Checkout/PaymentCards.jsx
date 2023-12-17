@@ -1,9 +1,3 @@
-import {
-  LiaCcVisa,
-  LiaCcMastercard,
-  LiaCcAmex,
-  LiaCcDiscover,
-} from 'react-icons/lia'
 import styled from 'styled-components'
 
 const Payments = styled.section`
@@ -18,7 +12,12 @@ const Payments = styled.section`
   color: rgba(255, 255, 255, 0.3);
 `
 
-const PaymentCards = () => {
+const PaymentCards = ({
+  LiaCcVisa,
+  LiaCcMastercard,
+  LiaCcAmex,
+  LiaCcDiscover,
+}) => {
   return (
     <Payments>
       <LiaCcVisa />

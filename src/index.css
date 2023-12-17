@@ -63,6 +63,13 @@ h4 {
   font-weight: 600;
 }
 
+h5 {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  color: var(--grey);
+}
+
 p {
   margin-bottom: 20px;
 }
@@ -172,5 +179,14 @@ img {
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes animateGlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
   }
 }

@@ -31,7 +31,7 @@ const initialState = {
   },
   planThree: {
     status: false,
-    name: '6-Months Plan',
+    name: '6-Month Plan',
     discountPrice: '0.31',
     oldPrice: '0.62',
     discountFullPrice: '9.30',

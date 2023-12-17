@@ -11,11 +11,11 @@ const QuizStart = () => {
     <>
       <h1>Achieve Your Ideal Weight</h1>
       <p>
-        Welcome to Achieve Your Ideal Weight App - your trusted companion on the
-        journey to a healthier lifestyle and reaching your desired weight. Our
-        questions will help create a personalized plan for you, considering your
-        goals, habits, and needs. Start your unique path to becoming the best
-        version of yourself right now!
+        Welcome to Achieve Your Ideal Weight Quiz - your trusted companion on
+        the journey to a healthier lifestyle and reaching your desired weight.
+        Our questions will help create a personalized plan for you, considering
+        your goals, habits, and needs. Start your unique path to becoming the
+        best version of yourself right now!
       </p>
       <div className="text-center">
         <button type="button" className="button" onClick={startQuizHandler}>

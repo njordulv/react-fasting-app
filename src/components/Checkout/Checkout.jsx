@@ -10,6 +10,7 @@ import {
   LiaCcAmex,
   LiaCcDiscover,
 } from 'react-icons/lia'
+import { BiLoaderAlt } from 'react-icons/bi'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { setEmailValue, selectEmailValue } from '../../store/slices/emailSlice'
@@ -21,6 +22,7 @@ import {
 } from '../../store/slices/paymentSlice'
 import Plans from './Plans'
 import PaymentCards from './PaymentCards'
+import Final from './Final'
 import styles from './Form.module.css'
 
 const Checkout = () => {
@@ -33,6 +35,8 @@ const Checkout = () => {
   const [lastNameValue, setLastNameValue] = useState('')
   const emailValue = useSelector(selectEmailValue)
   const [paymentCard, setPaymentCard] = useState(<LiaCreditCard />)
+  const [popup, setPopup] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const plans = useSelector(selectPlans)
   const planOne = useSelector(selectPlanOne)
@@ -272,11 +276,14 @@ const Checkout = () => {
       totalDiscount: totalDiscountPrice ? totalDiscountPrice : '0',
     }
     try {
-      const response = await axios.post(
-        'http://localhost:4000/submit-checkout',
-        { checkoutData: updatedCheckoutData }
-      )
-      toast.success(response.data)
+      await axios.post('http://localhost:4000/submit-checkout', {
+        checkoutData: updatedCheckoutData,
+      })
+      setLoading(true)
+      setTimeout(() => {
+        setPopup(true)
+        setLoading(false)
+      }, 3000)
     } catch (error) {
       toast.error('Error sending data: ' + error)
     }
@@ -284,172 +291,189 @@ const Checkout = () => {
 
   return (
     <>
-      <h2>Include the details of your payment information.</h2>
-      <section className={styles.checkoutForm}>
-        <form>
-          <div className={`${styles.formWrapper}`}>
-            <div className={`${styles.inputRow}`}>
-              <label className={`${styles.inputField}`}>
-                <div
-                  className={`${styles.inputHolder} ${styles.withIcon} ${
-                    errors.cardNumber && `${styles.isError}`
-                  }`}
-                >
-                  {paymentCard}
-                  <input
-                    {...register('cardNumber', cardValidation)}
-                    className={`${styles.input}`}
-                    type="text"
-                    maxLength="19"
-                    placeholder="Card Number"
-                    value={cardValue}
-                    onChange={cardHandler}
-                  />
-                </div>
-                {errors.cardNumber && (
-                  <div className={styles.inputError}>
-                    {errors.cardNumber.message}
+      <div
+        className={
+          popup
+            ? `${styles.checkoutPage} ${styles.popup}`
+            : `${styles.checkoutPage}`
+        }
+      >
+        <h2>Include the details of your payment information.</h2>
+        <section className={styles.checkoutForm}>
+          <form>
+            <div className={`${styles.formWrapper}`}>
+              <div className={`${styles.inputRow}`}>
+                <label className={`${styles.inputField}`}>
+                  <div
+                    className={`${styles.inputHolder} ${styles.withIcon} ${
+                      errors.cardNumber && `${styles.isError}`
+                    }`}
+                  >
+                    {paymentCard}
+                    <input
+                      {...register('cardNumber', cardValidation)}
+                      className={`${styles.input}`}
+                      type="text"
+                      maxLength="19"
+                      placeholder="Card Number"
+                      value={cardValue}
+                      onChange={cardHandler}
+                    />
                   </div>
-                )}
-              </label>
-              <label className={`${styles.inputField}`}>
-                <div
-                  className={`${styles.inputHolder} ${
-                    errors.expDate && `${styles.isError}`
-                  }`}
-                >
-                  <input
-                    {...register('expDate', expDateValidation)}
-                    className={`${styles.input}`}
-                    type="text"
-                    maxLength="5"
-                    placeholder="MM/YY"
-                    value={expDateValue}
-                    onChange={expDateHandler}
-                  />
-                  {errors.expDate && (
+                  {errors.cardNumber && (
                     <div className={styles.inputError}>
-                      {errors.expDate.message}
+                      {errors.cardNumber.message}
                     </div>
                   )}
-                </div>
-              </label>
-              <label className={`${styles.inputField}`}>
-                <div
-                  className={`${styles.inputHolder} ${
-                    errors.cvv && `${styles.isError}`
-                  }`}
-                >
-                  <input
-                    {...register('cvv', cvvValidation)}
-                    className={`${styles.input}`}
-                    type="password"
-                    maxLength="4"
-                    placeholder="CVV/CVC"
-                    value={cvvValue}
-                    onChange={cvvHandler}
-                  />
-                </div>
-                {errors.cvv && (
-                  <div className={styles.inputError}>{errors.cvv.message}</div>
-                )}
-              </label>
-              <label className={`${styles.inputField}`}>
-                <div
-                  className={`${styles.inputHolder} ${
-                    errors.firstName && `${styles.isError}`
-                  }`}
-                >
-                  <input
-                    {...register('firstName', firstNameValidation)}
-                    type="text"
-                    className={`${styles.input}`}
-                    placeholder="First name"
-                    value={firstNameValue}
-                    onChange={firstNameHandler}
-                  />
-                </div>
-                {errors.firstName && (
-                  <div className={styles.inputError}>
-                    {errors.firstName.message}
+                </label>
+                <label className={`${styles.inputField}`}>
+                  <div
+                    className={`${styles.inputHolder} ${
+                      errors.expDate && `${styles.isError}`
+                    }`}
+                  >
+                    <input
+                      {...register('expDate', expDateValidation)}
+                      className={`${styles.input}`}
+                      type="text"
+                      maxLength="5"
+                      placeholder="MM/YY"
+                      value={expDateValue}
+                      onChange={expDateHandler}
+                    />
+                    {errors.expDate && (
+                      <div className={styles.inputError}>
+                        {errors.expDate.message}
+                      </div>
+                    )}
                   </div>
-                )}
-              </label>
-              <label className={`${styles.inputField}`}>
-                <div
-                  className={`${styles.inputHolder} ${
-                    errors.lastName && `${styles.isError}`
-                  }`}
-                >
-                  <input
-                    {...register('lastName', lastNameValidation)}
-                    type="text"
-                    className={`${styles.input}`}
-                    placeholder="Last name"
-                    value={lastNameValue}
-                    onChange={lastNameHandler}
-                  />
-                </div>
-                {errors.lastName && (
-                  <div className={styles.inputError}>
-                    {errors.lastName.message}
+                </label>
+                <label className={`${styles.inputField}`}>
+                  <div
+                    className={`${styles.inputHolder} ${
+                      errors.cvv && `${styles.isError}`
+                    }`}
+                  >
+                    <input
+                      {...register('cvv', cvvValidation)}
+                      className={`${styles.input}`}
+                      type="password"
+                      maxLength="4"
+                      placeholder="CVV/CVC"
+                      value={cvvValue}
+                      onChange={cvvHandler}
+                    />
                   </div>
-                )}
-              </label>
-              <label className={`${styles.inputField}`}>
-                <div
-                  className={`${styles.inputHolder} ${
-                    errors.email && `${styles.isError}`
-                  }`}
-                >
-                  <input
-                    {...register('email', emailValidation)}
-                    type="text"
-                    className={`${styles.input}`}
-                    placeholder="Email"
-                    value={emailValue}
-                    onChange={emailHandler}
-                  />
-                </div>
-                {errors.email && (
-                  <div className={styles.inputError}>
-                    {errors.email.message}
+                  {errors.cvv && (
+                    <div className={styles.inputError}>
+                      {errors.cvv.message}
+                    </div>
+                  )}
+                </label>
+                <label className={`${styles.inputField}`}>
+                  <div
+                    className={`${styles.inputHolder} ${
+                      errors.firstName && `${styles.isError}`
+                    }`}
+                  >
+                    <input
+                      {...register('firstName', firstNameValidation)}
+                      type="text"
+                      className={`${styles.input}`}
+                      placeholder="First name"
+                      value={firstNameValue}
+                      onChange={firstNameHandler}
+                    />
                   </div>
-                )}
-              </label>
+                  {errors.firstName && (
+                    <div className={styles.inputError}>
+                      {errors.firstName.message}
+                    </div>
+                  )}
+                </label>
+                <label className={`${styles.inputField}`}>
+                  <div
+                    className={`${styles.inputHolder} ${
+                      errors.lastName && `${styles.isError}`
+                    }`}
+                  >
+                    <input
+                      {...register('lastName', lastNameValidation)}
+                      type="text"
+                      className={`${styles.input}`}
+                      placeholder="Last name"
+                      value={lastNameValue}
+                      onChange={lastNameHandler}
+                    />
+                  </div>
+                  {errors.lastName && (
+                    <div className={styles.inputError}>
+                      {errors.lastName.message}
+                    </div>
+                  )}
+                </label>
+                <label className={`${styles.inputField}`}>
+                  <div
+                    className={`${styles.inputHolder} ${
+                      errors.email && `${styles.isError}`
+                    }`}
+                  >
+                    <input
+                      {...register('email', emailValidation)}
+                      type="text"
+                      className={`${styles.input}`}
+                      placeholder="Email"
+                      value={emailValue}
+                      onChange={emailHandler}
+                    />
+                  </div>
+                  {errors.email && (
+                    <div className={styles.inputError}>
+                      {errors.email.message}
+                    </div>
+                  )}
+                </label>
+              </div>
             </div>
-          </div>
-        </form>
-        <ToastContainer
-          position="bottom-right"
-          autoClose={3000}
-          theme="colored"
+          </form>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            theme="colored"
+          />
+        </section>
+        <Plans />
+        <div className="text-center">
+          {loading ? (
+            <button type="submit" className="button loading">
+              <BiLoaderAlt className="spinner" />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="button"
+              onClick={handleSubmit(onSubmit)}
+            >
+              Submit Order
+            </button>
+          )}
+        </div>
+        <PaymentCards
+          LiaCcVisa={LiaCcVisa}
+          LiaCcMastercard={LiaCcMastercard}
+          LiaCcAmex={LiaCcAmex}
+          LiaCcDiscover={LiaCcDiscover}
         />
-      </section>
-      <Plans />
-      <div className="text-center">
-        <button
-          type="submit"
-          className="button"
-          onClick={handleSubmit(onSubmit)}
-        >
-          Submit Order
-        </button>
+        <div className="text-left">
+          <small>
+            By placing this order, you acknowledge that you've reviewed and
+            accepted our <Link to="/privacy-policy">Privacy Policy</Link>.
+            Please note, in certain instances, physical access to the device may
+            be necessary.
+          </small>
+        </div>
       </div>
-      <PaymentCards
-        LiaCcVisa={LiaCcVisa}
-        LiaCcMastercard={LiaCcMastercard}
-        LiaCcAmex={LiaCcAmex}
-        LiaCcDiscover={LiaCcDiscover}
-      />
-      <div className="text-left">
-        <small>
-          By placing this order, you acknowledge that you've reviewed and
-          accepted our <Link to="/privacy-policy">Privacy Policy</Link>. Please
-          note, in certain instances, physical access to the device may be
-          necessary.
-        </small>
-      </div>
+      {popup && <Final setPopup={setPopup} emailValue={emailValue} />}
     </>
   )
 }

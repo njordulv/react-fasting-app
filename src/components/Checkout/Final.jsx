@@ -2,11 +2,28 @@ import { useNavigate } from 'react-router'
 import styled from 'styled-components'
 import { VscChromeClose } from 'react-icons/vsc'
 
-const FinalStep = styled.div`
+const Popup = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+
+  &.show {
+    display: flex;
+  }
+
+  &.hide {
+    display: none;
+  }
+`
+
+const PopupWrapper = styled.div`
+  position: relative;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -16,9 +33,8 @@ const FinalStep = styled.div`
   padding: 50px 20px;
   border-radius: 10px;
   width: 100%;
-  max-width: 400px;
   background-size: 200% 200%;
-  animation: animateGlow 1.25s linear infinite;
+  animation: fadeIn 0.35s ease-in-out;
   z-index: 9;
 
   &::after {
@@ -62,7 +78,7 @@ const FinalStep = styled.div`
   }
 `
 
-const CloseButton = styled.button`
+const ClosePopup = styled.button`
   position: absolute;
   right: 20px;
   top: 20px;
@@ -78,6 +94,7 @@ const CloseButton = styled.button`
 
 const Final = ({ setPopup, emailValue }) => {
   const navigate = useNavigate()
+  const showPopup = setPopup ? 'show' : 'hide'
 
   const closePopupHandler = () => {
     setPopup(false)
@@ -85,20 +102,22 @@ const Final = ({ setPopup, emailValue }) => {
   }
 
   return (
-    <FinalStep>
-      <h2>Your Order is Confirmed</h2>
-      <h3>
-        Thank you for choosing <br />
-        React Fasting App!
-      </h3>
-      <h5>
-        An email to <span>{emailValue}</span> was sent with your personalized
-        code to register on our platform.
-      </h5>
-      <CloseButton onClick={closePopupHandler}>
-        <VscChromeClose />
-      </CloseButton>
-    </FinalStep>
+    <Popup className={showPopup}>
+      <PopupWrapper>
+        <h2>Your Order is Confirmed</h2>
+        <h3>
+          Thank you for choosing <br />
+          React Fasting App!
+        </h3>
+        <h5>
+          An email to <span>{emailValue}</span> was sent with your personalized
+          code to register on our platform.
+        </h5>
+        <ClosePopup onClick={closePopupHandler}>
+          <VscChromeClose />
+        </ClosePopup>
+      </PopupWrapper>
+    </Popup>
   )
 }
 

@@ -294,7 +294,7 @@ const Checkout = () => {
       <div
         className={
           popup
-            ? `${styles.checkoutPage} ${styles.popup}`
+            ? `${styles.checkoutPage} ${styles.isPopup}`
             : `${styles.checkoutPage}`
         }
       >

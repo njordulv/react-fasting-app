@@ -17,6 +17,7 @@ import Checkout from './components/Checkout/Checkout'
 import PrivacyPolicy from './components/PrivacyPolicy'
 import questions from './data/questions'
 import './variables.css'
+import './animations.css'
 
 function App() {
   return (

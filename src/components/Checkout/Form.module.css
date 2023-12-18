@@ -1,8 +1,9 @@
 .checkoutPage {
   position: relative;
+  transition: all 0.5s ease;
 }
 
-.checkoutPage.popup {
+.checkoutPage.isPopup {
   filter: blur(5px);
 }
 

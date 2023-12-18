@@ -138,9 +138,12 @@ const Checkout = () => {
     const value = groups ? groups.join(' ') : ''
     setCardValue(value)
 
-    if (!value || value.length === 19) {
+    if (!value) {
       clearErrors('cardNumber')
       setPaymentCard(<LiaCreditCard />)
+      return
+    } else if (value.length === 19) {
+      clearErrors('cardNumber')
       return
     } else {
       setError('cardNumber', {

@@ -5,6 +5,7 @@ import formReducer from './slices/formSlice'
 import emailReducer from './slices/emailSlice'
 import paymentReducer from './slices/paymentSlice'
 import checkboxReducer from './slices/checkboxSlice'
+import themeReducer from './slices/themeSlice'
 
 export default configureStore({
   reducer: {
@@ -14,5 +15,6 @@ export default configureStore({
     email: emailReducer,
     payment: paymentReducer,
     checkbox: checkboxReducer,
+    theme: themeReducer,
   },
 })

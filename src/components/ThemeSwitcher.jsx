@@ -23,14 +23,12 @@ const CheckboxSlider = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  -webkit-transition: all 300ms ease;
-  transition: all 300ms ease;
+  transition: all 0.3s ease;
 `
 
 const CheckboxKnob = styled.div`
   position: absolute;
-  -webkit-transition: all 300ms ease;
-  transition: all 300ms ease;
+  transition: all 0.3s ease;
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -45,7 +43,7 @@ const CheckboxKnob = styled.div`
     position: relative;
     left: 0px;
     top: 3px;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
   }
 `
 
@@ -74,13 +72,22 @@ const ThemeSwitcher = () => {
   const themeMode = useSelector(selectThemeMode)
 
   const themeHandler = (event, name) => {
-    dispatch(setThemeMode({ ...themeMode, [name]: event.target.checked }))
+    const mode = { ...themeMode, [name]: event.target.checked }
+    dispatch(setThemeMode(mode))
+    localStorage.setItem('theme', JSON.stringify(mode))
   }
+
+  useEffect(() => {
+    const storedTheme = JSON.parse(localStorage.getItem('theme'))
+    if (storedTheme) {
+      dispatch(setThemeMode(storedTheme))
+    }
+  }, [dispatch])
 
   useEffect(() => {
     document.body.classList.toggle('dark-theme', themeMode.darkTheme)
     document.body.classList.toggle('light-theme', !themeMode.darkTheme)
-  }, [themeMode.darkTheme])
+  }, [themeMode.darkTheme, themeMode])
 
   return (
     <>

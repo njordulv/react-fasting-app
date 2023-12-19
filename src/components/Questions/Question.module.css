@@ -69,6 +69,7 @@
 
 .questionItem:hover .questionItemBackground {
   background-color: var(--purple);
+  color: #fff;
 }
 
 .questionInput:checked + .questionItemBackground {
@@ -90,4 +91,8 @@
   font-size: 18px;
   z-index: -1;
   top: 0;
+}
+
+.questionItem:hover .questionItemTitle {
+  color: whitesmoke;
 }

@@ -9,10 +9,14 @@ const ThemeSwitch = styled.div`
   width: 50px;
   position: absolute;
   left: 65px;
+
+  @media (max-width: 480px) {
+    left: 42px;
+  }
 `
 
 const CheckboxSlider = styled.div`
-  background-color: var(--background);
+  background-color: var(--black);
   position: absolute;
   border-radius: 100px;
   top: 0;
@@ -31,13 +35,12 @@ const CheckboxKnob = styled.div`
   height: 25px;
   border-radius: 50%;
   left: 0;
-  top: 0;
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 6px rgba(153, 153, 153, 0.75);
-  box-shadow: 0 2px 6px rgba(153, 153, 153, 0.75);
+  top: -8px;
+  background-color: var(--background);
+  box-shadow: 2px 0 5px rgba(153, 153, 153, 0.65);
 
   svg {
-    color: #222;
+    color: var(--grey);
     font-size: 18px;
     position: relative;
     left: 0px;
@@ -57,12 +60,12 @@ const CheckboxInput = styled.input`
 const CheckboxWrapper = styled.label`
   display: block;
   width: 45px;
-  height: 25px;
+  height: 10px;
   cursor: pointer;
   position: relative;
 
   & > ${CheckboxInput}:checked + ${CheckboxSlider} {
-    background-color: var(--purple);
+    background-color: var(--dark);
   }
 `
 

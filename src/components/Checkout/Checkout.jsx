@@ -301,7 +301,10 @@ const Checkout = () => {
             : `${styles.checkoutPage}`
         }
       >
-        <h2>Include the details of your payment information.</h2>
+        <h2>
+          Include details <br />
+          of your payment information.
+        </h2>
         <section className={styles.checkoutForm}>
           <form>
             <div className={`${styles.formWrapper}`}>

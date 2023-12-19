@@ -54,7 +54,7 @@
   position: absolute;
   z-index: -1;
   opacity: 1;
-  background-color: var(--black);
+  background-color: var(--background-darker);
   border-radius: 3px;
   transition: all 0.3s ease;
 }
@@ -89,7 +89,7 @@
 }
 
 .paymentInput:checked + label:after {
-  background-color: #000;
+  background-color: var(--background-darker);
 }
 
 .paymentName {
@@ -108,7 +108,7 @@
 }
 
 .paymentPrice b {
-  color: #fff;
+  color: var(--white);
   font-weight: 500;
   transition: all 0.4s ease-in-out;
 }

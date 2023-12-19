@@ -70,7 +70,7 @@ const PopupWrapper = styled.div`
     width: 100%;
     border-radius: 10px;
     z-index: -1;
-    background: var(--black);
+    background: var(--background-darker);
   }
 
   span {

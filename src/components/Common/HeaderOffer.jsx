@@ -14,7 +14,7 @@ const HeaderOffer = () => {
   return (
     <header className={styles.sticky}>
       <div className={styles.wrapper}>
-        <div className={`${styles.container} ${styles.spaceBetween}`}>
+        <div className={`${styles.container} ${styles.justifyEnd}`}>
           <ThemeSwitcher />
           <button className="button" onClick={handleScrollToPlan}>
             Get My Plan

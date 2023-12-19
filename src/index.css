@@ -8,13 +8,14 @@ body {
   color: var(--color);
   font-size: var(--font-size);
   line-height: var(--line-height);
-  background-color: var(--black);
+  background-color: var(--background-darker);
 }
 
 header {
   padding: 10px 0;
   text-align: center;
-  background-color: var(--black);
+  max-height: 45px;
+  background-color: var(--background-darker);
 }
 
 section {
@@ -23,7 +24,7 @@ section {
 
 footer {
   padding: 30px 0;
-  background-color: var(--black);
+  background-color: var(--background-darker);
   text-align: center;
   font-size: 13px;
   line-height: 20px;
@@ -129,7 +130,7 @@ img {
 
 .button {
   font-family: 'Baloo 2', sans-serif;
-  padding: 4px 18px;
+  padding: 2px 18px;
   font-size: 21px;
   border-radius: 8px;
   width: 100%;
@@ -139,7 +140,6 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 54px;
   background-color: var(--purple);
   border: 3px solid var(--purple);
   text-decoration: none;
@@ -148,6 +148,7 @@ img {
 
 .button:hover {
   background-color: transparent;
+  color: var(--white);
 }
 
 .button.loading {
@@ -159,6 +160,7 @@ img {
 .spinner {
   animation: spinner 2s infinite linear;
   font-size: 27px;
+  color: var(--white);
 }
 
 .text-left {
@@ -170,4 +172,10 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+@media (max-width: 480px) {
+  header .button {
+    max-width: 180px;
+  }
 }

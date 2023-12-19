@@ -1,6 +1,8 @@
 :root {
   --background: #27272b;
+  --background-darker: #151515;
   --color: #ddd;
+  --white: #fff;
   --purple: #ab79d7;
   --purple-light: #cd94ff;
   --yellow: #dedf40;
@@ -20,6 +22,28 @@
   --gradient-4: var(--background) 60%, var(--black) 90%;
   --gradient-5: var(--orange) 0%, var(--red) 45%;
   --gradient-focus: var(--pink) 30%, var(--purple-light) 95%;
+  --transparent: rgba(255, 255, 255, 0.3);
+  --placeholder: #777;
+  --border: #333;
   --font-size: 16px;
   --line-height: 24px;
+}
+
+.light-theme {
+  --background: #fff;
+  --background-darker: antiquewhite;
+  --color: #454545;
+  --dark: #ccc;
+  --grey: #878787;
+  --red: coral;
+  --yellow: orange;
+  --black: #777;
+  --white: #444;
+  --transparent: rgba(0, 0, 0, 0.4);
+  --border: #ccc;
+  --placeholder: #ccc;
+
+  .slide-inner {
+    background-color: lavenderblush;
+  }
 }

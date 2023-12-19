@@ -15,17 +15,17 @@
   width: 100%;
   font-size: 18px;
   border-radius: 10px;
-  border: 1px solid #333;
+  border: 1px solid var(--border);
   padding: 5px 10px 5px 33px;
   text-align: left;
   color: var(--color);
   box-sizing: border-box;
   outline: none;
-  background-color: #222;
+  background-color: var(--background);
 }
 
 .input::placeholder {
-  color: #777;
+  color: var(--placeholder);
   transition: all 0.3s ease;
 }
 
@@ -94,7 +94,7 @@
   font-size: 13px;
   line-height: 18px;
   text-align: left;
-  color: #ccc;
+  color: var(--grey);
   margin-bottom: 20px;
 }
 
@@ -105,7 +105,7 @@
 
 .formPrivacy a,
 .formPrivacy a:visited {
-  color: #fff;
+  color: var(--white);
 }
 
 .formPrivacy a:hover {

@@ -28,6 +28,8 @@ React Fasting App is a web application designed to help users track their health
 
 12. **Checkout:** The app now includes a Checkout component that simulates payment, performs form validation, and sends data to the backend server using the /submit-checkout endpoint.
 
+13. **Theme Switcher:** Added a toggle switch between light and dark themes for enhanced user experience. Users can switch between themes to customize their app display.
+
 ### Usage
 
 To use this app, follow these steps:

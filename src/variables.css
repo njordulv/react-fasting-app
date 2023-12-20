@@ -35,7 +35,7 @@
   --background-darker: #f5f5f5;
   --color: #333;
   --white: #fff;
-  --purple: #e5b3ff;
+  --purple: #c99be2;
   --purple-light: #e4a2e8;
   --yellow: #f8c0ff;
   --green: #ffbbf0;
@@ -55,7 +55,7 @@
   --gradient-5: var(--orange) 0%, var(--red) 45%;
   --gradient-focus: var(--pink) 30%, var(--purple-light) 95%;
   --transparent: rgba(0, 0, 0, 0.1);
-  --placeholder: #ddd;
+  --placeholder: #d1d1d1;
   --border: #ccc;
   --btn-color: #555;
 }

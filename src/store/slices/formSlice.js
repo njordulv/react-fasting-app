@@ -77,13 +77,8 @@ const formSlice = createSlice({
     setActive(state, action) {
       state.active = action.payload
     },
-    resetForm(state) {
-      return {
-        ...initialState,
-        inputHeight: state.inputHeight,
-        heightImperial: state.heightImperial,
-        disabled: state.disabled,
-      }
+    resetForm() {
+      return initialState
     },
   },
 })

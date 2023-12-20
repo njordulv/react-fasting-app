@@ -34,28 +34,39 @@ const CheckboxKnob = styled.div`
     top: 1px;
   }
 
-  &:hover svg {
-    color: var(--blue);
+  &:after {
+    content: attr(aria-label);
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    left: -26px;
+    width: 70px;
+    background: var(--dark);
+    color: var(--white);
+    font-size: 11px;
+    line-height: 16px;
+    padding: 2px 5px;
+    border-radius: 3px;
+    top: 37px;
+    opacity: 0;
+    pointer-events: none;
+    visibillity: hidden;
+    transform: scale(0.95);
+    transition: all 0.3s ease;
   }
-`
 
-const Hint = styled.span`
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  display: none;
-  left: -26px;
-  width: 70px;
-  background: var(--dark);
-  color: var(--white);
-  font-size: 11px;
-  line-height: 16px;
-  padding: 2px 5px;
-  border-radius: 3px;
-  animation: showIn 0.3s ease;
+  &:hover {
+    &:after {
+      top: 34px;
+      opacity: 1;
+      pointer-events: all;
+      visibillity: visible;
+      transform: scale(1);
+    }
 
-  &.show {
-    display: flex;
+    svg {
+      color: var(--blue);
+    }
   }
 `
 
@@ -75,7 +86,6 @@ const ThemeSwitcher = () => {
   const dispatch = useDispatch()
   const themeMode = useSelector(selectThemeMode)
   const { darkTheme } = themeMode
-  const [hintText, setHintText] = useState('')
 
   const themeHandler = (event, name) => {
     const mode = { ...themeMode, [name]: event.target.checked }
@@ -93,14 +103,6 @@ const ThemeSwitcher = () => {
     }
   }, [darkTheme, dispatch])
 
-  const handleCursorIn = () => {
-    setHintText('Switch theme')
-  }
-
-  const handleCursorOut = () => {
-    setHintText('')
-  }
-
   return (
     <>
       <ThemeSwitch>
@@ -111,12 +113,8 @@ const ThemeSwitcher = () => {
             onChange={(e) => themeHandler(e, 'darkTheme')}
           />
           <CheckboxSlider>
-            <CheckboxKnob
-              onMouseEnter={handleCursorIn}
-              onMouseLeave={handleCursorOut}
-            >
+            <CheckboxKnob aria-label="Switch theme">
               {darkTheme ? <IoMoonSharp /> : <IoSunnyOutline />}
-              <Hint className={`hint ${hintText && 'show'}`}>{hintText}</Hint>
             </CheckboxKnob>
           </CheckboxSlider>
         </CheckboxWrapper>

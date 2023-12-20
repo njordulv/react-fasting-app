@@ -24,6 +24,7 @@ const CheckboxKnob = styled.div`
   position: absolute;
   width: 25px;
   height: 25px;
+  z-index: 1;
 
   svg {
     position: relative;
@@ -73,6 +74,7 @@ const CheckboxWrapper = styled.label`
 const ThemeSwitcher = () => {
   const dispatch = useDispatch()
   const themeMode = useSelector(selectThemeMode)
+  const { darkTheme } = themeMode
   const [hintText, setHintText] = useState('')
 
   const themeHandler = (event, name) => {
@@ -82,14 +84,14 @@ const ThemeSwitcher = () => {
   }
 
   useEffect(() => {
-    document.body.classList.toggle('dark-theme', themeMode.darkTheme)
-    document.body.classList.toggle('light-theme', !themeMode.darkTheme)
+    document.body.classList.toggle('dark-theme', darkTheme)
+    document.body.classList.toggle('light-theme', !darkTheme)
 
     const storedTheme = JSON.parse(localStorage.getItem('theme'))
     if (storedTheme) {
       dispatch(setThemeMode(storedTheme))
     }
-  }, [themeMode.darkTheme, themeMode, dispatch])
+  }, [darkTheme, dispatch])
 
   const handleCursorIn = () => {
     setHintText('Switch theme')
@@ -105,7 +107,7 @@ const ThemeSwitcher = () => {
         <CheckboxWrapper>
           <CheckboxInput
             type="checkbox"
-            checked={themeMode.darkTheme}
+            checked={darkTheme}
             onChange={(e) => themeHandler(e, 'darkTheme')}
           />
           <CheckboxSlider>
@@ -113,7 +115,7 @@ const ThemeSwitcher = () => {
               onMouseEnter={handleCursorIn}
               onMouseLeave={handleCursorOut}
             >
-              {themeMode.darkTheme ? <IoMoonSharp /> : <IoSunnyOutline />}
+              {darkTheme ? <IoMoonSharp /> : <IoSunnyOutline />}
               <Hint className={`hint ${hintText && 'show'}`}>{hintText}</Hint>
             </CheckboxKnob>
           </CheckboxSlider>

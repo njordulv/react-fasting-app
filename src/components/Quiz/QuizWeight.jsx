@@ -7,6 +7,7 @@ import {
   setWeightError,
   setDisabledWeight,
   selectInputWeight,
+  selectWeightImperial,
   selectWeightError,
   selectDisabledWeight,
   selectIsMetric,
@@ -18,6 +19,7 @@ const QuizWeight = () => {
   const navigate = useNavigate()
 
   const inputWeight = useSelector(selectInputWeight)
+  const inputWeightImp = useSelector(selectWeightImperial)
   const weightError = useSelector(selectWeightError)
   const disabled = useSelector(selectDisabledWeight)
   const isMetric = useSelector(selectIsMetric)
@@ -27,8 +29,9 @@ const QuizWeight = () => {
     dispatch(setInputWeight(value))
 
     if (isMetric) {
+      dispatch(setWeightError(''))
+
       if (!value) {
-        dispatch(setWeightError(''))
         dispatch(setDisabledWeight(true))
       } else if (isNaN(value) || value < 40 || value > 230) {
         dispatch(setDisabledWeight(true))
@@ -41,6 +44,7 @@ const QuizWeight = () => {
       }
     } else {
       dispatch(setWeightImperial(value))
+
       if (!value) {
         dispatch(setWeightError(''))
         dispatch(setDisabledWeight(true))
@@ -65,14 +69,14 @@ const QuizWeight = () => {
       <Switcher />
       <form onSubmit={continueHandler} className={styles.weightForm}>
         <div className={styles.inputField}>
-          <label htmlFor="input-weight">
+          <label htmlFor={isMetric ? 'input-weight' : 'input-weight-imperial'}>
             <input
               type="text"
-              name="input-weight"
+              name={isMetric ? 'input-weight' : 'input-weight-imperial'}
               className={`${styles.input}`}
               maxLength="3"
               placeholder={isMetric ? '75' : '130'}
-              value={inputWeight}
+              value={isMetric ? inputWeight : inputWeightImp}
               onChange={inputWeightHandler}
             />
             <span className={styles.inputMeasure}>

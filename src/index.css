@@ -135,8 +135,9 @@ img {
   border-radius: 8px;
   width: 100%;
   max-width: 288px;
+  height: 45px;
   cursor: pointer;
-  color: #fff;
+  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -148,7 +149,7 @@ img {
 
 .button:hover {
   background-color: transparent;
-  color: var(--white);
+  color: var(--btn-color);
 }
 
 .button.loading {
@@ -160,7 +161,7 @@ img {
 .spinner {
   animation: spinner 2s infinite linear;
   font-size: 27px;
-  color: var(--white);
+  color: var(--btn-color);
 }
 
 .text-left {

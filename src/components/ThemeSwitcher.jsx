@@ -78,16 +78,14 @@ const ThemeSwitcher = () => {
   }
 
   useEffect(() => {
+    document.body.classList.toggle('dark-theme', themeMode.darkTheme)
+    document.body.classList.toggle('light-theme', !themeMode.darkTheme)
+
     const storedTheme = JSON.parse(localStorage.getItem('theme'))
     if (storedTheme) {
       dispatch(setThemeMode(storedTheme))
     }
-  }, [dispatch])
-
-  useEffect(() => {
-    document.body.classList.toggle('dark-theme', themeMode.darkTheme)
-    document.body.classList.toggle('light-theme', !themeMode.darkTheme)
-  }, [themeMode.darkTheme, themeMode])
+  }, [themeMode.darkTheme, themeMode, dispatch])
 
   return (
     <>

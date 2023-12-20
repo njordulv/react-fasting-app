@@ -46,7 +46,7 @@
 }
 
 .logoIcon {
-  color: #fff;
+  color: var(--white);
   background: linear-gradient(180deg, var(--gradient-2));
   font-size: 46px;
   border-radius: 5px;
@@ -206,7 +206,7 @@
 }
 
 .input::placeholder {
-  color: var(--dark);
+  color: var(--placeholder);
   transition: all 0.3s ease;
 }
 
@@ -216,7 +216,7 @@
 
 .inputMeasure {
   font-weight: 600;
-  color: #555;
+  color: var(--dark);
   margin-left: 5px;
 }
 
@@ -311,7 +311,7 @@
   left: 62px;
   width: 46px;
   height: 10px;
-  color: #fff;
+  color: var(--white);
   font-size: 11px;
   font-weight: bold;
   text-align: center;
@@ -324,7 +324,7 @@
   top: 4px;
   width: 46px;
   height: 10px;
-  color: #555;
+  color: var(--dark);
   font-size: 11px;
   font-weight: bold;
   text-align: center;

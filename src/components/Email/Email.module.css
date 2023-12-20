@@ -105,7 +105,7 @@
 
 .formPrivacy a,
 .formPrivacy a:visited {
-  color: var(--white);
+  color: var(--btn-color);
 }
 
 .formPrivacy a:hover {

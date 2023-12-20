@@ -27,3 +27,14 @@
     background-position: 200% 50%;
   }
 }
+
+@keyframes showIn {
+  from {
+    opacity: 0;
+    top: 35px;
+  }
+  to {
+    opacity: 1;
+    top: 30px;
+  }
+}

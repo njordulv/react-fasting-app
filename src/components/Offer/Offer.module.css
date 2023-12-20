@@ -41,7 +41,7 @@
   bottom: 0;
   width: 1px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
   display: block;
   left: 50%;
   margin-left: -1px;
@@ -101,7 +101,7 @@
 }
 
 .ratePale {
-  color: var(--dark);
+  color: var(--grey);
 }
 
 .rateVivid {

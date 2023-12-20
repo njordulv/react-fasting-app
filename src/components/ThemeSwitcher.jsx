@@ -1,13 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect } from 'react'
-import { GoSun, GoMoon } from 'react-icons/go'
+import { useEffect, useState } from 'react'
+import { IoSunnyOutline, IoMoonSharp } from 'react-icons/io5'
 import { setThemeMode, selectThemeMode } from '../store/slices/themeSlice'
 import styled from 'styled-components'
 
 const ThemeSwitch = styled.div`
-  display: flex;
-  width: 50px;
   position: absolute;
+  display: flex;
+  width: 25px;
   left: 65px;
 
   @media (max-width: 480px) {
@@ -16,60 +16,64 @@ const ThemeSwitch = styled.div`
 `
 
 const CheckboxSlider = styled.div`
-  background-color: var(--black);
-  position: absolute;
-  border-radius: 100px;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  transition: all 0.3s ease;
 `
 
 const CheckboxKnob = styled.div`
   position: absolute;
-  transition: all 0.3s ease;
   width: 25px;
   height: 25px;
-  border-radius: 50%;
-  left: 0;
-  top: -8px;
-  background-color: var(--background);
-  box-shadow: 2px 0 5px rgba(153, 153, 153, 0.65);
 
   svg {
-    color: var(--grey);
-    font-size: 18px;
     position: relative;
-    left: 0px;
-    top: 3px;
     transition: all 0.3s ease;
+    color: var(--color);
+    font-size: 22px;
+    top: 1px;
+  }
+
+  &:hover svg {
+    color: var(--blue);
+  }
+`
+
+const Hint = styled.span`
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  left: -26px;
+  width: 70px;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 11px;
+  line-height: 16px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  animation: showIn 0.3s ease;
+
+  &.show {
+    display: flex;
   }
 `
 
 const CheckboxInput = styled.input`
   display: none;
-
-  &:checked + ${CheckboxSlider} ${CheckboxKnob} {
-    left: calc(100% - 23px);
-  }
 `
 
 const CheckboxWrapper = styled.label`
   display: block;
-  width: 45px;
-  height: 10px;
+  width: 25px;
+  height: 25px;
   cursor: pointer;
   position: relative;
-
-  & > ${CheckboxInput}:checked + ${CheckboxSlider} {
-    background-color: var(--dark);
-  }
 `
 
 const ThemeSwitcher = () => {
   const dispatch = useDispatch()
   const themeMode = useSelector(selectThemeMode)
+  const [hintText, setHintText] = useState('')
 
   const themeHandler = (event, name) => {
     const mode = { ...themeMode, [name]: event.target.checked }
@@ -87,6 +91,14 @@ const ThemeSwitcher = () => {
     }
   }, [themeMode.darkTheme, themeMode, dispatch])
 
+  const handleCursorIn = () => {
+    setHintText('Switch theme')
+  }
+
+  const handleCursorOut = () => {
+    setHintText('')
+  }
+
   return (
     <>
       <ThemeSwitch>
@@ -97,8 +109,12 @@ const ThemeSwitcher = () => {
             onChange={(e) => themeHandler(e, 'darkTheme')}
           />
           <CheckboxSlider>
-            <CheckboxKnob>
-              {themeMode.darkTheme ? <GoMoon /> : <GoSun />}
+            <CheckboxKnob
+              onMouseEnter={handleCursorIn}
+              onMouseLeave={handleCursorOut}
+            >
+              {themeMode.darkTheme ? <IoMoonSharp /> : <IoSunnyOutline />}
+              <Hint className={`hint ${hintText && 'show'}`}>{hintText}</Hint>
             </CheckboxKnob>
           </CheckboxSlider>
         </CheckboxWrapper>
